@@ -37,7 +37,7 @@ function rg4wp_uninstall()
 
 if (get_option('rg4wp_status'))
 {
-   require_once dirname(__FILE__).'/raygun4php/RaygunClient.php';
+   require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
    $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
 
    function error_handler($errno, $errstr, $errfile, $errline ) {

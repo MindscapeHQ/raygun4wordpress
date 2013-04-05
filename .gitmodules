@@ -1,0 +1,3 @@
+[submodule "external/raygun4php"]
+	path = external/raygun4php
+	url = git@github.com:MindscapeHQ/raygun4php.git
