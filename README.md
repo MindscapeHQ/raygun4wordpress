@@ -4,7 +4,7 @@ Raygun4Wordpress
 [Raygun.io](http://raygun.io) provider plugin for Wordpress
 
 This provider is a Wordpress plugin that allows you to easily send errors and exceptions from your Wordpress site to the Raygun.io error reporting service.
-It features an admin panel for easy configuration. It uses the lower-level Raygun4php provider. 
+It features an admin panel for easy configuration. It uses the lower-level Raygun4php provider (which is included in the plugin). 
 
 ## Installation
 
@@ -20,7 +20,7 @@ git clone --recursive https://github.com/MindscapeHQ/raygun4php.git
 
 ### From Wordpress Plugin Directory
 
-Coming soon
+Add Raygun4Wordpress from the official plugin repository using your admin panel [here](http://profiles.wordpress.org/mindscapehq).
 
 ## Usage
 
