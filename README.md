@@ -20,7 +20,7 @@ git clone --recursive https://github.com/MindscapeHQ/raygun4php.git
 
 ### From Wordpress Plugin Directory
 
-Add Raygun4Wordpress from the official plugin repository using your admin panel [here](http://profiles.wordpress.org/mindscapehq).
+Add it from the official repository using your admin panel - the plugin is available [here](http://wordpress.org/plugins/raygun4wp/).
 
 ## Usage
 
