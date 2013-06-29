@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Raygun4Wordpress
+Plugin Name: Raygun4WP
 Plugin URI: http://github.com/mindscapehq/raygun4wordpress
 Description: Official Wordpress plugin for the Raygun.io error reporting service
 Version: 1.0.0.0
@@ -16,7 +16,7 @@ add_action( 'admin_menu', 'rg4wp_admin' );
 
 function rg4wp_admin()
 {
-  add_menu_page('Raygun4Wordpress', 'Raygun4Wordpress', 'administrator', 'rg4wp', 'rg4wp_settings');
+  add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_settings');
 }
 
 function rg4wp_settings()
