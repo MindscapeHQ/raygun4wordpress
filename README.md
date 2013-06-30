@@ -1,4 +1,4 @@
-Raygun4Wordpress
+Raygun4WP
 ==========
 
 [Raygun.io](http://raygun.io) provider plugin for Wordpress
@@ -24,6 +24,6 @@ Add it from the official repository using your admin panel - the plugin is avail
 
 ## Usage
 
-In your browser navigate to your Wordpress admin panel, click on Plugins, and 'Activate' Raygun4Wordpress. Click on the new entry that appears to the left.
+In your browser navigate to your Wordpress admin panel, click on Plugins, and 'Activate' Raygun4WP. Click on the new entry that appears to the left.
 
 Copy your application's API key from the Raygun.io dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!

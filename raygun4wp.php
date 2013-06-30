@@ -16,12 +16,19 @@ add_action( 'admin_menu', 'rg4wp_admin' );
 
 function rg4wp_admin()
 {
-  add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_settings');
+  add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about');
+  add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
+  add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
 }
 
 function rg4wp_settings()
 {
   include dirname(__FILE__).'/settings.php';
+}
+
+function rg4wp_about()
+{  
+  include dirname(__FILE__).'/about.php';
 }
 
 function rg4wp_install()
@@ -54,3 +61,12 @@ if (get_option('rg4wp_status'))
     set_exception_handler('exception_handler');
     set_error_handler("error_handler");
 }
+
+if (!get_option('rg4wp_apikey'))
+  {
+    function rg4wp_warning()
+    {
+      echo '<div class=\'updated fade\'><p><strong>Raygun4WP is almost ready to go.</strong> Enter your Raygun API key on the Configuration page then set the plugin to \'enabled\'.</p></div>';
+    }
+    add_action('admin_notices', 'rg4wp_warning');
+  }
