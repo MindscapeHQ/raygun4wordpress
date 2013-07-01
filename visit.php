@@ -4,7 +4,7 @@
     display: block;
     margin: auto;
     width: 95%;
-    height: 90%;
+    height: 100%;
 }
 </style>
 
