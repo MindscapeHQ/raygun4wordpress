@@ -28,7 +28,9 @@ Simple add and enable this plugin, paste in your Raygun API Key (available when 
 
 This plugin automates the installation of Raygun4php, the PHP 5 provider for Raygun. As a result it requires the dependencies that Raygun4php needs.
 
-Namely, the server that your Wordpress site runs on requires a PHP 5.3 environment with the **curl** library and dependencies. Please ask your administrator if this is not enabled (as shown with phpinfo()).
+Specifically, the server that your Wordpress site runs on requires a **PHP 5.3** environment with the **curl** library and dependencies. Please ask your administrator if this is not enabled (as shown with phpinfo()).
+
+When activating the plugin, if you receive a PHP error message stating that there is an 'Unexpected T_STRING', you may be running a PHP 5.2 or below installation. Raygun4WP currently only supports PHP 5.3, a version compatible with 5.2 may be available - please contact us through raygun.io if you require this.
 
 == Changelog  ==
 
