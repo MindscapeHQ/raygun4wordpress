@@ -19,6 +19,8 @@ function rg4wp_admin()
   add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about');
   add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
   add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
+  add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
+  add_submenu_page('rg4wp', 'raygun.io', 'Visit raygun.io', 'administrator', 'rg4wp-visit', 'rg4wp_visit');
 }
 
 function rg4wp_settings()
@@ -29,6 +31,16 @@ function rg4wp_settings()
 function rg4wp_about()
 {  
   include dirname(__FILE__).'/about.php';
+}
+
+function rg4wp_visit()
+{
+  include dirname(__FILE__).'/visit.php';
+}
+
+function rg4wp_dash()
+{
+  include dirname(__FILE__).'/dash.php';
 }
 
 function rg4wp_install()

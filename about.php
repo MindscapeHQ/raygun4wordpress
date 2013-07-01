@@ -1,11 +1,9 @@
-<style type='text/css'>
-#rgFrame
-{
-    display: block;
-    margin: auto;
-    width: 95%;
-    height: 90%;
-}
-</style>
+<?php
+echo '<div class="wrap">
+      <h2>About Raygun</h2>
+      </div>
 
-<div><iframe src='http://raygun.io/features' id='rgFrame'></iframe></div>
+
+';
+
+?>
