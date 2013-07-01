@@ -30,9 +30,17 @@ echo  '" /></td>
       </tr>
 	    </td>
       </tr>
+
+      <tr valign="top">
+      <th scope="row">Tags</th>
+      <td><input type="text" size="60" name="rg4wp_tags" value="';
+echo get_option('rg4wp_tags');
+echo '" /></td>
+      </tr>
+
       </table>
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey" />';
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags" />';
     
 submit_button();
 ?>

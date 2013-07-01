@@ -46,6 +46,7 @@ function rg4wp_dash()
 function rg4wp_install()
 {
   add_option('rg4wp_apikey', '', '', 'yes');
+  add_option('rg4wp_tags', '', '', 'yes');
   add_option('rg4wp_status', '0', '', 'yes');
 }
 
@@ -58,10 +59,11 @@ if (get_option('rg4wp_status'))
 {
    require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
    $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
+   //$tags = get_option('rg4wp_tags');   
 
    function error_handler($errno, $errstr, $errfile, $errline ) {
         global $client;
-        $client->SendError($errno, $errstr, $errfile, $errline);
+        $client->SendError($errno, $errstr, $errfile, $errline);//, $tags);
     }
 
     function exception_handler($exception)
