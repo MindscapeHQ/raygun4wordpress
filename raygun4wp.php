@@ -14,6 +14,7 @@ register_deactivation_hook( __FILE__, 'rg4wp_uninstall' );
 
 add_action( 'admin_menu', 'rg4wp_admin' );
 add_action( 'admin_menu', 'rg4wp_external');
+add_action( 'template_redirect', 'rg4wp_404_handler');
 
 function rg4wp_admin()
 {
@@ -49,11 +50,29 @@ function rg4wp_install()
   add_option('rg4wp_apikey', '', '', 'yes');
   add_option('rg4wp_tags', '', '', 'yes');
   add_option('rg4wp_status', '0', '', 'yes');
+  add_option('rg4wp_404s', '1', '', 'yes');
 }
 
 function rg4wp_uninstall()
 {
   delete_option('rg4wp_setting_apikey');
+  delete_option('rg4wp_tags');
+  delete_option('rg4wp_status');
+  delete_option('rg4wp_404s');
+}
+
+function rg4wp_404_handler()
+{
+    if (get_option('rg4wp_404s') && is_404())
+    {
+      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
+      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
+      $tags = explode(',', get_option('rg4wp_tags'));  
+
+      $uri = $_SERVER['REQUEST_URI']; 
+
+      $client->SendError(404, '404 Not Found: '.$uri, home_url().$uri, '0', $tags); 
+    }
 }
 
 if (get_option('rg4wp_status'))
@@ -75,6 +94,8 @@ if (get_option('rg4wp_status'))
 
     set_exception_handler('exception_handler');
     set_error_handler("error_handler");
+
+    
 }
 
 if (!get_option('rg4wp_apikey'))

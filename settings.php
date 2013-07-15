@@ -34,14 +34,28 @@ echo  '>Disabled</option>
 echo get_option( 'rg4wp_status' ) ? ' selected="selected"': '';
 echo  '>Enabled</option>
       </select>
+      </td>      
+      </tr>
+
+      <tr valign="top">
+      <th scope="row">Send 404s</th>
+      <td>
+      <select name="rg4wp_404s">
+      <option value="0"';
+  echo !get_option('rg4wp_404s') ? ' selected="selected"': '';
+  echo '>No</option>
+      <option value="1"';
+  echo get_option('rg4wp_404s') ? ' selected="selected"': '';
+  echo '>Yes</option>
+      </select>
+      </td>
+      </tr>
 
       <tr valign="top">
       <th scope="row">API Key</th>
       <td><input type="text" size="60" name="rg4wp_apikey" value="';
 echo get_option( 'rg4wp_apikey' );
 echo  '" /></td>
-      </tr>
-	    </td>
       </tr>
 
       <tr valign="top">
@@ -53,7 +67,7 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       </tr>      
       </table>
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s" />
 
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
