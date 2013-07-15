@@ -77,10 +77,19 @@ if (get_option('rg4wp_status'))
 }
 
 if (!get_option('rg4wp_apikey'))
+{
+  function rg4wp_warn_key()
   {
-    function rg4wp_warning()
-    {
-      echo '<div class=\'updated fade\'><p><strong>Raygun4WP is almost ready to go.</strong> Enter your Raygun API key on the Configuration page then set the plugin to \'enabled\'.</p></div>';
-    }
-    add_action('admin_notices', 'rg4wp_warning');
+    echo '<div class=\'updated fade\'><p><strong>Raygun4WP is almost ready to go.</strong> Enter your Raygun API key on the Configuration page then set the plugin to \'enabled\'.</p></div>';
   }
+  add_action('admin_notices', 'rg4wp_warn_key');
+}
+
+if (!function_exists('curl_version'))
+{
+  function rg4wp_warn_curl()
+  {
+    echo '<div class=\'updated fade\'><p><strong>Raygun4WP: the cURL extension is not available in your PHP server.</strong> Raygun4WP requires this library to send errors - please install and enable it (in your php.ini file).</p></div>';
+  }
+  add_action('admin_notices', 'rg4wp_warn_curl');
+}
