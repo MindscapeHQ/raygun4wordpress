@@ -2,8 +2,7 @@
 
 echo '<div class="wrap">
      <h2>Raygun4WP Configuration</h2>
-     <p>You can add your API key and customize your settings here.</p>
-     <p>If you don\'t already have an account, you can create one at  <a href="http://app.raygun.io/signup" target="_blank">raygun.io/signup</a>. Then, in your <a href="http://app.raygun.io/dashboard" target="_blank">dashboard</a> create a new application, and copy the API key from its Settings page. Finally, paste it below and turn error reporting on. Any PHP errors or exceptions will be sent to Raygun and appear on your app\'s dashboard.</p>
+     <p>You can add your API key and customize your settings here.</p>     
 
      <form method="post" action="options.php">';
 

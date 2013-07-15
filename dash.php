@@ -8,4 +8,4 @@
 }
 </style>
 
-<div><iframe src='http://app.raygun.io' id='rgFrame'></iframe></div>
+<div><iframe src='http://app.raygun.io?utm_source=wordpress&utm_medium=admin&utm_campaign=raygun4wp' id='rgFrame'></iframe></div>

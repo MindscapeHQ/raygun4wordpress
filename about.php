@@ -40,6 +40,7 @@
    <h2>Now available for Wordpress</h2>
    <p><strong>Raygun4WP</strong> is the official Raygun plugin for the Wordpress platform. It allows you to easily send and track all errors that occur on your Wordpress site, including HTTP errors and PHP exceptions.</p>
    <p>This plugin simplifies the installation and configuration of Raygun4php, the lower-level Raygun plugin. If you're reading this you have everything you need, and in a couple of minutes your site will be sending its errors to Raygun!</p>
+   <p>If you don't already have an account, you can create one at  <a href="http://app.raygun.io/signup" target="_blank">raygun.io/signup</a>. Then, in your <a href="http://app.raygun.io/dashboard" target="_blank">dashboard</a> create a new application, and copy the API key from its Settings page. Finally, paste it below and turn error reporting on. Any PHP errors or exceptions will be sent to Raygun and appear on your app's dashboard.</p>
    <h2>Next steps</h2>
    <ol>
    <li>Create a <a href="http://app.raygun.io/signup">trial account</a> at Raygun (it's quick and you can use many popular web accounts as your login info).</li>
