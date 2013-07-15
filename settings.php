@@ -48,7 +48,7 @@ echo  '" /></td>
       <th scope="row">Tags</th>
       <td style="width: 336px;"><input type="text" size="60" name="rg4wp_tags" value="';
 echo get_option('rg4wp_tags');
-echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification of errors, etc. They should be a comma-separated list e.g. \'tag1,tag2\'"
+echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification, testing and more. They should be a comma-separated list e.g. \'tag1,tag2\'"
       style=" width: 20px; height: 20px;" /></td></td>      
       </tr>      
       </table>
