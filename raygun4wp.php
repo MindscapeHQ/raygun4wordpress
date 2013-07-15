@@ -3,7 +3,7 @@
 Plugin Name: Raygun4WP
 Plugin URI: http://github.com/mindscapehq/raygun4wordpress
 Description: Official Wordpress plugin for the Raygun.io error reporting service
-Version: 1.0.0.0
+Version: 1.0.0.1
 Author: Mindscape
 Author URI: http://raygun.io
 License: MIT
@@ -13,14 +13,20 @@ register_activation_hook( __FILE__, 'rg4wp_install' );
 register_deactivation_hook( __FILE__, 'rg4wp_uninstall' );
 
 add_action( 'admin_menu', 'rg4wp_admin' );
+add_action( 'admin_menu', 'rg4wp_external');
 
 function rg4wp_admin()
 {
   add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about');
   add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
   add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
-  add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
-  add_submenu_page('rg4wp', 'raygun.io', 'Visit raygun.io', 'administrator', 'rg4wp-visit', 'rg4wp_visit');
+  add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');  
+}
+
+function rg4wp_external()
+{
+  global $submenu;
+  $submenu['rg4wp'][500] = array('Visit raygun.io', 'administrator', 'javascript:window.open("http://raygun.io");return false;');
 }
 
 function rg4wp_settings()
@@ -31,11 +37,6 @@ function rg4wp_settings()
 function rg4wp_about()
 {  
   include dirname(__FILE__).'/about.php';
-}
-
-function rg4wp_visit()
-{
-  include dirname(__FILE__).'/visit.php';
 }
 
 function rg4wp_dash()
