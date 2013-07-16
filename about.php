@@ -27,7 +27,7 @@
       font-size: 110%;
       color: white;
       background: #0E5077;
-      width: 140px;
+      width: 170px;
       padding: 10px 14px;
       margin-top: 20px;
       text-align: center;
@@ -37,7 +37,7 @@
    .rgButton:hover
    {
       background: #1475AD;      
-      cursor: default;
+      cursor: pointer;
    }   
 </style>
 
@@ -68,7 +68,7 @@
    <li>Finally, change Error Reporting to 'Enabled', hit Submit, and you're done!</li>
    </ol>
 
-   <div class="rgButton" onclick="rgSignup();" ><p>Create an account now</p></div>
+   <div class="rgButton" onclick="rgSignup();" ><p>Sign up for a free trial now</p></div>
    </div>
 </div>
 

@@ -38,7 +38,7 @@ echo  '>Enabled</option>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Send 404s</th>
+      <th scope="row">Send 404 errors</th>
       <td>
       <select name="rg4wp_404s">
       <option value="0"';
