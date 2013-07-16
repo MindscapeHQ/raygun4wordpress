@@ -3,7 +3,7 @@ Contributors: mindscapehq
 Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: 1.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
@@ -33,6 +33,14 @@ Specifically, the server that your Wordpress site runs on requires a **PHP 5.3**
 When activating the plugin, if you receive a PHP error message stating that there is an 'Unexpected T_STRING', you may be running a PHP 5.2 or below installation. Raygun4WP currently only supports PHP 5.3, a version compatible with 5.2 may be available - please contact us through raygun.io if you require this.
 
 == Changelog  ==
+
+= 1.0.1.0 =
+
+* Added 404 error handling
+
+* Enabled tag support
+
+* Misc UX improvements
 
 = 1.0  =
 
