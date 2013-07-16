@@ -34,6 +34,14 @@ When activating the plugin, if you receive a PHP error message stating that ther
 
 == Changelog  ==
 
+= 1.0.1.0 =
+
+* Added 404 error handling
+
+* Enabled tag support
+
+* Misc UX improvements
+
 = 1.0  =
 
 * Initial release.
