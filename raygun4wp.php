@@ -3,7 +3,7 @@
 Plugin Name: Raygun4WP
 Plugin URI: http://github.com/mindscapehq/raygun4wordpress
 Description: Exceptional error, exception and 404 tracking with Raygun.io for your Wordpress site. This service lets you monitor your site's health with beautiful graphs and comprehensive reports, so you are always aware of any points of failure. Daily digests are emailed to you, so an overview is available at a glance- no effort required. This plugin has a simple one-minute, no-code-required installation.
-Version: 1.0.1.0
+Version: 1.0.2.0
 Author: Mindscape
 Author URI: http://raygun.io
 License: MIT
@@ -68,7 +68,7 @@ else
 
   function rg4wp_uninstall()
   {
-    delete_option('rg4wp_setting_apikey');
+    delete_option('rg4wp_apikey');
     delete_option('rg4wp_tags');
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
