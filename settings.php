@@ -67,12 +67,10 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       </tr>      
       </table>
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s" />
-
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s" />      
 
       <script type="text/javascript">
-$(document).ready(function() {
+jQuery(document).ready(function($) {  
 // Tooltip only Text
 $(\'.masterTooltip\').hover(function(){
         // Hover over code

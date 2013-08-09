@@ -5,6 +5,13 @@
   add_action( 'admin_menu', 'rg4wp_admin' );
   add_action( 'admin_menu', 'rg4wp_external');
   add_action( 'template_redirect', 'rg4wp_404_handler');
+  add_action( 'wp_enqueue_script', 'load_jquery' );
+  wp_enqueue_script($rgSetStatus, plugins_url('setStatus.js'));  
+
+
+  function load_jquery() {
+      wp_enqueue_script( 'jquery' );
+  }
 
   function rg4wp_admin()
   {
@@ -55,7 +62,7 @@
 
   function rg4wp_404_handler()
   {
-      if (get_option('rg4wp_404s') && is_404())
+      if (get_option('rg4wp_404s') && function_exists('curl_version') && is_404())
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
@@ -67,7 +74,7 @@
       }
   }
 
-  if (get_option('rg4wp_status'))
+  if (get_option('rg4wp_status') && function_exists('curl_version'))
   {
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
@@ -106,4 +113,9 @@
       echo '<div class=\'updated fade\'><p><strong>Raygun4WP: the cURL extension is not available in your PHP server.</strong> Raygun4WP requires this library to send errors - please install and enable it (in your php.ini file).</p></div>';
     }
     add_action('admin_notices', 'rg4wp_warn_curl');
+  }
+
+  if (!get_option('rg4wp_status'))
+  {
+    //echo '<script type="text/javascript">rgSetStatus();</script>';
   }
