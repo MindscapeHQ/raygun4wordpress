@@ -6,7 +6,7 @@
   add_action( 'admin_menu', 'rg4wp_external');
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
-  wp_enqueue_script($rgSetStatus, plugins_url('setStatus.js'));  
+  wp_enqueue_script($rgSetStatus, plugins_url('setStatus.js', __FILE__));  
 
 
   function load_jquery() {
@@ -62,7 +62,7 @@
 
   function rg4wp_404_handler()
   {
-      if (get_option('rg4wp_404s') && function_exists('curl_version') && is_404())
+      if (get_option('rg4wp_status') && get_option('rg4wp_404s') && function_exists('curl_version') && is_404())
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
@@ -74,27 +74,31 @@
       }
   }
 
-  if (get_option('rg4wp_status') && function_exists('curl_version'))
+  if (function_exists('curl_version') && get_option('rg4wp_status'))
   {
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
-     $tags = explode(',', get_option('rg4wp_tags'));   
+     $tags = explode(',', get_option('rg4wp_tags'));
      
-     function error_handler($errno, $errstr, $errfile, $errline ) {
-          global $client, $tags;        
-          $client->SendError($errno, $errstr, $errfile, $errline, $tags);
+     function error_handler($errno, $errstr, $errfile, $errline ) {      
+          if (get_option('rg4wp_status'))
+          { 
+            global $client, $tags;        
+            $client->SendError($errno, $errstr, $errfile, $errline, $tags);
+          }
       }
 
       function exception_handler($exception)
-      {
-          global $client;
-          $client->SendException($exception);
+      {        
+          if (get_option('rg4wp_status'))
+          { 
+            global $client;
+            $client->SendException($exception);
+          }
       }
 
       set_exception_handler('exception_handler');
       set_error_handler("error_handler");
-
-      
   }
 
   if (!get_option('rg4wp_apikey'))
@@ -113,9 +117,4 @@
       echo '<div class=\'updated fade\'><p><strong>Raygun4WP: the cURL extension is not available in your PHP server.</strong> Raygun4WP requires this library to send errors - please install and enable it (in your php.ini file).</p></div>';
     }
     add_action('admin_notices', 'rg4wp_warn_curl');
-  }
-
-  if (!get_option('rg4wp_status'))
-  {
-    //echo '<script type="text/javascript">rgSetStatus();</script>';
   }
