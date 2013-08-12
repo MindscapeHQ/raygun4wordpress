@@ -105,7 +105,7 @@ else {
 function sendTestError()
 {
   window.location.href = "'.plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
-    '&rg4wp_apikey='.get_option('rg4wp_apikey'), __FILE__).'";  
+    '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'";  
 };
 </script>
       ';
