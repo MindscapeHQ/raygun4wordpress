@@ -27,3 +27,23 @@ Add it from the official repository using your admin panel - the plugin is avail
 In your browser navigate to your Wordpress admin panel, click on Plugins, and 'Activate' Raygun4WP. Click on the new entry that appears to the left.
 
 Copy your application's API key from the Raygun.io dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!
+
+Changelog
+---------
+
+Version 1.0.3:
+
+* Added button to test setup on config page
+
+* Added status indicator, improved handling when API key missing or invalid
+
+* Fixed a major bug where the provider would attempt to send errors, even if the status was 'disabled', cURL was missing, or an invalid API key
+ was provided
+
+Version 1.0.1:
+
+* Added 404 error handling
+
+* Enabled tag support
+
+* Misc UX improvements
