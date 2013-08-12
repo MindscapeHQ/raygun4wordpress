@@ -107,42 +107,6 @@ function sendTestError()
   window.location.href = "'.plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
     '&rg4wp_apikey='.get_option('rg4wp_apikey'), __FILE__).'";  
 };
-
-function sendTestError2()
-{
-  jQuery.ajax({
-    type: "POST",
-    url: "https://api.raygun.io/entries",
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader("X-ApiKey", "4whByZr7EKKMCBa96zPS5w==")
-    },        
-    data: {
-      occurredOn: "1970-12-31T23:50:59Z",
-      details: {
-        client: {
-          name: "rg4wp_configuration",
-          version: "1.0",
-          clientUrl: "http://rg4wp"
-        },
-        error: {
-          className: "class",
-          message: "A test error sent from RG4WP config dashboard!",
-          stackTrace: [
-          {
-            lineNumber: "1",
-            className: "none",
-            fileName: "none",
-            methodName: "none"
-          }]
-        }        
-      }      
-    }
-  }).done(function( msg ) {
-    alert("Test sent: "+ msg);
-  }).fail(function(msg) {
-    alert("Fail: "+ msg);
-  });
-};
 </script>
       ';
 echo '<div style="display: inline; margin-top: 10px;"><div style="margin-right: 10px; float: left;">';
