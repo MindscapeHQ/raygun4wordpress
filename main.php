@@ -1,4 +1,6 @@
 <?php
+  require_once (ABSPATH . WPINC . '/pluggable.php');
+
   register_activation_hook( __FILE__, 'rg4wp_install' );
   register_deactivation_hook( __FILE__, 'rg4wp_uninstall' );
 
@@ -49,7 +51,8 @@
     add_option('rg4wp_apikey', '', '', 'yes');
     add_option('rg4wp_tags', '', '', 'yes');
     add_option('rg4wp_status', '0', '', 'yes');
-    add_option('rg4wp_404s', '1', '', 'yes');
+    add_option('rg4wp_usertracking', '0', '', 'yes');
+    add_option('rg4wp_404s', '1', '', 'yes');    
   }
 
   function rg4wp_uninstall()
@@ -58,6 +61,18 @@
     delete_option('rg4wp_tags');
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
+    delete_option('rg4wp_usertracking');    
+  }
+
+  function rg4wp_checkUser($client)
+  {
+    if (get_option('rg4wp_usertracking'))
+    {
+      global $current_user;
+      get_currentuserinfo();          
+      $client->SetUser($current_user->user_email);      
+    }
+    return $client;
   }
 
   function rg4wp_404_handler()
@@ -68,6 +83,7 @@
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
         $tags = explode(',', get_option('rg4wp_tags'));  
+        $client = rg4wp_checkUser($client);
 
         $uri = $_SERVER['REQUEST_URI']; 
 
@@ -80,11 +96,12 @@
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
      $tags = explode(',', get_option('rg4wp_tags'));
+     $client = rg4wp_checkUser($client);
      
      function error_handler($errno, $errstr, $errfile, $errline ) {      
           if (get_option('rg4wp_status'))
           { 
-            global $client, $tags;        
+            global $client, $tags;                 
             $client->SendError($errno, $errstr, $errfile, $errline, $tags);
           }
       }
@@ -93,7 +110,7 @@
       {        
           if (get_option('rg4wp_status'))
           { 
-            global $client;
+            global $client;            
             $client->SendException($exception);
           }
       }

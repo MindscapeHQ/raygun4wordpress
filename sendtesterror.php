@@ -8,7 +8,12 @@ echo '<!DOCTYPE html>
 	if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_apikey'])
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-        $client = new Raygun4php\RaygunClient($_GET['rg4wp_apikey']);               
+        $client = new Raygun4php\RaygunClient($_GET['rg4wp_apikey']);  
+
+        if ($_GET['rg4wp_usertracking'])
+        {
+          $client->SetUser($_GET['user']);          
+        }
 
         $result = $client->SendError(404, 'Congratulations, Raygun4WP is working correctly!', '0', '0');         
         if ($result == '403')
