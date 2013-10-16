@@ -4,7 +4,7 @@ Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.0
+Stable tag: 1.1.0.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -32,7 +32,27 @@ Specifically, the server that your Wordpress site runs on requires a **PHP 5.3**
 
 When activating the plugin, if you receive a PHP error message stating that there is an 'Unexpected T_STRING', you may be running a PHP 5.2 or below installation. Raygun4WP currently only supports PHP 5.3, a version compatible with 5.2 may be available - please contact us through raygun.io if you require this.
 
+= How do I use the unique user tracking feature? =
+
+If you enable this feature the currently logged in user's email address will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
+
 == Changelog  ==
+
+= 1.1.0.0 =
+
+* Added Unique User tracking support to Settings page
+
+* Updated internal Raygun4PHP to use latest v1.1
+
+= 1.0.3.0 =
+
+* Added button to test setup on config page
+
+* Added status indicator, improved handling when API key missing or invalid
+
+* Fixed a major bug where the provider would attempt to send errors, even if the status was 'disabled', cURL was missing, or an invalid API key was provided
+
+  Because of these changes, we strongly recommend you upgrade from any earlier releases to 1.0.3.0 or greater.
 
 = 1.0.1.0 =
 
