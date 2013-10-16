@@ -55,6 +55,20 @@ echo  '>Enabled</option>
       </tr>
 
       <tr valign="top">
+      <th scope="row">Unique user tracking</th>
+      <td>
+      <select name="rg4wp_usertracking">
+      <option value="0"';
+  echo !get_option('rg4wp_usertracking') ? ' selected="selected"': '';
+  echo '>Disabled</option>
+      <option value="1"';
+  echo get_option('rg4wp_usertracking') ? ' selected="selected"': '';
+  echo '>Enabled</option>
+      </select>
+      </td>
+      </tr>
+
+      <tr valign="top">
       <th scope="row">API Key</th>
       <td><input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="';
 echo get_option( 'rg4wp_apikey' );
@@ -68,9 +82,11 @@ echo get_option('rg4wp_tags');
 echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification, testing and more. They should be a comma-separated list e.g. \'tag1,tag2\'"
       style=" width: 20px; height: 20px;" /></td></td>      
       </tr>      
+
       </table>
+
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s" />      
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_usertracking" />      
 
       <script type="text/javascript">
 jQuery(document).ready(function($) {  
@@ -104,8 +120,14 @@ else {
 
 function sendTestError()
 {
+  var user = "';
+  global $current_user;
+  get_currentuserinfo();
+  echo $current_user->user_email;
+  echo '";
   window.location.href = "'.plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
-    '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'";  
+    '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
+    .get_option('rg4wp_usertracking').'&user=" + user;  
 };
 </script>
       ';
