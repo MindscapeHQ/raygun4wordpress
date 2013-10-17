@@ -39,7 +39,7 @@ Version 1.1.1:
 
 * WordPress version tracking enabled
 
-* Updated Raygun4PHP, fixed two bugs with nested request data and user tracking
+* Updated Raygun4PHP. There were two bugs in 1.1 with nested request data and user tracking, updating is recommended.
 
 Version 1.1:
 
