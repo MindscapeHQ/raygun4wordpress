@@ -84,6 +84,7 @@
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
         $tags = explode(',', get_option('rg4wp_tags'));  
         $client = rg4wp_checkUser($client);
+        $client->SetVersion(get_bloginfo('version'));
 
         $uri = $_SERVER['REQUEST_URI']; 
 
@@ -97,6 +98,7 @@
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
      $tags = explode(',', get_option('rg4wp_tags'));
      $client = rg4wp_checkUser($client);
+     $client->SetVersion(get_bloginfo('version'));
      
      function error_handler($errno, $errstr, $errfile, $errline ) {      
           if (get_option('rg4wp_status'))

@@ -35,6 +35,12 @@ You can enable this feature from the Settings page. If you do so the currently l
 Changelog
 ---------
 
+Version 1.1.1:
+
+* WordPress version tracking enabled
+
+* Updated Raygun4PHP, fixed two bugs with nested request data and user tracking
+
 Version 1.1:
 
 * Added Unique User tracking support
