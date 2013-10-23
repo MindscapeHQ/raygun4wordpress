@@ -35,7 +35,7 @@ You can enable this feature from the Settings page. If you do so the currently l
 Changelog
 ---------
 
-Version 1.1.2:
+Version 1.1.3:
 
 * Bump Raygun4PHP to async version
 
