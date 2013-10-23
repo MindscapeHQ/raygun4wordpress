@@ -35,6 +35,10 @@ You can enable this feature from the Settings page. If you do so the currently l
 Changelog
 ---------
 
+Version 1.1.2:
+
+* Bump Raygun4PHP to async version
+
 Version 1.1.1:
 
 * WordPress version tracking enabled
