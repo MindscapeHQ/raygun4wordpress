@@ -8,7 +8,7 @@ It features an admin panel for easy configuration. It uses the lower-level Raygu
 
 ## Installation
 
-Firstly, ensure that the **curl** extension is installed and enabled in your server's php.ini file. If you are using a *nix system, the package php5-curl may contain the required dependencies.
+Firstly, ensure that your server is running PHP 5.3.3 or newer and that it has the **curl** extension is installed and enabled in your server's php.ini file. If you are using a *nix system, the package php5-curl may contain the required dependencies.
 
 ### Manually with Git
 
@@ -38,6 +38,14 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 
 Changelog
 ---------
+
+Version 1.2:
+
+* Now requires PHP 5.3.3 or newer
+
+* Default to using socket sending method.
+
+* Bump Raygun4PHP to 1.3.3
 
 Version 1.1.4:
 
