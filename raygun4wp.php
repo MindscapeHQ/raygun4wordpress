@@ -9,11 +9,11 @@ Author URI: http://raygun.io
 License: MIT
 */
 
-if (version_compare(PHP_VERSION, '5.3.0', '<'))
+if (version_compare(PHP_VERSION, '5.3.3', '<'))
 {
   function rg4wp_warn_php()
   {
-    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> Your server\'s PHP version is below 5.3. Raygun4WP requires at least this version to run; please update PHP to at least 5.3, or contact your administrator.</p></div>';
+    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> Your server\'s PHP version is below 5.3.3. Raygun4WP requires at least this version to run; please update PHP to at least 5.3, or contact your administrator.</p></div>';
   }
 
   add_action('admin_notices', 'rg4wp_warn_php');

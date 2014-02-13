@@ -8,8 +8,6 @@
   add_action( 'admin_menu', 'rg4wp_external');
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
-  wp_enqueue_script($rgSetStatus, plugins_url('setStatus.js', __FILE__));  
-
 
   function load_jquery() {
       wp_enqueue_script( 'jquery' );
@@ -22,7 +20,7 @@
     add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
     add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
     add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
-    add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');  
+    add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
   }
 
   function rg4wp_external()
@@ -37,7 +35,7 @@
   }
 
   function rg4wp_about()
-  {  
+  {
     include dirname(__FILE__).'/about.php';
   }
 
@@ -52,7 +50,7 @@
     add_option('rg4wp_tags', '', '', 'yes');
     add_option('rg4wp_status', '0', '', 'yes');
     add_option('rg4wp_usertracking', '0', '', 'yes');
-    add_option('rg4wp_404s', '1', '', 'yes');    
+    add_option('rg4wp_404s', '1', '', 'yes');
   }
 
   function rg4wp_uninstall()
@@ -61,7 +59,7 @@
     delete_option('rg4wp_tags');
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
-    delete_option('rg4wp_usertracking');    
+    delete_option('rg4wp_usertracking');
   }
 
   function rg4wp_checkUser($client)
@@ -69,8 +67,8 @@
     if (get_option('rg4wp_usertracking'))
     {
       global $current_user;
-      get_currentuserinfo();          
-      $client->SetUser($current_user->user_email);      
+      get_currentuserinfo();
+      $client->SetUser($current_user->user_email);
     }
     return $client;
   }
@@ -81,38 +79,38 @@
         && is_404() && get_option('rg4wp_apikey'))
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
-        $tags = explode(',', get_option('rg4wp_tags'));  
+        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
+        $tags = explode(',', get_option('rg4wp_tags'));
         $client = rg4wp_checkUser($client);
         $client->SetVersion(get_bloginfo('version'));
 
-        $uri = $_SERVER['REQUEST_URI']; 
+        $uri = $_SERVER['REQUEST_URI'];
 
-        $client->SendError(404, '404 Not Found: '.$uri, home_url().$uri, '0', $tags); 
+        $client->SendError(404, '404 Not Found: '.$uri, home_url().$uri, '0', $tags);
       }
   }
 
   if (function_exists('curl_version') && get_option('rg4wp_status') && get_option('rg4wp_apikey'))
   {
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'));
+     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
      $tags = explode(',', get_option('rg4wp_tags'));
      $client = rg4wp_checkUser($client);
      $client->SetVersion(get_bloginfo('version'));
-     
-     function error_handler($errno, $errstr, $errfile, $errline ) {      
+
+     function error_handler($errno, $errstr, $errfile, $errline ) {
           if (get_option('rg4wp_status'))
-          { 
-            global $client, $tags;                 
+          {
+            global $client, $tags;
             $client->SendError($errno, $errstr, $errfile, $errline, $tags);
           }
       }
 
       function exception_handler($exception)
-      {        
+      {
           if (get_option('rg4wp_status'))
-          { 
-            global $client;            
+          {
+            global $client;
             $client->SendException($exception);
           }
       }
