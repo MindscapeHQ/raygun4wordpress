@@ -39,6 +39,10 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+Version 1.2.1:
+
+* Updated admin message
+
 Version 1.2:
 
 * Now requires PHP 5.3.3 or newer
