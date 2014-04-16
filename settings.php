@@ -83,10 +83,18 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       style=" width: 20px; height: 20px;" /></td></td>      
       </tr>      
 
+      <tr valign="top">
+      <th scope="row">Domains to ignore</th>
+      <td><input type="text" size="60" id="ignoreDomains" name="rg4wp_ignoredomains" value="';
+echo get_option( 'rg4wp_ignoredomains' );
+echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="A list of domains that should not report errors. Useful for development or multisite installations. They should be a comma-separated list e.g. \'example.com,example.org\'"
+      style=" width: 20px; height: 20px;" /></td></td>
+      </tr>
+
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_usertracking" />      
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_usertracking,rg4wp_ignoredomains" />
 
       <script type="text/javascript">
 jQuery(document).ready(function($) {  
