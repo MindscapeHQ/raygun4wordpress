@@ -4,7 +4,7 @@ Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.2.1.0
+Stable tag: 1.3.0.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -37,6 +37,18 @@ When activating the plugin, if you receive a PHP error message stating that ther
 If you enable this feature the currently logged in user's email address will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
 
 == Changelog  ==
+
+= 1.3.0.0 =
+
+* Ignored Domains setting added; bump RG4PHP to v1.3.5
+
+= 1.2.1.0 =
+
+* Updated admin message
+
+= 1.2.0.0 =
+
+* Now requires PHP 5.3.3 or newer; default to using socket sending method; bump Raygun4PHP to 1.3.3
 
 = 1.1.4.0 =
 
