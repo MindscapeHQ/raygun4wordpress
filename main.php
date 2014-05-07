@@ -14,7 +14,7 @@
       add_action('admin_head', 'rg4wp_js', 0);
   }
   function rg4wp_js(){
-    printf('<script src="%sraygun4js/dist/raygun.min.js"></script><script>Raygun.init("%s");</script>'."\n", plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
+    printf('<script src="%sexternal/raygun4js/dist/raygun.min.js"></script><script>Raygun.init("%s").attach();</script>'."\n", plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
   }
 
   function load_jquery() {
