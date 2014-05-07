@@ -4,7 +4,7 @@ Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.3.0.0
+Stable tag: 1.4.0.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -24,6 +24,12 @@ Simple add and enable this plugin, paste in your Raygun API Key (available when 
 
 == Frequently Asked Questions  ==
 
+= Client-side JavaScript error tracking =
+
+As of 1.4 this plugin now also include Raygun4JS so you can automatically track JavaScript errors that occur in your user's browsers once your site's pages are loaded.
+
+To activate this, turn on the JavaScript error tracking option in the Raygun4WP Settings page.
+
 = What does my Wordpress site require to use this plugin?  =
 
 This plugin automates the installation of Raygun4php, the PHP 5 provider for Raygun. As a result it requires the dependencies that Raygun4php needs.
@@ -37,6 +43,10 @@ When activating the plugin, if you receive a PHP error message stating that ther
 If you enable this feature the currently logged in user's email address will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
 
 == Changelog  ==
+
+= 1.4.0.0 =
+
+* Added auto client-side JavaScript error tracking
 
 = 1.3.0.0 =
 
