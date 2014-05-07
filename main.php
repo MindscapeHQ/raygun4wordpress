@@ -9,6 +9,14 @@
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
 
+  if (get_option('rg4wp_js') == 1) {
+      add_action('wp_head', 'rg4wp_js', 0);
+      add_action('admin_head', 'rg4wp_js', 0);
+  }
+  function rg4wp_js(){
+    printf('<script src="%sexternal/raygun4js/dist/raygun.min.js"></script><script>Raygun.init("%s").attach();</script>'."\n", plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
+  }
+
   function load_jquery() {
       wp_enqueue_script( 'jquery' );
   }
@@ -51,6 +59,7 @@
     add_option('rg4wp_status', '0', '', 'yes');
     add_option('rg4wp_usertracking', '0', '', 'yes');
     add_option('rg4wp_404s', '1', '', 'yes');
+    add_option('rg4wp_js', '1', '', 'yes');
     add_option('rg4wp_ignoredomains', '', '', 'yes');
   }
 
@@ -60,6 +69,7 @@
     delete_option('rg4wp_tags');
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
+    delete_option('rg4wp_js');
     delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
   }

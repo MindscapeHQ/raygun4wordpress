@@ -28,6 +28,12 @@ In your browser navigate to your Wordpress admin panel, click on Plugins, and 'A
 
 Copy your application's API key from the Raygun.io dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!
 
+### Client-side JavaScript error tracking
+
+As of 1.4 this plugin now also include Raygun4JS so you can automatically track JavaScript errors that occur in your user's browsers once your site's pages are loaded.
+
+To activate this, turn on the JavaScript error tracking option in the Raygun4WP Settings page.
+
 ### Unique user tracking
 
 You can enable this feature from the Settings page. If you do so the currently logged in user's email address will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
@@ -43,6 +49,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.4.0: Added auto client-side JavaScript error tracking
 - 1.3.0: Ignored Domains setting added; bump RG4PHP to v1.3.5
 - 1.2.1: Updated admin message
 - 1.2: Now requires PHP 5.3.3 or newer; default to using socket sending method; bump Raygun4PHP to 1.3.3

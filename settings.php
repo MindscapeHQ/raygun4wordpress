@@ -45,11 +45,23 @@ echo  '>Enabled</option>
       <td>
       <select name="rg4wp_404s">
       <option value="0"';
-  echo !get_option('rg4wp_404s') ? ' selected="selected"': '';
-  echo '>No</option>
+echo !get_option('rg4wp_404s') ? ' selected="selected"': '';
+echo '>No</option>
       <option value="1"';
-  echo get_option('rg4wp_404s') ? ' selected="selected"': '';
-  echo '>Yes</option>
+echo get_option('rg4wp_404s') ? ' selected="selected"': '';
+echo '>Yes</option>
+      </select>
+      </td>
+      </tr>
+
+      <tr valign="top">
+      <th scope="row">Track JavaScript errors</th>
+      <td>
+      <select name="rg4wp_js">';
+$rg4wp_js = get_option('rg4wp_js');
+printf('<option value="0" %s>No</option>', selected(0, $rg4wp_js));
+printf('<option value="1" %s>Yes</option>', selected(1, $rg4wp_js));
+echo '
       </select>
       </td>
       </tr>
@@ -94,7 +106,7 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_usertracking,rg4wp_ignoredomains" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains" />
 
       <script type="text/javascript">
 jQuery(document).ready(function($) {  
