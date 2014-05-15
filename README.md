@@ -49,6 +49,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.4.1: Admin warning notice fix
 - 1.4.0: Added auto client-side JavaScript error tracking
 - 1.3.0: Ignored Domains setting added; bump RG4PHP to v1.3.5
 - 1.2.1: Updated admin message
