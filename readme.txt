@@ -4,7 +4,7 @@ Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.4.1.0
+Stable tag: 1.5.0.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -37,6 +37,18 @@ This plugin automates the installation of Raygun4php, the PHP 5 provider for Ray
 Specifically, the server that your Wordpress site runs on requires a **PHP 5.3** environment with the **curl** library and dependencies. Please ask your administrator if this is not enabled (as shown with phpinfo()).
 
 When activating the plugin, if you receive a PHP error message stating that there is an 'Unexpected T_STRING', you may be running a PHP 5.2 or below installation. Raygun4WP currently only supports PHP 5.3, a version compatible with 5.2 may be available - please contact us through raygun.io if you require this.
+
+= Multisite Support =
+
+It is recommended to use the most recent version WordPress and PHP possible. This procedure should be first followed on a staging server that matches your production environment as closely as possible, then replicated live.
+
+1. On your root network site, install the plugin using the Admin dashboard's Plugin page as standard, but do not activate it.
+2. FTP in and modify wp-content/plugins/raygun4wp/raygun4wp.php - change the value on line 12 to true.
+3. Visit the Admin dashboard of a child site (not the root network site). Go to its Plugin page, and you should see Raygun4WP ready to be activated - do so.
+4. A new Raygun4WP submenu will be added to the left. In there click on Configuration, paste in your API key, change the top dropdown to Enabled then click Save Changes. You can now click Send Test Error and one will appear in your dashboard.
+5. Repeat the above process for any other child sites - you can use different API keys (to send to different Raygun apps) or the same one.
+
+Finally, if you so desire you should be able to visit the root network site, activate it there and configure it. You must however activate it on at least one child site first.
 
 = How do I use the unique user tracking feature? =
 
