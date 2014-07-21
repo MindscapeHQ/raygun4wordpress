@@ -6,6 +6,8 @@ Raygun4WP
 This provider is a Wordpress plugin that allows you to easily send errors and exceptions from your Wordpress site to the Raygun.io error reporting service.
 It features an admin panel for easy configuration. It uses the lower-level Raygun4php provider (which is included in the plugin).
 
+**Multisite support**: This plugin supports Multisite installations, but a specific installation procedure should be followed. Read the instructions below for more information.
+
 ## Installation
 
 Firstly, ensure that your server is running PHP 5.3.3 or newer and that it has the **curl** extension is installed and enabled in your server's php.ini file. If you are using a *nix system, the package php5-curl may contain the required dependencies.
@@ -28,6 +30,18 @@ In your browser navigate to your Wordpress admin panel, click on Plugins, and 'A
 
 Copy your application's API key from the Raygun.io dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!
 
+## Multisite Support
+
+It is recommended to use the most recent version WordPress and PHP possible. This procedure should be first followed on a staging server that matches your production environment as closely as possible, then replicated live.
+
+1. On your root network site, install the plugin using the Admin dashboard's Plugin page as standard, but **do not activate it**.
+2. FTP in and modify wp-content/plugins/raygun4wp/raygun4wp.php - change the value on line 12 to *true*.
+3. Visit the Admin dashboard of a child site (not the root network site). Go to its Plugin page, and you should see Raygun4WP ready to be activated - do so.
+4. A new Raygun4WP submenu will be added to the left. In there click on Configuration, paste in your API key, change the top dropdown to Enabled then click Save Changes. You can now click Send Test Error and one will appear in your dashboard.
+5. Repeat the above process for any other child sites - you can use different API keys (to send to different Raygun apps) or the same one.
+
+Finally, if you so desire you should be able to visit the root network site, activate it there and configure it. You must however activate it on at least one child site first.
+
 ### Client-side JavaScript error tracking
 
 As of 1.4 this plugin now also include Raygun4JS so you can automatically track JavaScript errors that occur in your user's browsers once your site's pages are loaded.
@@ -49,6 +63,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.5.0: Added flag to enable multisite support; bump RG4PHP and RG4JS dependencies
 - 1.4.1: Admin warning notice fix
 - 1.4.0: Added auto client-side JavaScript error tracking
 - 1.3.0: Ignored Domains setting added; bump RG4PHP to v1.3.5
