@@ -17,7 +17,7 @@ Firstly, ensure that your server is running PHP 5.3.3 or newer and that it has t
 Clone this repository into your Wordpress installation's /plugins folder - for instance at /wordpress/wp-content/plugins. Use the --recursive flag to also pull down the Raygun4php dependency:
 
 ```
-git clone --recursive https://github.com/MindscapeHQ/raygun4php.git
+git clone --recursive https://github.com/MindscapeHQ/raygun4wordpress.git
 ```
 
 ### From Wordpress Plugin Directory
