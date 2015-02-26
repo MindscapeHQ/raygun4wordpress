@@ -20,7 +20,7 @@ echo '
 
      <form method="post" action="options.php">';
 
-wp_nonce_field( 'update-options' );
+settings_fields( 'rg4wp' );
 
 echo '<table class="form-table">
       <tr valign="top">

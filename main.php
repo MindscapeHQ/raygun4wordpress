@@ -4,6 +4,7 @@
   register_activation_hook( __FILE__, 'rg4wp_install' );
   register_deactivation_hook( __FILE__, 'rg4wp_uninstall' );
 
+  add_action( 'admin_init', 'rg4wp_register_settings' );
   add_action( 'admin_menu', 'rg4wp_admin' );
   add_action( 'admin_menu', 'rg4wp_external');
   add_action( 'template_redirect', 'rg4wp_404_handler');
@@ -154,4 +155,14 @@
       echo '<div class=\'updated fade\'><p><strong>Raygun4WP: the cURL extension is not available in your PHP server.</strong> Raygun4WP requires this library to send errors - please install and enable it (in your php.ini file).</p></div>';
     }
     add_action('admin_notices', 'rg4wp_warn_curl');
+  }
+
+  function rg4wp_register_settings(){
+    register_setting( 'rg4wp', 'rg4wp_apikey');
+    register_setting( 'rg4wp', 'rg4wp_tags');
+    register_setting( 'rg4wp', 'rg4wp_status');
+    register_setting( 'rg4wp', 'rg4wp_404s');
+    register_setting( 'rg4wp', 'rg4wp_js');
+    register_setting( 'rg4wp', 'rg4wp_usertracking');
+    register_setting( 'rg4wp', 'rg4wp_ignoredomains');
   }
