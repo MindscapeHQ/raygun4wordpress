@@ -63,6 +63,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.5.1: Fix settings change errors
 - 1.5.0: Added flag to enable multisite support; bump RG4PHP and RG4JS dependencies
 - 1.4.1: Admin warning notice fix
 - 1.4.0: Added auto client-side JavaScript error tracking
