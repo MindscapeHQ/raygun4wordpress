@@ -6,7 +6,6 @@
 
   add_action( 'admin_init', 'rg4wp_register_settings' );
   add_action( 'admin_menu', 'rg4wp_admin' );
-  add_action( 'admin_menu', 'rg4wp_external');
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
 
@@ -30,12 +29,6 @@
     add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
     add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
     add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
-  }
-
-  function rg4wp_external()
-  {
-    global $submenu;
-    $submenu['rg4wp'][500] = array('Open raygun.io', 'administrator', 'javascript:window.open("http://raygun.io?utm_source=wordpress&utm_medium=admin&utm_campaign=raygun4wp");return false;');
   }
 
   function rg4wp_settings()
