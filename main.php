@@ -9,7 +9,10 @@
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
 
-  if (get_option('rg4wp_js') == 1) {
+  if (get_option('rg4wp_js') == 1
+      && get_option('rg4wp_apikey')
+      && !rg4wp_isIgnoredDomain())
+  {
       add_action('wp_head', 'rg4wp_js', 0);
       add_action('admin_head', 'rg4wp_js', 0);
   }
