@@ -63,6 +63,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.6.0: Bump Raygun4php dependency to v1.6.1
 - 1.5.2: Ignored domains are now obeyed for JS errors; fix admin menu appearing for users without that role
 - 1.5.1: Fix settings change errors
 - 1.5.0: Added flag to enable multisite support; bump RG4PHP and RG4JS dependencies
