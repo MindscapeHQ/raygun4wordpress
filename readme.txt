@@ -4,7 +4,7 @@ Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.6.0.0
+Stable tag: 1.7.0.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
