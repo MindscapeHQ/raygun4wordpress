@@ -96,6 +96,11 @@
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
         $tags = explode(',', get_option('rg4wp_tags'));
+
+        if (!is_array($tags)) {
+          $tags = array();
+        }
+
         $client = rg4wp_checkUser($client);
         $client->SetVersion(get_bloginfo('version'));
 
@@ -111,6 +116,11 @@
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
      $tags = explode(',', get_option('rg4wp_tags'));
+
+     if (!is_array($tags)) {
+      $tags = array();
+     }
+
      $client = rg4wp_checkUser($client);
      $client->SetVersion(get_bloginfo('version'));
 
@@ -126,8 +136,8 @@
       {
           if (get_option('rg4wp_status'))
           {
-            global $client;
-            $client->SendException($exception);
+            global $client, $tags;
+            $client->SendException($exception, $tags);
           }
       }
 
