@@ -3,8 +3,8 @@ Contributors: mindscapehq
 Donate link: http://raygun.io
 Tags: error, reporting, raygun, exception, 404
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 1.7.0.0
+Tested up to: 4.3
+Stable tag: 1.7.1.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -56,7 +56,15 @@ If you enable this feature the currently logged in user's email address will be 
 
 == Changelog  ==
 
-- 1.6.0.0 =
+= 1.7.1 =
+
+* Fix issue with tags not being provided for caught exceptions
+
+= 1.7.0 =
+
+* Bump Raygun4JS dependency to v1.18.4
+
+= 1.6.0.0 =
 
 * Bump Raygun4php dependency to v1.6.1
 
