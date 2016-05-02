@@ -90,8 +90,8 @@
 
   function rg4wp_404_handler()
   {
-      if (get_option('rg4wp_status') && get_option('rg4wp_404s') && function_exists('curl_version')
-        && !rg4wp_isIgnoredDomain() && is_404() && get_option('rg4wp_apikey'))
+      if (get_option('rg4wp_status') && get_option('rg4wp_404s') &&
+        !rg4wp_isIgnoredDomain() && is_404() && get_option('rg4wp_apikey'))
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
@@ -110,7 +110,7 @@
       }
   }
 
-  if (function_exists('curl_version') && get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
+  if (get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey'))
   {
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
