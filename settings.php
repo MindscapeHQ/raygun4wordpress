@@ -1,6 +1,6 @@
 <?php
 
-echo '  
+echo '
     <style type="text/css">
       .tooltip {
       display:none;
@@ -16,7 +16,7 @@ echo '
     </style>
      <div class="wrap">
      <h2>Raygun4WP Configuration</h2>
-     <p>You can add your API key and customize your settings here.</p>     
+     <p>You can add your API key and customize your settings here.</p>
 
      <form method="post" action="options.php">';
 
@@ -33,11 +33,11 @@ echo  '>Disabled</option>
 		  <option value="1"';
 echo get_option( 'rg4wp_status' ) ? ' selected="selected"': '';
 echo  '>Enabled</option>
-      </select>      
-      </td>    
+      </select>
+      </td>
       <td>
-      <div id="statusLight" style="width: 15px; height: 15px; border-radius: 7px;" title="Enabled/disabled status" /> 
-      </td>       
+      <div id="statusLight" style="width: 15px; height: 15px; border-radius: 7px;" title="Enabled/disabled status" />
+      </td>
       </tr>
 
       <tr valign="top">
@@ -84,7 +84,7 @@ echo '
       <th scope="row">API Key</th>
       <td><input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="';
 echo get_option( 'rg4wp_apikey' );
-echo  '" /></td>      
+echo  '" /></td>
       </tr>
 
       <tr valign="top">
@@ -92,8 +92,8 @@ echo  '" /></td>
       <td style="width: 336px;"><input type="text" size="60" name="rg4wp_tags" value="';
 echo get_option('rg4wp_tags');
 echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification, testing and more. They should be a comma-separated list e.g. \'tag1,tag2\'"
-      style=" width: 20px; height: 20px;" /></td></td>      
-      </tr>      
+      style=" width: 20px; height: 20px;" /></td></td>
+      </tr>
 
       <tr valign="top">
       <th scope="row">Domains to ignore</th>
@@ -109,7 +109,7 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains" />
 
       <script type="text/javascript">
-jQuery(document).ready(function($) {  
+jQuery(document).ready(function($) {
 // Tooltip only Text
 $(\'.masterTooltip\').hover(function(){
         // Hover over code
@@ -131,27 +131,26 @@ $(\'.masterTooltip\').hover(function(){
 });
 
 if ($("#statusEnabled").val() == 0 || $("#apiKey").val().length < 6) {
-  $("#statusLight").css("background-color", "#C03");  
+  $("#statusLight").css("background-color", "#C03");
 }
 else {
-  $("#statusLight").css("background-color", "#0C3");  
+  $("#statusLight").css("background-color", "#0C3");
 }
 });
 
 function sendTestError()
 {
   var user = "';
-  global $current_user;
-  get_currentuserinfo();
+  $current_user = wp_get_current_user();
   echo $current_user->user_email;
   echo '";
   window.location.href = "'.plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
     '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
-    .get_option('rg4wp_usertracking').'&user=" + user;  
+    .get_option('rg4wp_usertracking').'&user=" + user;
 };
 </script>
       ';
 echo '<div style="display: inline; margin-top: 10px;"><div style="margin-right: 10px; float: left;">';
 submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
-echo '</div><div class="button-secondary button-large" style="float: left;" onclick="sendTestError();">Send Test Error</div></div></form>';      
+echo '</div><div class="button-secondary button-large" style="float: left;" onclick="sendTestError();">Send Test Error</div></div></form>';
 ?>
