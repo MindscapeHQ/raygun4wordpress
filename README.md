@@ -1,7 +1,7 @@
 Raygun4WP
 ==========
 
-[Raygun.io](http://raygun.io) provider plugin for Wordpress
+[Raygun.com](http://raygun.com) provider plugin for Wordpress
 
 This provider is a Wordpress plugin that allows you to easily send errors and exceptions from your Wordpress site to the Raygun.io error reporting service.
 It features an admin panel for easy configuration. It uses the lower-level Raygun4php provider (which is included in the plugin).
