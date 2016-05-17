@@ -2,9 +2,9 @@
 Contributors: mindscapehq
 Donate link: http://raygun.com
 Tags: error, reporting, raygun, exception, 404
-Requires at least: 3.0
-Tested up to: 4.5.1
-Stable tag: 1.7.2.0
+Requires at least: 3.4
+Tested up to: 4.5.2
+Stable tag: 1.7.3.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
