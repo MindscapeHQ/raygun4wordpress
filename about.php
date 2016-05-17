@@ -36,29 +36,29 @@
 
    .rgButton:hover
    {
-      background: #1475AD;      
+      background: #1475AD;
       cursor: pointer;
-   }   
+   }
 </style>
 
 <div class="wrap">
    <div>
    <div class="rgleft rgcol1">
    <h2>About Raygun</h2>
-   <p><a href="http://raygun.io" target="_blank">Raygun</a> is a leading error and crash reporting tool that allows developers to discover, track and resolve errors faster than before.</p>
+   <p><a href="http://raygun.com" target="_blank">Raygun</a> is a leading error and crash reporting tool that allows developers to discover, track and resolve errors faster than before.</p>
    <p>Using the powerful web-based dashboard, you can view errors as they occur, and visualize their impact over time with the built-in charts.</p>
    <p><strong>Raygun</strong> is trusted by a multitude of developers creating and maintaining web, desktop and mobile applications. It has a simple, fast workflow with a beautiful interface that gives you the information you need to help keep your code running smoothly. Customizable email alerts can also be sent when an error occurs so you never miss out.</p>
-<p>You can check it out right now with the <a href="http://app.raygun.io/signup" target="_blank">30-day free trial</a>.</p>
+<p>You can check it out right now with the <a href="http://app.raygun.com/signup" target="_blank">30-day free trial</a>.</p>
    </div>
    <div class="rgleft">
-      <img src="http://raygun.io/images/robots/featurebot_handsup.png" class="robbie" />
+      <img src="http://raygun.com/images/robots/featurebot_handsup.png" class="robbie" />
    </div>
    </div>
    <div class="rgclear">
    <h2>Now available for Wordpress</h2>
    <p><strong>Raygun4WP</strong> is the official Raygun plugin for the Wordpress platform. It allows you to easily send and track all errors that occur on your Wordpress site, including HTTP errors and PHP exceptions.</p>
    <p>This plugin simplifies the installation and configuration of Raygun4php, the lower-level Raygun plugin. If you're reading this you have everything you need, and in a couple of minutes your site will be sending its errors to Raygun!</p>
-   <p>If you don't already have an account, you can create one below. Then, in your <a href="http://app.raygun.io/dashboard" target="_blank">dashboard</a> create a new application, and copy the API key from its Settings page. Finally, paste it below and turn error reporting on. Any PHP errors or exceptions will be sent to Raygun and appear on your app's dashboard.</p>
+   <p>If you don't already have an account, you can create one below. Then, in your <a href="http://app.raygun.com/dashboard" target="_blank">dashboard</a> create a new application, and copy the API key from its Settings page. Finally, paste it below and turn error reporting on. Any PHP errors or exceptions will be sent to Raygun and appear on your app's dashboard.</p>
    <h2>Next steps</h2>
    <ol>
    <li>Create a trial account at Raygun (it's quick and you can use many popular web accounts as your login info).</li>
@@ -75,6 +75,6 @@
 <script type="text/javascript">
   function rgSignup()
   {
-    window.open("http://app.raygun.io/signup");
+    window.open("https://app.raygun.com/signup");
   }
 </script>

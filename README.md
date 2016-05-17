@@ -1,7 +1,7 @@
 Raygun4WP
 ==========
 
-[Raygun.io](http://raygun.io) provider plugin for Wordpress
+[Raygun.com](http://raygun.com) provider plugin for Wordpress
 
 This provider is a Wordpress plugin that allows you to easily send errors and exceptions from your Wordpress site to the Raygun.io error reporting service.
 It features an admin panel for easy configuration. It uses the lower-level Raygun4php provider (which is included in the plugin).
@@ -28,7 +28,7 @@ Add it from the official repository using your admin panel - the plugin is avail
 
 In your browser navigate to your Wordpress admin panel, click on Plugins, and 'Activate' Raygun4WP. Click on the new entry that appears to the left.
 
-Copy your application's API key from the Raygun.io dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!
+Copy your application's API key from the Raygun.com dashboard, and place it in the appropriate field. Set Error Reporting Status to 'Enabled', hit Submit, and you're done!
 
 ## Multisite Support
 
@@ -63,6 +63,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.7.3: Fixed issue with WP 4.5.2 plugin api
 - 1.7.2: Fixed redundant cURL check when running in socket mode
 - 1.7.1: Fix issue with tags not being provided for caught exceptions
 - 1.7.0: Bump Raygun4JS dependency to v1.18.4
