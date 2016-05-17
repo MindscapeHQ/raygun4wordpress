@@ -56,6 +56,10 @@ If you enable this feature the currently logged in user's email address will be 
 
 == Changelog  ==
 
+= 1.7.3 =
+
+* Fixed issue with WP 4.5.2 plugin api
+
 = 1.7.2 =
 
 * Fixed redundant cURL check when running in socket mode
