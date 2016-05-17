@@ -1,5 +1,4 @@
 <?php
-  require_once (ABSPATH . WPINC . '/pluggable.php');
 
   register_activation_hook( __FILE__, 'rg4wp_install' );
   register_deactivation_hook( __FILE__, 'rg4wp_uninstall' );
@@ -75,7 +74,6 @@
   {
     if (get_option('rg4wp_usertracking'))
     {
-      global $current_user;
       $current_user = wp_get_current_user();
       $client->SetUser($current_user->user_email);
     }
@@ -113,6 +111,8 @@
   if (get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey'))
   {
+
+
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
      $tags = explode(',', get_option('rg4wp_tags'));
@@ -121,8 +121,17 @@
       $tags = array();
      }
 
-     $client = rg4wp_checkUser($client);
      $client->SetVersion(get_bloginfo('version'));
+
+     add_action( 'plugins_loaded', 'rg4wp_get_user_details' );
+
+     function rg4wp_get_user_details() {
+          if(get_option('rg4wp_status'))
+          {
+            global $client;
+            $client = rg4wp_checkUser($client);
+          }
+     }
 
      function error_handler($errno, $errstr, $errfile, $errline ) {
           if (get_option('rg4wp_status'))
