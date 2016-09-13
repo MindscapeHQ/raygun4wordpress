@@ -29,8 +29,8 @@
 
     add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
     add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
-    add_submenu_page('rg4wp', 'Raygun4WP Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
-    add_submenu_page('rg4wp', 'raygun.io dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
+    add_submenu_page('rg4wp', 'Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
+    add_submenu_page('rg4wp', 'Dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
   }
 
   function rg4wp_settings()
@@ -57,6 +57,7 @@
     add_option('rg4wp_404s', '1', '', 'yes');
     add_option('rg4wp_js', '1', '', 'yes');
     add_option('rg4wp_ignoredomains', '', '', 'yes');
+    add_option('rg4wp_pulse', '', '', 'yes');
   }
 
   function rg4wp_uninstall()
@@ -68,6 +69,7 @@
     delete_option('rg4wp_js');
     delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
+    delete_option('rg4wp_pulse');
   }
 
   function rg4wp_checkUser($client)
@@ -111,7 +113,6 @@
   if (get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey'))
   {
-
 
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
      $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
@@ -180,4 +181,5 @@
     register_setting( 'rg4wp', 'rg4wp_js');
     register_setting( 'rg4wp', 'rg4wp_usertracking');
     register_setting( 'rg4wp', 'rg4wp_ignoredomains');
+    register_setting( 'rg4wp', 'rg4wp_pulse');
   }

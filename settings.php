@@ -81,6 +81,15 @@ echo '
       </tr>
 
       <tr valign="top">
+      <th scope="row"><label for="rg4wp_pulse">Enable Pulse</label></th>
+      <td>
+      <input type="checkbox" name="rg4wp_pulse" id="rg4wp_pulse"';
+  echo get_option('rg4wp_pulse') ? ' checked="checked"': '';
+  echo ' value="1" />
+      </td>
+      </tr>
+
+      <tr valign="top">
       <th scope="row">API Key</th>
       <td><input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="';
 echo get_option( 'rg4wp_apikey' );

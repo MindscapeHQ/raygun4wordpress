@@ -25,7 +25,7 @@ else if (is_multisite() && !$multisite_support_enabled)
 {
   function rg4wp_warn_multisite()
   {
-    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> This plugin is not guaranteed to work on Multisite installations with certain environments. Please contact <a href="http://raygun.io/contact">Raygun</a> for more information.</p></div>';
+    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> This plugin is not guaranteed to work on Multisite installations with certain environments. Please contact <a href="http://raygun.com/about/contact">Raygun</a> for more information.</p></div>';
   }
 
   add_action('admin_notices', 'rg4wp_warn_multisite');
