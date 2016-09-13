@@ -24,7 +24,7 @@ settings_fields( 'rg4wp' );
 
 echo '<table class="form-table">
       <tr valign="top">
-      <th scope="row">Error Reporting Status</th>
+      <th scope="row"><label for="statusEnabled">Error Reporting Status<label></th>
       <td>
 		  <select name="rg4wp_status" id="statusEnabled">
 		  <option value="0"';
@@ -41,42 +41,29 @@ echo  '>Enabled</option>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Send 404 errors</th>
+      <th scope="row"><label for="rg4wp_404s">Send 404 errors</label></th>
       <td>
-      <select name="rg4wp_404s">
-      <option value="0"';
-echo !get_option('rg4wp_404s') ? ' selected="selected"': '';
-echo '>No</option>
-      <option value="1"';
-echo get_option('rg4wp_404s') ? ' selected="selected"': '';
-echo '>Yes</option>
-      </select>
+      <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"';
+  echo get_option('rg4wp_404s') ? ' checked="checked"': '';
+  echo ' value="1" />
       </td>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Track JavaScript errors</th>
+      <th scope="row"><label for="rg4wp_js">Track JavaScript errors</label></th>
       <td>
-      <select name="rg4wp_js">';
-$rg4wp_js = get_option('rg4wp_js');
-printf('<option value="0" %s>No</option>', selected(0, $rg4wp_js));
-printf('<option value="1" %s>Yes</option>', selected(1, $rg4wp_js));
-echo '
-      </select>
+      <input type="checkbox" name="rg4wp_js" id="rg4wp_js"';
+  echo get_option('rg4wp_js') ? ' checked="checked"': '';
+  echo ' value="1" />
       </td>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Unique user tracking</th>
+      <th scope="row"><label for="rg4wp_usertracking">Unique user tracking</label></th>
       <td>
-      <select name="rg4wp_usertracking">
-      <option value="0"';
-  echo !get_option('rg4wp_usertracking') ? ' selected="selected"': '';
-  echo '>Disabled</option>
-      <option value="1"';
-  echo get_option('rg4wp_usertracking') ? ' selected="selected"': '';
-  echo '>Enabled</option>
-      </select>
+      <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"';
+  echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';
+  echo ' value="1" />
       </td>
       </tr>
 
@@ -90,22 +77,22 @@ echo '
       </tr>
 
       <tr valign="top">
-      <th scope="row">API Key</th>
+      <th scope="row"><label for="apiKey">API Key</label></th>
       <td><input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="';
 echo get_option( 'rg4wp_apikey' );
 echo  '" /></td>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Tags</th>
-      <td style="width: 336px;"><input type="text" size="60" name="rg4wp_tags" value="';
+      <th scope="row"><label for="rg4wp_tags">Tags</label></th>
+      <td style="width: 336px;"><input type="text" size="60" id="rg4wp_tags" name="rg4wp_tags" value="';
 echo get_option('rg4wp_tags');
 echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification, testing and more. They should be a comma-separated list e.g. \'tag1,tag2\'"
       style=" width: 20px; height: 20px;" /></td></td>
       </tr>
 
       <tr valign="top">
-      <th scope="row">Domains to ignore</th>
+      <th scope="row"><label for="ignoreDomains">Domains to ignore</label></th>
       <td><input type="text" size="60" id="ignoreDomains" name="rg4wp_ignoredomains" value="';
 echo get_option( 'rg4wp_ignoredomains' );
 echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="A list of domains that should not report errors. Useful for development or multisite installations. They should be a comma-separated list e.g. \'example.com,example.org\'"
@@ -115,7 +102,7 @@ echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="ma
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse" />
 
       <script type="text/javascript">
 jQuery(document).ready(function($) {
