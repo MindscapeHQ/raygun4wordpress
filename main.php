@@ -36,7 +36,7 @@
         if( $key !== 0) {
           $script .= ',';
         }
-        $script .= '"' . $tag . '"';
+        $script .= '"' . trim($tag) . '"';
       }
       $script .= ']);'."\n";
     }
@@ -122,7 +122,7 @@
 
   function rg4wp_isIgnoredDomain()
   {
-    $domains = explode(',', get_option('rg4wp_ignoredomains', ''));
+    $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
     return in_array($_SERVER['SERVER_NAME'], $domains);
   }
 
@@ -133,7 +133,7 @@
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
         $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), false);
-        $tags = explode(',', get_option('rg4wp_tags'));
+        $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
 
         if (!is_array($tags)) {
           $tags = array();

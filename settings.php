@@ -17,25 +17,32 @@
 
         <tr>
           <th>
-            <label for="ignoreDomains">Domains to ignore</label>
+            <label for="ignoreDomains">Domains To Ignore</label>
           </th>
           <td>
             <input type="text" class="regular-text ltr" id="ignoreDomains" name="rg4wp_ignoredomains" value="<?php echo get_option( 'rg4wp_ignoredomains' ); ?>" />
+            <p class="description">Domains that shouldn't be tracked. Useful for development or multisite installations. Separate with commas.</p>
           </td>
         </tr>
 
         <tr>
           <th>
-            <label for="rg4wp_usertracking">User tracking</label>
+            <label for="rg4wp_usertracking">User Tracking</label>
           </th>
           <td>
-            <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
+            <fieldset>
+              <legend class="screen-reader-text"><span>User tracking</span></legend>
+              <label for="rg4wp_usertracking">
+                <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
+                Track email and name
+              </label>
+            </fieldset>
           </td>
         </tr>
 
       </table>
 
-      <h2>Crash Reporting</h2>
+      <h2 class="title">Crash Reporting</h2>
 
       <table class="form-table">
 
@@ -71,14 +78,21 @@
                 <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
                 Send 404 errors
               </label>
-              <p class="description">Requires PHP error tracking.</p>
+              <p class="description">Requires PHP error tracking</p>
             </fieldset>
           </td>
         </tr>
 
+      </table>
+
+      <h3 class="title">Crash Reporting - Tags</h3>
+      <p>Tags are custom text that you can send with each error, for identification, testing and more. Separate with commas e.g 'tag1, tag2'</p>
+
+      <table class="form-table">
+
         <tr>
           <th scope="row">
-            <label for="rg4wp_tags">PHP Tags</label>
+            <label for="rg4wp_tags">PHP</label>
           </th>
           <td>
             <input type="text" class="regular-text ltr" id="rg4wp_tags" name="rg4wp_tags" value="<?php echo get_option('rg4wp_tags'); ?>" />
@@ -87,7 +101,7 @@
 
         <tr>
           <th scope="row">
-            <label for="rg4wp_js_tags">JavaScript Tags</label>
+            <label for="rg4wp_js_tags">JavaScript</label>
           </th>
           <td>
             <input type="text" class="regular-text ltr" id="rg4wp_js_tags" name="rg4wp_js_tags" value="<?php echo get_option('rg4wp_js_tags'); ?>" />
@@ -96,17 +110,17 @@
 
       </table>
 
-      <h2>Pulse - Real User Monitoring</h2>
+      <h2 class="title">Pulse - Real User Monitoring</h2>
 
       <table class="form-table">
 
         <tr>
-          <th>
-            <label for="rg4wp_pulse">Enable</label>
+          <th scope="row" class="th-full">
+            <label for="rg4wp_pulse">
+              <input type="checkbox" name="rg4wp_pulse" id="rg4wp_pulse"<?php echo get_option('rg4wp_pulse') ? ' checked="checked"': '';?> value="1" />
+              Enable Real User Monitoring
+            </label>
           </th>
-          <td>
-            <input type="checkbox" name="rg4wp_pulse" id="rg4wp_pulse"<?php echo get_option('rg4wp_pulse') ? ' checked="checked"': '';?> value="1" />
-          </td>
         </tr>
 
       </table>
@@ -118,7 +132,7 @@
         $current_user = wp_get_current_user();
         $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
           '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
-          .get_option('rg4wp_usertracking').'&user=' . $current_user->user_email;
+          .urlencode(get_option('rg4wp_usertracking')).'&user=' . urlencode($current_user->user_email);
       ?>
 
       <div style="display: inline; margin-top: 10px;">
