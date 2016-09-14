@@ -110,6 +110,16 @@
 
       </table>
 
+      <p class="submit">
+        <?php
+          $current_user = wp_get_current_user();
+          $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
+            '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
+            .urlencode(get_option('rg4wp_usertracking')).'&user=' . urlencode($current_user->user_email);
+        ?>
+        <a class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
+      </p>
+
       <h2 class="title">Pulse - Real User Monitoring</h2>
 
       <table class="form-table">
@@ -128,19 +138,9 @@
       <input type="hidden" name="action" value="update" />
       <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags" />
 
-      <?php
-        $current_user = wp_get_current_user();
-        $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
-          '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
-          .urlencode(get_option('rg4wp_usertracking')).'&user=' . urlencode($current_user->user_email);
-      ?>
-
-      <div style="display: inline; margin-top: 10px;">
-        <div style="margin-right: 10px; float: left;">
-          <?php
-            submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
-          ?>
-        </div>
-        <a class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>" style="float: left;">Send Test Error</a>
-      </div>
+      <p class="submit">
+        <?php
+          submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
+        ?>
+      </p>
     </form>
