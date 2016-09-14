@@ -63,6 +63,7 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 Changelog
 ---------
 
+- 1.8.0: Bump Raygun4JS dependency to v2.4.0; 
 - 1.7.3: Fixed issue with WP 4.5.2 plugin api
 - 1.7.2: Fixed redundant cURL check when running in socket mode
 - 1.7.1: Fix issue with tags not being provided for caught exceptions
