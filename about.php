@@ -1,80 +1,41 @@
-<style type="text/css">
-   .rgleft
-  {
-      float: left;
-  }
-
-   .robbie
-   {
-      width: 85%;
-      height: auto;
-      margin-bottom: -25px;
-   }
-
-   .rgclear
-   {
-      clear: both;
-   }
-
-   .rgcol1
-   {
-      width: 65%;
-      margin-right: 40px;
-   }
-
-   .rgButton
-   {
-      font-size: 110%;
-      color: white;
-      background: #0E5077;
-      width: 170px;
-      padding: 10px 14px;
-      margin-top: 20px;
-      text-align: center;
-      border-radius: 5px;
-   }
-
-   .rgButton:hover
-   {
-      background: #1475AD;
-      cursor: pointer;
-   }
-</style>
-
 <div class="wrap">
    <div>
-   <div class="rgleft rgcol1">
-   <h2>About Raygun</h2>
-   <p><a href="http://raygun.com" target="_blank">Raygun</a> is a leading error and crash reporting tool that allows developers to discover, track and resolve errors faster than before.</p>
-   <p>Using the powerful web-based dashboard, you can view errors as they occur, and visualize their impact over time with the built-in charts.</p>
-   <p><strong>Raygun</strong> is trusted by a multitude of developers creating and maintaining web, desktop and mobile applications. It has a simple, fast workflow with a beautiful interface that gives you the information you need to help keep your code running smoothly. Customizable email alerts can also be sent when an error occurs so you never miss out.</p>
-<p>You can check it out right now with the <a href="http://app.raygun.com/signup" target="_blank">30-day free trial</a>.</p>
-   </div>
-   <div class="rgleft">
-      <img src="http://raygun.com/images/robots/featurebot_handsup.png" class="robbie" />
-   </div>
-   </div>
-   <div class="rgclear">
-   <h2>Now available for Wordpress</h2>
-   <p><strong>Raygun4WP</strong> is the official Raygun plugin for the Wordpress platform. It allows you to easily send and track all errors that occur on your Wordpress site, including HTTP errors and PHP exceptions.</p>
-   <p>This plugin simplifies the installation and configuration of Raygun4php, the lower-level Raygun plugin. If you're reading this you have everything you need, and in a couple of minutes your site will be sending its errors to Raygun!</p>
-   <p>If you don't already have an account, you can create one below. Then, in your <a href="http://app.raygun.com/dashboard" target="_blank">dashboard</a> create a new application, and copy the API key from its Settings page. Finally, paste it below and turn error reporting on. Any PHP errors or exceptions will be sent to Raygun and appear on your app's dashboard.</p>
-   <h2>Next steps</h2>
-   <ol>
-   <li>Create a trial account at Raygun (it's quick and you can use many popular web accounts as your login info).</li>
-   <li>In the Raygun Dashboard, create a new application to represent your Wordpress site.</li>
-   <li>Copy the API key (including the '==' at the end) to the clipboard.</li>
-   <li>Head to the <a href="admin.php?page=rg4wp-settings">Raygun4WP Configuration page</a> in this admin panel, and paste your API key into the appropriate field.</li>
-   <li>Finally, change Error Reporting to 'Enabled', hit Submit, and you're done!</li>
-   </ol>
 
-   <div class="rgButton" onclick="rgSignup();" ><p>Sign up for a free trial now</p></div>
+     <h1>About Raygun</h1>
+
+     <p><a href="http://raygun.com" target="_blank">Raygun</a> helps developers globally build better software and be the best developers they can be.</p>
+
+     <p>Our tools integrate in minutes and provide deep insights into problems that are affecting end users, so you can find, diagnose and fix issues faster</p>
+
+     <p>We believe that all software contains errors and problems, but it’s how you deal with those issues as a developer that can set you apart. Only 1% of users actively report issues they encounter, so we’re here to put the power in the developer's hands.</p>
+
+   </div>
+
+   <div>
+      <h2>Available for Wordpress</h2>
+
+      <p><strong>Raygun4WP</strong> is the official Raygun plugin for the Wordpress platform. Raygun keeps a watchful eye on your web and mobile application, letting your know when problems arise.</p>
+
+     <p>This plugin enables you to track both PHP and JavaScript errors by using the official <a href="https://github.com/MindscapeHQ/raygun4php">Raygun4PHP</a> and <a href="https://github.com/MindscapeHQ/raygun4js">Raygun4JS</a> providers.</p>
+
+     <p><a href="https://raygun.com/">Learn more about Raygun</a></p>
+   </div>
+
+   <div>
+
+     <h2>Getting Started</h2>
+
+     <ol>
+       <li><a href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
+       <li>In the <a href="http://app.raygun.com/dashboard" target="_blank">Raygun dashboard</a> create a new application. This will represent your website</li>
+       <li>Copy the API Key (including the '==' at the end)</li>
+       <li>Go to the <a href="<?php menu_page_url('rg4wp-settings', true); ?>">Raygun4WP Settings page</a></li>
+       <li>Paste your API key into the API Key field</li>
+       <li>Enable Crash Reporting (both Serverside and Frontend error tracking recommended) and Real User Monitoring</li>
+       <li>Click Save Changes</li>
+       <li>Done!</li>
+     </ol>
+
+     <a class="rgButton" href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Sign up for a free trial now</a>
    </div>
 </div>
-
-<script type="text/javascript">
-  function rgSignup()
-  {
-    window.open("https://app.raygun.com/signup");
-  }
-</script>

@@ -5,7 +5,8 @@
     margin: auto;
     width: 100%;
     height: 840px !important;
+    overflow: hidden;
 }
 </style>
 
-<iframe id="rgFrame" src='https://app.raygun.com?utm_source=wordpress&utm_medium=admin&utm_campaign=raygun4wp' frameborder="0" style="overflow:hidden;height:100%;width:100%" height="900px" width="100%"></iframe>
+<iframe id="rgFrame" src='https://app.raygun.com?utm_source=wordpress&utm_medium=admin&utm_campaign=raygun4wp' frameborder="0" height="900px" width="100%"></iframe>

@@ -65,7 +65,7 @@
 
     add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
     add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
-    add_submenu_page('rg4wp', 'Configuration', 'Configuration', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
+    add_submenu_page('rg4wp', 'Settings', 'Settings', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
     add_submenu_page('rg4wp', 'Dashboard', 'Raygun Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
   }
 
@@ -197,7 +197,7 @@
   {
     function rg4wp_warn_key()
     {
-      echo '<div class=\'updated fade\'><p><strong>Raygun4WP is almost ready to go.</strong> Enter your Raygun API key on the Configuration page then set the plugin to \'enabled\'.</p></div>';
+      echo '<div class=\'updated fade\'><p>Raygun is almost ready to go. Enter your API key on the <a href="'. menu_page_url('rg4wp-settings', false) .'">settings page</a>.</p></div>';
     }
     add_action('admin_notices', 'rg4wp_warn_key');
   }

@@ -1,10 +1,10 @@
 <div class="wrap">
 
+    <?php settings_fields( 'rg4wp' ); ?>
+
    <h1>Raygun4WP Configuration</h1>
 
    <form method="post" action="options.php">
-
-     <?php settings_fields( 'rg4wp' ); ?>
 
       <table class="form-table">
 
@@ -34,7 +34,7 @@
               <legend class="screen-reader-text"><span>User tracking</span></legend>
               <label for="rg4wp_usertracking">
                 <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
-                Track email and name
+                Track user information
               </label>
             </fieldset>
           </td>
@@ -48,20 +48,20 @@
 
         <tr>
           <th scope="row">
-            Languages
+            Error Tracking
           </th>
           <td>
             <fieldset>
-              <legend class="screen-reader-text"><span>Language Settings</span></legend>
+              <legend class="screen-reader-text"><span>Error Tracking</span></legend>
 
               <label for="rg4wp_status">
                 <input type="checkbox" name="rg4wp_status" id="rg4wp_status"<?php echo get_option('rg4wp_status') ? ' checked="checked"': ''; ?> value="1" />
-                PHP error tracking
+                Serverside PHP errors
               </label>
               <br />
               <label for="rg4wp_js">
                 <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
-                JavaScript error tracking
+                Frontend JavaScript errors
               </label>
 
             </fieldset>
@@ -78,7 +78,7 @@
                 <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
                 Send 404 errors
               </label>
-              <p class="description">Requires PHP error tracking</p>
+              <p class="description">Requires serverside error tracking</p>
             </fieldset>
           </td>
         </tr>
