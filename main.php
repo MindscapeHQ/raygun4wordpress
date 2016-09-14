@@ -33,6 +33,12 @@
       $script .= 'rg4js("enablePulse", true);'."\n";
     }
 
+    if( get_option('rg4wp_usertracking') == 1 && is_user_logged_in() ) {
+      $user = wp_get_current_user();
+      $script .= sprintf('rg4js("setUser", {isAnonymous: false, identifier: "%s", email: "%s", firstName: "%s", fullName: "%s" });',
+      $user->user_email, $user->user_email, $user->user_firstname, $current_user->user_firstname . ' ' . $current_user->user_lastname )."\n";
+    }
+
     $script .= '</script>';
     printf($script, plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
   }
