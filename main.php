@@ -29,6 +29,18 @@
       $script .= 'rg4js("enableCrashReporting", true);'."\n";
     }
 
+    if( get_option('rg4wp_js_tags') ) {
+      $script .= 'rg4js("withTags",[';
+      $tags = explode( ",", get_option('rg4wp_js_tags') );
+      foreach( $tags as $key => $tag) {
+        if( $key !== 0) {
+          $script .= ',';
+        }
+        $script .= '"' . $tag . '"';
+      }
+      $script .= ']);'."\n";
+    }
+
     if( get_option('rg4wp_pulse') == 1 ) {
       $script .= 'rg4js("enablePulse", true);'."\n";
     }
@@ -82,6 +94,7 @@
     add_option('rg4wp_js', '1', '', 'yes');
     add_option('rg4wp_ignoredomains', '', '', 'yes');
     add_option('rg4wp_pulse', '', '', 'yes');
+    add_option('rg4wp_js_tags', '', '', 'yes');
   }
 
   function rg4wp_uninstall()
@@ -94,6 +107,7 @@
     delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
     delete_option('rg4wp_pulse');
+    delete_option('rg4wp_js_tags');
   }
 
   function rg4wp_checkUser($client)
@@ -206,4 +220,5 @@
     register_setting( 'rg4wp', 'rg4wp_usertracking');
     register_setting( 'rg4wp', 'rg4wp_ignoredomains');
     register_setting( 'rg4wp', 'rg4wp_pulse');
+    register_setting( 'rg4wp', 'rg4wp_js_tags');
   }
