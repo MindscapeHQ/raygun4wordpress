@@ -8,7 +8,7 @@
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
 
-  if (get_option('rg4wp_js') == 1
+  if ( (get_option('rg4wp_js') == 1 || get_option('rg4wp_pulse') == 1)
       && get_option('rg4wp_apikey')
       && !rg4wp_isIgnoredDomain())
   {
@@ -16,7 +16,25 @@
       add_action('admin_head', 'rg4wp_js', 0);
   }
   function rg4wp_js(){
-    printf('<script src="%sexternal/raygun4js/dist/raygun.min.js"></script><script>Raygun.init("%s").attach();</script>'."\n", plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
+    $script = '<script>'."\n"
+      .'!function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){'."\n"
+      .'(a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],'."\n"
+      .'f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){'."\n"
+      .'h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({'."\n"
+      .'e:g})}}(window,document,"script","%sexternal/raygun4js/dist/raygun.min.js","rg4js");'."\n"
+    .'</script>'."\n"
+    .'<script type="text/javascript">rg4js("apiKey", "%s");'."\n";
+
+    if( get_option('rg4wp_js') == 1 ) {
+      $script .= 'rg4js("enableCrashReporting", true);'."\n";
+    }
+
+    if( get_option('rg4wp_pulse') == 1 ) {
+      $script .= 'rg4js("enablePulse", true);'."\n";
+    }
+
+    $script .= '</script>';
+    printf($script, plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
   }
 
   function load_jquery() {
