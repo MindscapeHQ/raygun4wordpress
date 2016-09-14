@@ -11,7 +11,7 @@
         <tr>
           <th><label for="apiKey">API Key</label></th>
           <td>
-            <input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="<?php echo get_option( 'rg4wp_apikey' ); ?>" />
+            <input type="text" class="regular-text ltr" id="apiKey" name="rg4wp_apikey" value="<?php echo get_option( 'rg4wp_apikey' ); ?>" />
           </td>
         </tr>
 
@@ -20,7 +20,7 @@
             <label for="ignoreDomains">Domains to ignore</label>
           </th>
           <td>
-            <input type="text" size="60" id="ignoreDomains" name="rg4wp_ignoredomains" value="<?php echo get_option( 'rg4wp_ignoredomains' ); ?>" />
+            <input type="text" class="regular-text ltr" id="ignoreDomains" name="rg4wp_ignoredomains" value="<?php echo get_option( 'rg4wp_ignoredomains' ); ?>" />
           </td>
         </tr>
 
@@ -40,47 +40,57 @@
       <table class="form-table">
 
         <tr>
-          <th>
-            <label for="rg4wp_status">Track PHP errors<label>
+          <th scope="row">
+            Languages
           </th>
           <td>
-            <input type="checkbox" name="rg4wp_status" id="rg4wp_status"<?php echo get_option('rg4wp_status') ? ' checked="checked"': ''; ?> value="1" />
+            <fieldset>
+              <legend class="screen-reader-text"><span>Language Settings</span></legend>
+
+              <label for="rg4wp_status">
+                <input type="checkbox" name="rg4wp_status" id="rg4wp_status"<?php echo get_option('rg4wp_status') ? ' checked="checked"': ''; ?> value="1" />
+                PHP error tracking
+              </label>
+              <br />
+              <label for="rg4wp_js">
+                <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
+                JavaScript error tracking
+              </label>
+
+            </fieldset>
           </td>
         </tr>
 
         <tr>
-          <th>
-            <label for="rg4wp_js">Track JavaScript errors</label>
-          </th>
+          <th scope="row"><label for="rg4wp_404s">Missing Pages</label></th>
           <td>
-            <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
+            <fieldset>
+              <legend class="screen-reader-text"><span>Missing Pages</span></legend>
+
+              <label for="rg4wp_404s">
+                <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
+                Send 404 errors
+              </label>
+              <p class="description">Requires PHP error tracking.</p>
+            </fieldset>
           </td>
         </tr>
 
         <tr>
-          <th>
-            <label for="rg4wp_404s">Send 404 errors</label>
-          </th>
-          <td>
-            <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
-          </td>
-        </tr>
-
-        <tr>
-          <th>
+          <th scope="row">
             <label for="rg4wp_tags">PHP Tags</label>
           </th>
           <td>
-            <input type="text" size="60" id="rg4wp_tags" name="rg4wp_tags" value="<?php echo get_option('rg4wp_tags'); ?>" />
+            <input type="text" class="regular-text ltr" id="rg4wp_tags" name="rg4wp_tags" value="<?php echo get_option('rg4wp_tags'); ?>" />
           </td>
         </tr>
 
         <tr>
-          <th>
+          <th scope="row">
             <label for="rg4wp_js_tags">JavaScript Tags</label>
           </th>
           <td>
-            <input type="text" size="60" id="rg4wp_js_tags" name="rg4wp_js_tags" value="<?php echo get_option('rg4wp_js_tags'); ?>" />
+            <input type="text" class="regular-text ltr" id="rg4wp_js_tags" name="rg4wp_js_tags" value="<?php echo get_option('rg4wp_js_tags'); ?>" />
           </td>
         </tr>
 
