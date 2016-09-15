@@ -2,7 +2,7 @@
 
     <?php settings_fields( 'rg4wp' ); ?>
 
-   <h1>Raygun4WP Configuration</h1>
+   <h1>Raygun4WP Settings</h1>
 
    <form method="post" action="options.php">
 

@@ -5,6 +5,7 @@
 
   add_action( 'admin_init', 'rg4wp_register_settings' );
   add_action( 'admin_menu', 'rg4wp_admin' );
+  add_action( 'admin_enqueue_scripts', 'rg4wp_admin_styles' );
   add_action( 'template_redirect', 'rg4wp_404_handler');
   add_action( 'wp_enqueue_script', 'load_jquery' );
 
@@ -221,4 +222,9 @@
     register_setting( 'rg4wp', 'rg4wp_ignoredomains');
     register_setting( 'rg4wp', 'rg4wp_pulse');
     register_setting( 'rg4wp', 'rg4wp_js_tags');
+  }
+
+  function rg4wp_admin_styles($hook) {
+    wp_register_style( 'rg4wp_css', plugins_url('css/style.css', __FILE__), false, '1.0.0' );
+    wp_enqueue_style( 'rg4wp_css' );
   }

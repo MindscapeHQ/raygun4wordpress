@@ -1,41 +1,58 @@
-<div class="wrap">
-   <div>
+<div class="rg4wp-container">
 
-     <h1>About Raygun</h1>
+  <a href="http://raygun.com" class="rg4wp-logo">Raygun.com</a>
 
-     <p><a href="http://raygun.com" target="_blank">Raygun</a> helps developers globally build better software and be the best developers they can be.</p>
+  <div class="rg4wp-module">
 
-     <p>Our tools integrate in minutes and provide deep insights into problems that are affecting end users, so you can find, diagnose and fix issues faster</p>
+    <p class="rg4wp-text"><a href="http://raygun.com" target="_blank">Raygun</a> helps developers globally build better software and be the best developers they can be. Our tools integrate in minutes and provide deep insights into problems that are affecting end users, so you can find, diagnose and fix issues faster</p>
 
-     <p>We believe that all software contains errors and problems, but it’s how you deal with those issues as a developer that can set you apart. Only 1% of users actively report issues they encounter, so we’re here to put the power in the developer's hands.</p>
+    <p class="rg4wp-text rg4wp-text--last">We believe that all software contains errors and problems, but it’s how you deal with those issues as a developer that can set you apart. Only 1% of users actively report issues they encounter, so we’re here to put the power in the developer's hands.</p>
 
-   </div>
+  </div>
 
-   <div>
-      <h2>Available for Wordpress</h2>
+  <div class="rg4wp-module-container">
 
-      <p><strong>Raygun4WP</strong> is the official Raygun plugin for the Wordpress platform. Raygun keeps a watchful eye on your web and mobile application, letting your know when problems arise.</p>
+    <div class="rg4wp-module-container__left">
+      <div class="rg4wp-module">
+        <h2 class="rg4wp-title">Crash Reporting</h2>
 
-     <p>This plugin enables you to track both PHP and JavaScript errors by using the official <a href="https://github.com/MindscapeHQ/raygun4php">Raygun4PHP</a> and <a href="https://github.com/MindscapeHQ/raygun4js">Raygun4JS</a> providers.</p>
+        <p class="rg4wp-text">Want to ensure that users have an error free experience when interacting with your brand? Raygun silently monitors your software applications in the background, telling you when users are encountering problems and being affected by bugs.</p>
 
-     <p><a href="https://raygun.com/">Learn more about Raygun</a></p>
-   </div>
+        <p class="rg4wp-text">Raygun prodives deep diagnostic information about the root cause of every error or crash, meaning your team won't be losing valuable time trying to reproduce issues or digging through log files. Ensure issue management and resolution is part of your team’s everyday workflow within Raygun's error and crash reporting software.</p>
 
-   <div>
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/products/crash-reporting?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-about">Learn More</a>
+      </div>
+    </div>
 
-     <h2>Getting Started</h2>
+    <div class="rg4wp-module-container__right">
+      <div class="rg4wp-module">
+        <h2 class="rg4wp-title">Real User Monitoring</h2>
 
-     <ol>
-       <li><a href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
-       <li>In the <a href="http://app.raygun.com/dashboard" target="_blank">Raygun dashboard</a> create a new application. This will represent your website</li>
-       <li>Copy the API Key (including the '==' at the end)</li>
-       <li>Go to the <a href="<?php menu_page_url('rg4wp-settings', true); ?>">Raygun4WP Settings page</a></li>
-       <li>Paste your API key into the API Key field</li>
-       <li>Enable Crash Reporting (both Serverside and Frontend error tracking recommended) and Real User Monitoring</li>
-       <li>Click Save Changes</li>
-       <li>Done!</li>
-     </ol>
+        <p class="rg4wp-text">Do you know which pages in your website are leading to unhappy or lost customers? Monitor the performance of every user session to identify where you can make improvements, or even spot bad deployments that have introduced problems.</p>
 
-     <a class="rgButton" href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Sign up for a free trial now</a>
-   </div>
+        <p class="rg4wp-text">View searchable, specific user sessions to pinpoint where they encountered issues and discover fundamental bottlenecks that affect your typical end user experience. Ensure your website delivers a flawless user experience for each and every one of your customers.</p>
+
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--pulse" href="https://raygun.com/products/real-user-monitoring-websites?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-about">Learn More</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rg4wp-module">
+
+    <h2 class="rg4wp-title">Get Started Today</h2>
+
+    <ol>
+      <li><a href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
+      <li>Go to the <a href="http://app.raygun.com/dashboard" target="_blank">Raygun dashboard</a> and create a new application. <span class="rg4wp-helptip">This will represent your website</span></li>
+      <li>Copy the API Key <span class="rg4wp-helptip">(including the '==' at the end)</span></li>
+      <li>Go to the <a href="<?php menu_page_url('rg4wp-settings', true); ?>">Raygun4WP Settings page</a></li>
+      <li>Paste your API key into the API Key field</li>
+      <li>Enable Crash Reporting and Real User Monitoring. <span class="rg4wp-helptip">(Serverside and Frontend error tracking are both recommended)</span></li>
+      <li>Click Save Changes</li>
+      <li>Done!</li>
+    </ol>
+
+  </div>
+
 </div>
