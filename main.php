@@ -24,7 +24,8 @@
       .'h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({'."\n"
       .'e:g})}}(window,document,"script","%sexternal/raygun4js/dist/raygun.min.js","rg4js");'."\n"
     .'</script>'."\n"
-    .'<script type="text/javascript">rg4js("apiKey", "%s");'."\n";
+    .'<script type="text/javascript">rg4js("apiKey", "%s");'."\n"
+    .'rg4js("setVersion", "%s");'."\n";
 
     if( get_option('rg4wp_js') == 1 ) {
       $script .= 'rg4js("enableCrashReporting", true);'."\n";
@@ -53,7 +54,7 @@
     }
 
     $script .= '</script>';
-    printf($script, plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ));
+    printf($script, plugin_dir_url(__FILE__), get_option( 'rg4wp_apikey' ), get_bloginfo("version"));
   }
 
   function load_jquery() {
