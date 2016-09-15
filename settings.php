@@ -1,10 +1,10 @@
 <div class="wrap">
 
-    <?php settings_fields( 'rg4wp' ); ?>
-
    <h1>Raygun4WP Settings</h1>
 
    <form method="post" action="options.php">
+
+      <?php settings_fields( 'rg4wp' ); ?>
 
       <table class="form-table">
 
