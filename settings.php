@@ -56,12 +56,12 @@
 
               <label for="rg4wp_status">
                 <input type="checkbox" name="rg4wp_status" id="rg4wp_status"<?php echo get_option('rg4wp_status') ? ' checked="checked"': ''; ?> value="1" />
-                <?php _e("Serverside errors"); ?> (PHP)
+                <?php _e("Server side errors"); ?> (PHP)
               </label>
               <br />
               <label for="rg4wp_js">
                 <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
-                <?php _e("Frontend errors"); ?> (JavaScript)
+                <?php _e("Clide side errors"); ?> (JavaScript)
               </label>
 
             </fieldset>
@@ -78,7 +78,7 @@
                 <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
                 <?php _e("Send 404 errors"); ?>
               </label>
-              <p class="description"><?php _e("Requires serverside error tracking"); ?></p>
+              <p class="description"><?php _e("Requires server side error tracking"); ?></p>
             </fieldset>
           </td>
         </tr>

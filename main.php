@@ -114,10 +114,10 @@
 
   function rg4wp_checkUser($client)
   {
-    if (get_option('rg4wp_usertracking'))
+    if (get_option('rg4wp_usertracking') && is_user_logged_in())
     {
       $current_user = wp_get_current_user();
-      $client->SetUser($current_user->user_email);
+      $client->SetUser($current_user->user_email, $current_user->user_firstname, $current_user->user_firstname . ' ' . $current_user->user_lastname, $current_user->user_email, false);
     }
     return $client;
   }
