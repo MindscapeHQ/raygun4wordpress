@@ -2,14 +2,6 @@
 
   <a href="http://raygun.com" class="rg4wp-logo">Raygun.com</a>
 
-  <div class="rg4wp-module">
-
-    <p class="rg4wp-text"><a href="http://raygun.com" target="_blank">Raygun</a> helps developers globally build better software and be the best developers they can be. Our tools integrate in minutes and provide deep insights into problems that are affecting end users, so you can find, diagnose and fix issues faster</p>
-
-    <p class="rg4wp-text rg4wp-text--last">We believe that all software contains errors and problems, but it’s how you deal with those issues as a developer that can set you apart. Only 1% of users actively report issues they encounter, so we’re here to put the power in the developer's hands.</p>
-
-  </div>
-
   <div class="rg4wp-module-container">
 
     <div class="rg4wp-module-container__left">
@@ -18,7 +10,7 @@
 
         <p class="rg4wp-text">Want to ensure that users have an error free experience when interacting with your brand? Raygun silently monitors your software applications in the background, telling you when users are encountering problems and being affected by bugs.</p>
 
-        <p class="rg4wp-text">Raygun prodives deep diagnostic information about the root cause of every error or crash, meaning your team won't be losing valuable time trying to reproduce issues or digging through log files. Ensure issue management and resolution is part of your team’s everyday workflow within Raygun's error and crash reporting software.</p>
+        <p class="rg4wp-text">Raygun provides deep diagnostic information about the root cause of every error or crash, meaning your team won't be losing valuable time trying to reproduce issues or digging through log files. Ensure issue management and resolution is part of your team’s everyday workflow within Raygun's error and crash reporting software.</p>
 
         <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/products/crash-reporting?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-about">Learn More</a>
       </div>
@@ -49,7 +41,7 @@
       <li>Copy the API Key <span class="rg4wp-helptip">Include the '==' at the end</span></li>
       <li>Go to the <a href="<?php menu_page_url('rg4wp-settings', true); ?>">Raygun4WP Settings page</a></li>
       <li>Paste your API key into the API Key field</li>
-      <li>Enable Crash Reporting and Real User Monitoring. <span class="rg4wp-helptip">Serverside and Frontend error tracking are both recommended</span></li>
+      <li>Enable Crash Reporting and Pulse</li>
       <li>Click Save Changes</li>
       <li>Done!</li>
     </ol>
@@ -57,7 +49,7 @@
   </div>
 
   <div class="rg4wp-additional-links">
-    <a href="https://raygun.com/privacy">Privacy Policy</a> | <a href="https://raygun.com/terms">Terms</a> | <a href="https://raygun.com/docs/languages/wordpress">Documentation</a>
+    <a href="https://raygun.com/privacy">Privacy Policy</a> | <a href="https://raygun.com/terms">Terms and Conditions</a> | <a href="https://raygun.com/docs/languages/wordpress">Documentation</a>
   </div>
 
 </div>
