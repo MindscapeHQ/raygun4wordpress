@@ -55,4 +55,8 @@
 
   </div>
 
+  <div class="rg4wp-additional-links">
+    <a href="https://raygun.com/privacy">Privacy Policy</a> | <a href="https://raygun.com/terms">Terms</a> | <a href="https://raygun.com/docs/languages/wordpress">Documentation</a>
+  </div>
+
 </div>

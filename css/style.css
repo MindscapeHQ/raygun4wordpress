@@ -77,6 +77,11 @@
   margin-bottom: 0;
 }
 
+.rg4wp-additional-links {
+  margin-top: 32px;
+  text-align: center;
+}
+
 .rg4wp-no-select {
   -webkit-user-select: none;
   -moz-user-select: none;
