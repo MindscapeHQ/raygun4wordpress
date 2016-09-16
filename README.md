@@ -29,17 +29,56 @@ Add it from the official repository using your admin panel - the plugin is avail
 
 ## Usage
 
-Navigate to your Wordpress admin panel, click on Plugins, and then **Activate Raygun4WP**.
+1. Navigate to your Wordpress admin panel, click on Plugins, and then **Activate Raygun4WP**
+2. Go to the Raygun4WP settings panel either by the sidebar or admin notification
+3. Copy your application's API key from the [Raygun dashboard](https://app.raygun.com/dashboard/) and place it in the API key field
+4. Enable `Error Tracking` (both server-side and client-side), `Real User Monitoring` and any other options
+5. Save your changes
+6. Done!
 
-Go to the Raygun4WP settings panel either by the sidebar or admin notification.
+## Pulse - Real User Monitoring
 
-Copy your application's API key from the [Raygun dashboard](https://app.raygun.com/dashboard/) and place it in the API key field.
+As of 1.8 of Raygun4WP plugin you can enable [real user monitoring](https://raygun.com/products/real-user-monitoring).
 
-Enable `Error Tracking` (both server-side and client-side), `Real User Monitoring` and any other options.
+This feature can be enabled via the Settings page under **Pulse - Real User Monitoring**.
 
-Save your changes.
+User information will be sent along if you have the unique user tracking feature enabled.
 
-Done!
+## Client-side error tracking
+
+Since 1.4 of the Raygun4WP plugin you can enable client-side error monitoring.
+
+This feature automatically tracks JavaScript errors that occur in your user's browsers when they are loaded.
+
+This setting can be activated via the Settings page.
+
+## Unique user tracking
+
+This feature can be enabled via the Settings page.
+
+Enabling this feature will send through the currently logged in user's email address, first name and last name with each message to Raygun. This applies to both Crash Reporting and Pulse payloads.
+
+If a user is not logged in, no user data will be sent and a random ID will be assigned to the user.
+
+The user's information will then be available to you when viewing crash reports and user sessions. If the user has an associated Gravatar with that address, you will see their picture.
+
+If this feature is not enabled, a random ID will be assigned to each user.
+
+## Tagging errors
+
+Since 1.8 both client-side and server-side errors can be tagged. Tags are custom test allowing you to easily identify errors.
+
+JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.   
+
+For example: `Error, JavaScript` would add two tags. The first being `Error` second one being `JavaScript`
+
+## Ignored domains
+
+You can enter a comma-delimited list in the field on the settings page to prevent certain domains from sending errors.
+
+## Async sending
+
+Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
 
 ## Multisite Support
 
@@ -52,36 +91,6 @@ It is recommended to use the most recent version WordPress and PHP possible. Thi
 5. Repeat the above process for any other child sites - you can use different API keys (to send to different Raygun apps) or the same one.
 
 Finally, if you so desire you should be able to visit the root network site, activate it there and configure it. You must however activate it on at least one child site first.
-
-### Pulse
-
-As of 1.8, you can enable [real user monitoring](https://raygun.com/products/real-user-monitoring) by navigating to the Raygun4WP settings page and checking the **Enable Real User Monitoring** checkbox.
-
-User information will be sent along if you have the unique user tracking feature enabled.
-
-### Client-side JavaScript error tracking
-
-Since 1.4 of this plugin you can also include Raygun4JS so you can automatically track JavaScript errors that occur in your user's browsers once your site's pages are loaded.
-
-To activate this, turn on the JavaScript error tracking option in the Raygun4WP Settings page.
-
-### Unique user tracking
-
-You can enable this feature from the Settings page. If you do so the currently logged in user's email address, first name and last name will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
-
-### Tagging errors
-
-Since 1.8 both client-side and server-side errors can be tagged. Tags are custom test allowing you to easily identify errors.
-
-JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.   
-
-### Ignored domains
-
-You can enter a comma-delimited list in the field on the settings page to prevent certain domains from sending errors.
-
-### Async sending
-
-Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
 
 Changelog
 ---------
