@@ -74,7 +74,7 @@ For example: `Error, JavaScript` would add two tags. The first being `Error` sec
 
 ## Ignored domains
 
-You can enter a comma-delimited list in the field on the settings page to prevent certain domains from sending errors.
+You can enter a comma-delimited list in the field on the settings page to prevent certain domains from sending errors and from being tracked with real user monitoring.
 
 ## Async sending
 
