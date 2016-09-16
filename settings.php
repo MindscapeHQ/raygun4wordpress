@@ -1,156 +1,144 @@
-<?php
+<div class="wrap">
 
-echo '
-    <style type="text/css">
-      .tooltip {
-      display:none;
-      position:absolute;
-      border:2px solid #333;
-      background-color:#efefef;
-      border-radius:5px;
-      padding:10px;
-      color:#111;
-      font-size:12px Arial;
-      width: 300px;
-    }
-    </style>
-     <div class="wrap">
-     <h2>Raygun4WP Configuration</h2>
-     <p>You can add your API key and customize your settings here.</p>
+   <h1>Raygun4WP Settings</h1>
 
-     <form method="post" action="options.php">';
+   <form method="post" action="options.php">
 
-settings_fields( 'rg4wp' );
+      <?php settings_fields( 'rg4wp' ); ?>
 
-echo '<table class="form-table">
-      <tr valign="top">
-      <th scope="row">Error Reporting Status</th>
-      <td>
-		  <select name="rg4wp_status" id="statusEnabled">
-		  <option value="0"';
-echo ! get_option( 'rg4wp_status' ) ? ' selected="selected"': '';
-echo  '>Disabled</option>
-		  <option value="1"';
-echo get_option( 'rg4wp_status' ) ? ' selected="selected"': '';
-echo  '>Enabled</option>
-      </select>
-      </td>
-      <td>
-      <div id="statusLight" style="width: 15px; height: 15px; border-radius: 7px;" title="Enabled/disabled status" />
-      </td>
-      </tr>
+      <table class="form-table">
 
-      <tr valign="top">
-      <th scope="row">Send 404 errors</th>
-      <td>
-      <select name="rg4wp_404s">
-      <option value="0"';
-echo !get_option('rg4wp_404s') ? ' selected="selected"': '';
-echo '>No</option>
-      <option value="1"';
-echo get_option('rg4wp_404s') ? ' selected="selected"': '';
-echo '>Yes</option>
-      </select>
-      </td>
-      </tr>
+        <tr>
+          <th><label for="apiKey"><?php _e("API Key"); ?></label></th>
+          <td>
+            <input type="text" class="regular-text ltr" id="apiKey" name="rg4wp_apikey" value="<?php echo get_option( 'rg4wp_apikey' ); ?>" />
+          </td>
+        </tr>
 
-      <tr valign="top">
-      <th scope="row">Track JavaScript errors</th>
-      <td>
-      <select name="rg4wp_js">';
-$rg4wp_js = get_option('rg4wp_js');
-printf('<option value="0" %s>No</option>', selected(0, $rg4wp_js));
-printf('<option value="1" %s>Yes</option>', selected(1, $rg4wp_js));
-echo '
-      </select>
-      </td>
-      </tr>
+        <tr>
+          <th>
+            <label for="ignoreDomains"><?php _e("Domains To Ignore"); ?></label>
+          </th>
+          <td>
+            <input type="text" class="regular-text ltr" id="ignoreDomains" name="rg4wp_ignoredomains" value="<?php echo get_option( 'rg4wp_ignoredomains' ); ?>" />
+            <p class="description"><?php _e("Domains that shouldn't be tracked. Useful for development or multisite installations. Separate with commas."); ?></p>
+          </td>
+        </tr>
 
-      <tr valign="top">
-      <th scope="row">Unique user tracking</th>
-      <td>
-      <select name="rg4wp_usertracking">
-      <option value="0"';
-  echo !get_option('rg4wp_usertracking') ? ' selected="selected"': '';
-  echo '>Disabled</option>
-      <option value="1"';
-  echo get_option('rg4wp_usertracking') ? ' selected="selected"': '';
-  echo '>Enabled</option>
-      </select>
-      </td>
-      </tr>
+        <tr>
+          <th>
+            <label for="rg4wp_usertracking"><?php _e("User Tracking"); ?></label>
+          </th>
+          <td>
+            <fieldset>
+              <legend class="screen-reader-text"><span>User tracking</span></legend>
+              <label for="rg4wp_usertracking">
+                <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
+                <?php _e("Track user information"); ?>
+              </label>
+            </fieldset>
+          </td>
+        </tr>
 
-      <tr valign="top">
-      <th scope="row">API Key</th>
-      <td><input type="text" size="60" id="apiKey" name="rg4wp_apikey" value="';
-echo get_option( 'rg4wp_apikey' );
-echo  '" /></td>
-      </tr>
+      </table>
 
-      <tr valign="top">
-      <th scope="row">Tags</th>
-      <td style="width: 336px;"><input type="text" size="60" name="rg4wp_tags" value="';
-echo get_option('rg4wp_tags');
-echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="Tags are custom text that you can send with each error, for identification, testing and more. They should be a comma-separated list e.g. \'tag1,tag2\'"
-      style=" width: 20px; height: 20px;" /></td></td>
-      </tr>
+      <h2 class="title">Crash Reporting</h2>
 
-      <tr valign="top">
-      <th scope="row">Domains to ignore</th>
-      <td><input type="text" size="60" id="ignoreDomains" name="rg4wp_ignoredomains" value="';
-echo get_option( 'rg4wp_ignoredomains' );
-echo '" /></td><td><img src="'.plugin_dir_url(__FILE__).'img/q.gif'.'" class="masterTooltip" title="A list of domains that should not report errors. Useful for development or multisite installations. They should be a comma-separated list e.g. \'example.com,example.org\'"
-      style=" width: 20px; height: 20px;" /></td></td>
-      </tr>
+      <table class="form-table">
+
+        <tr>
+          <th scope="row">
+            <?php _e("Error Tracking"); ?>
+          </th>
+          <td>
+            <fieldset>
+              <legend class="screen-reader-text"><span>Error Tracking</span></legend>
+
+              <label for="rg4wp_status">
+                <input type="checkbox" name="rg4wp_status" id="rg4wp_status"<?php echo get_option('rg4wp_status') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Server-side errors"); ?> (PHP)
+              </label>
+              <br />
+              <label for="rg4wp_js">
+                <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
+                <?php _e("Client-side errors"); ?> (JavaScript)
+              </label>
+
+            </fieldset>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row"><label for="rg4wp_404s"><?php _e("Missing Pages"); ?></label></th>
+          <td>
+            <fieldset>
+              <legend class="screen-reader-text"><span>Missing Pages</span></legend>
+
+              <label for="rg4wp_404s">
+                <input type="checkbox" name="rg4wp_404s" id="rg4wp_404s"<?php echo get_option('rg4wp_404s') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Send 404 errors"); ?>
+              </label>
+              <p class="description"><?php _e("Requires server-side error tracking"); ?></p>
+            </fieldset>
+          </td>
+        </tr>
+
+      </table>
+
+      <h3 class="title">Crash Reporting - Tags</h3>
+      <p><?php _e("Tags are custom text that you can send with each error, for identification, testing and more. Separate with commas e.g 'tag1, tag2'"); ?></p>
+
+      <table class="form-table">
+
+        <tr>
+          <th scope="row">
+            <label for="rg4wp_tags">PHP</label>
+          </th>
+          <td>
+            <input type="text" class="regular-text ltr" id="rg4wp_tags" name="rg4wp_tags" value="<?php echo get_option('rg4wp_tags'); ?>" />
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
+            <label for="rg4wp_js_tags">JavaScript</label>
+          </th>
+          <td>
+            <input type="text" class="regular-text ltr" id="rg4wp_js_tags" name="rg4wp_js_tags" value="<?php echo get_option('rg4wp_js_tags'); ?>" />
+          </td>
+        </tr>
+
+      </table>
+
+      <p class="submit">
+        <?php
+          $current_user = wp_get_current_user();
+          $testErrorUrl = plugins_url('sendtesterror.php?backurl=' . urlencode($_SERVER['REQUEST_URI']) . '&rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
+        ?>
+        <a class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
+      </p>
+
+      <h2 class="title">Pulse - Real User Monitoring</h2>
+
+      <table class="form-table">
+
+        <tr>
+          <th scope="row" class="th-full">
+            <label for="rg4wp_pulse">
+              <input type="checkbox" name="rg4wp_pulse" id="rg4wp_pulse"<?php echo get_option('rg4wp_pulse') ? ' checked="checked"': '';?> value="1" />
+              <?php _e("Enable Real User Monitoring"); ?>
+            </label>
+          </th>
+        </tr>
 
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags" />
 
-      <script type="text/javascript">
-jQuery(document).ready(function($) {
-// Tooltip only Text
-$(\'.masterTooltip\').hover(function(){
-        // Hover over code
-        var title = $(this).attr(\'title\');
-        $(this).data(\'tipText\', title).removeAttr(\'title\');
-        $(\'<p class="tooltip"></p>\')
-        .text(title)
-        .appendTo(\'body\')
-        .fadeIn(\'slow\');
-}, function() {
-        // Hover out code
-        $(this).attr(\'title\', $(this).data(\'tipText\'));
-        $(\'.tooltip\').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $(\'.tooltip\')
-        .css({ top: mousey, left: mousex })
-});
-
-if ($("#statusEnabled").val() == 0 || $("#apiKey").val().length < 6) {
-  $("#statusLight").css("background-color", "#C03");
-}
-else {
-  $("#statusLight").css("background-color", "#0C3");
-}
-});
-
-function sendTestError()
-{
-  var user = "';
-  $current_user = wp_get_current_user();
-  echo $current_user->user_email;
-  echo '";
-  window.location.href = "'.plugins_url('sendtesterror.php?rg4wp_status='.get_option('rg4wp_status').
-    '&rg4wp_apikey='.urlencode(get_option('rg4wp_apikey')), __FILE__).'&rg4wp_usertracking='
-    .get_option('rg4wp_usertracking').'&user=" + user;
-};
-</script>
-      ';
-echo '<div style="display: inline; margin-top: 10px;"><div style="margin-right: 10px; float: left;">';
-submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
-echo '</div><div class="button-secondary button-large" style="float: left;" onclick="sendTestError();">Send Test Error</div></div></form>';
-?>
+      <p class="submit">
+        <?php
+          submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
+        ?>
+      </p>
+    </form>

@@ -2,8 +2,8 @@
 /*
 Plugin Name: Raygun4WP
 Plugin URI: http://github.com/mindscapehq/raygun4wordpress
-Description: Exceptional error, exception and 404 tracking with Raygun.io for your Wordpress site. This service lets you monitor your site's health with beautiful graphs and comprehensive reports, so you are always aware of any points of failure. Daily digests are emailed to you, so an overview is available at a glance- no effort required. This plugin has a simple one-minute, no-code-required installation.
-Version: 1.7.3.0
+Description: Exceptional error, performance, user tracking and more with Raygun.com. This service integrates Raygun Crash Reporting which lets you monitor your site's health with beautiful graphs and comprehensive reports, so you are always aware of any points of failure. With Raygun's Real User Monitoring you can monitor the performance of every individual user session, so you can discover and fix fundamental bottlenecks that affect your end user experience. This plugin has a simple one-minute, no-code-required installation.
+Version: 1.8.0.0
 Author: Mindscape
 Author URI: http://raygun.com
 License: MIT
@@ -25,7 +25,7 @@ else if (is_multisite() && !$multisite_support_enabled)
 {
   function rg4wp_warn_multisite()
   {
-    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> This plugin is not guaranteed to work on Multisite installations with certain environments. Please contact <a href="http://raygun.io/contact">Raygun</a> for more information.</p></div>';
+    echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> This plugin is not guaranteed to work on Multisite installations with certain environments. Please contact <a href="http://raygun.com/about/contact">Raygun</a> for more information.</p></div>';
   }
 
   add_action('admin_notices', 'rg4wp_warn_multisite');
