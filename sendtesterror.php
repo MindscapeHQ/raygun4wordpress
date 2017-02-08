@@ -47,7 +47,7 @@ if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_api
 	$previousUrl = "javascript:window.history.back();";
 
 	if( isset($_GET['backurl']) ) {
-		$previousUrl = $_GET["backurl"];
+		$previousUrl = htmlentities($_GET["backurl"]);
 	}
 ?>
 
