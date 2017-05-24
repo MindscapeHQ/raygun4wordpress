@@ -95,6 +95,7 @@ Finally, if you so desire you should be able to visit the root network site, act
 Changelog
 ---------
 
+- 1.8.2: Bump Raygun4JS version to v2.6.2
 - 1.8.1: XSS bug fix
 - 1.8.0: Bump Raygun4JS dependency to v2.4.0; Bump Raygun4PHP dependency to v1.7.0; Pulse support added; Raygun4JS also includes the unique user tracking feature; Restructured the settings screen; JavaScript error tagging option added; Fixed an issue where the Send Test Error page wouldn't display results; Various content and style updates; Updated notifications; Raygun4JS tracks the version Wordpress being used; Unique user tracking also tracks the users first & last names
 - 1.7.3: Fixed issue with WP 4.5.2 plugin api
