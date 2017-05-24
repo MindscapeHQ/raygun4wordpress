@@ -3,8 +3,8 @@ Contributors: mindscapehq
 Donate link: http://raygun.com
 Tags: error reporting, raygun, exception, 404, crash reporting, JavaScript, PHP, error monitoring, error tracking, bug tracking, real user monitoring, pulse
 Requires at least: 3.4
-Tested up to: 4.6.1
-Stable tag: 1.8.1.0
+Tested up to: 4.7.5
+Stable tag: 1.8.2.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -79,6 +79,10 @@ Finally, if you so desire you should be able to visit the root network site, act
 If you enable this feature the currently logged in user's email address, first name and last name will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
 
 == Changelog  ==
+
+= 1.8.2 =
+
+* Bump Raygun4JS version to v2.6.2
 
 = 1.8.1 =
 
