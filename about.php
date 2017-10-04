@@ -12,7 +12,7 @@
 
         <p class="rg4wp-text">Raygun provides deep diagnostic information about the root cause of every error or crash, meaning your team won't be losing valuable time trying to reproduce issues or digging through log files. Ensure issue management and resolution is part of your team’s everyday workflow within Raygun's error and crash reporting software.</p>
 
-        <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/products/crash-reporting?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-about">Learn More</a>
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/products/crash-reporting?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
 
         <p class="rg4wp-text">View searchable, specific user sessions to pinpoint where they encountered issues and discover fundamental bottlenecks that affect your typical end user experience. Ensure your website delivers a flawless user experience for each and every one of your customers.</p>
 
-        <a class="rg4wp-button rg4wp-no-select rg4wp-button--pulse" href="https://raygun.com/products/real-user-monitoring-websites?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-about">Learn More</a>
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--pulse" href="https://raygun.com/products/real-user-monitoring-websites?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
     <h2 class="rg4wp-title">Get Started Today</h2>
 
     <ol>
-      <li><a href="https://app.raygun.com/signup?utm_source=link&utm_medium=text&utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
+      <li><a href="https://app.raygun.com/signup?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
       <li>Go to the <a href="http://app.raygun.com/dashboard" target="_blank">Raygun dashboard</a> and create a new application. <span class="rg4wp-helptip">This represents your website</span></li>
       <li>Activate Crash Reporting and Pulse</li>
       <li>Copy the API Key <span class="rg4wp-helptip">Include the '==' at the end</span></li>
