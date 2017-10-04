@@ -113,9 +113,9 @@
       <p class="submit">
         <?php
           $current_user = wp_get_current_user();
-          $testErrorUrl = plugins_url('sendtesterror.php?backurl=' . urlencode($_SERVER['REQUEST_URI']) . '&rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
+          $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
         ?>
-        <a class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
+        <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
       </p>
 
       <h2 class="title">Pulse - Real User Monitoring</h2>
@@ -141,4 +141,33 @@
           submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
         ?>
       </p>
+      <script>
+        (function($) {
+          var $sendTestErrorLink = $('#js-send-test-error-link');
+          var serverSideEnabled = $('#rg4wp_status').prop('checked');
+          var clientSideEnabled = $('#rg4wp_js').prop('checked');
+          var apiKeyValue = $('#apiKey').val();
+
+          // Test if the API key has a value, and that either the server-side or client-side checkboxes have been checked on load
+          var isValid = function() {
+            return apiKeyValue.length > 0 && (serverSideEnabled || clientSideEnabled);
+          };
+
+          // Disable the send test link immediately if the state is invalid
+          if(!isValid()) {
+            $sendTestErrorLink
+              .prop('disabled', true)
+              .attr('title', 'Add your Raygun API key, select an Error Tracking option and click Save Changes to send a test error')
+              .addClass('button-disabled')
+              .css({ cursor: 'help' });
+          }
+
+          // Disable link default behavior if invalid
+          $sendTestErrorLink.on('click', function(e) {
+            if(!isValid()) {
+              e.preventDefault();
+            }
+          });
+        })(window.jQuery);
+      </script>
     </form>
