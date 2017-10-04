@@ -144,32 +144,23 @@
       <script>
         (function($) {
           var $sendTestErrorLink = $('#js-send-test-error-link');
-          // Test if the API key has a value, and that either the server-side or client-side checkboxes have been checked
+          var serverSideEnabled = $('#rg4wp_status').prop('checked');
+          var clientSideEnabled = $('#rg4wp_js').prop('checked');
+          var apiKeyValue = $('#apiKey').val();
+
+          // Test if the API key has a value, and that either the server-side or client-side checkboxes have been checked on load
           var isValid = function() {
-            var serverSideEnabled = $('#rg4wp_status').prop('checked');
-            var clientSideEnabled = $('#rg4wp_js').prop('checked');
-            return $('#apiKey').val().length > 0 && (serverSideEnabled || clientSideEnabled);
+            return apiKeyValue.length > 0 && (serverSideEnabled || clientSideEnabled);
           };
 
           // Disable the send test link immediately if the state is invalid
           if(!isValid()) {
             $sendTestErrorLink
               .prop('disabled', true)
-              .attr('title', 'Add your Raygun API key and select an Error Tracking option to send a test error')
+              .attr('title', 'Add your Raygun API key, select an Error Tracking option and click Save Changes to send a test error')
               .addClass('button-disabled')
               .css({ cursor: 'help' });
           }
-          
-          // Enable the send test link on submit if valid
-          $('#submitForm').on('click', function() {
-            if(isValid()) {
-              $sendTestErrorLink
-                .prop('disabled', false)
-                .attr('title', 'Send a test error to your Raygun account')
-                .removeClass('button-disabled')
-                .css({ cursor: 'pointer' });
-            }
-          });
 
           // Disable link default behavior if invalid
           $sendTestErrorLink.on('click', function(e) {
