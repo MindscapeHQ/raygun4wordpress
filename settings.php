@@ -115,7 +115,7 @@
           $current_user = wp_get_current_user();
           $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
         ?>
-        <a class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
+        <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
       </p>
 
       <h2 class="title">Pulse - Real User Monitoring</h2>
@@ -141,4 +141,42 @@
           submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
         ?>
       </p>
+      <script>
+        (function($) {
+          var $sendTestErrorLink = $('#js-send-test-error-link');
+          // Test if the API key has a value, and that either the server-side or client-side checkboxes have been checked
+          var isValid = function() {
+            var serverSideEnabled = $('#rg4wp_status').prop('checked');
+            var clientSideEnabled = $('#rg4wp_js').prop('checked');
+            return $('#apiKey').val().length > 0 && (serverSideEnabled || clientSideEnabled);
+          };
+
+          // Disable the send test link immediately if the state is invalid
+          if(!isValid()) {
+            $sendTestErrorLink
+              .prop('disabled', true)
+              .attr('title', 'Add your Raygun API key and select an Error Tracking option to send a test error')
+              .addClass('button-disabled')
+              .css({ cursor: 'help' });
+          }
+          
+          // Enable the send test link on submit if valid
+          $('#submitForm').on('click', function() {
+            if(isValid()) {
+              $sendTestErrorLink
+                .prop('disabled', false)
+                .attr('title', 'Send a test error to your Raygun account')
+                .removeClass('button-disabled')
+                .css({ cursor: 'pointer' });
+            }
+          });
+
+          // Disable link default behavior if invalid
+          $sendTestErrorLink.on('click', function(e) {
+            if(!isValid()) {
+              e.preventDefault();
+            }
+          });
+        })(window.jQuery);
+      </script>
     </form>
