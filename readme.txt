@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Raygun4WP ===
 Contributors: mindscapehq
 Donate link: http://raygun.com
 Tags: error reporting, raygun, exception, 404, crash reporting, JavaScript, PHP, error monitoring, error tracking, bug tracking, real user monitoring, pulse
@@ -82,7 +82,7 @@ If you enable this feature the currently logged in user's email address, first n
 
 = 1.8.3 =
 
-* Fix XSS vulnerability
+* Fix XSS vulnerability in settings
 * Replace the iframe with a link to the Raygun dashboard
 
 = 1.8.2 =
