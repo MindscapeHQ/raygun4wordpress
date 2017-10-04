@@ -43,15 +43,7 @@ if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_api
 }
 ?></p>
 
-<?php
-	$previousUrl = "javascript:window.history.back();";
-
-	if( isset($_GET['backurl']) ) {
-		$previousUrl = htmlentities($_GET["backurl"]);
-	}
-?>
-
-			<a class="rg4wp-button" href="<?php echo $previousUrl; ?>">Back</a>
+			<a class="rg4wp-button" href="/wp-admin/admin.php?page=rg4wp-settings">Back</a>
 
 		</div>
 	</div>
