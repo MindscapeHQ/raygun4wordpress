@@ -80,6 +80,8 @@ You can enter a comma-delimited list in the field on the settings page to preven
 
 Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
 
+As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.   
+
 ## Multisite Support
 
 It is recommended to use the most recent version WordPress and PHP possible. This procedure should be first followed on a staging server that matches your production environment as closely as possible, then replicated live.
@@ -95,6 +97,7 @@ Finally, if you so desire you should be able to visit the root network site, act
 Changelog
 ---------
 
+- 1.9.0: Add async sending option to dashboard; Bump Raygun4JS dependency to v2.8.5; Bump Raygun4PHP dependency to v1.8.2
 - 1.8.3: Fix XSS vulnerability in settings; Replace the iframe with a link to the Raygun dashboard
 - 1.8.2: Bump Raygun4JS version to v2.6.2
 - 1.8.1: XSS bug fix
