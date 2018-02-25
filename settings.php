@@ -83,6 +83,21 @@
           </td>
         </tr>
 
+        <tr>
+          <th scope="row"><label for="rg4wp_async"><?php _e("Serverside async sending") ?></label></th>
+          <td>
+            <fieldset>
+              <legend class="screen-reader-text"><span>Serverside sending method</span></legend>
+
+              <label for="rg4wp_async">
+                <input type="checkbox" name="rg4wp_async" id="rg4wp_async"<?php echo get_option('rg4wp_async') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Send errors asynchronously"); ?>
+              </label>
+              <p class="description"><?php _e("Use asynchronous when sending server-side errors."); ?><em>(Only available on *Unix operating systems)</em></p>
+            </fieldset>
+          </td>
+        </tr>
+
       </table>
 
       <h3 class="title">Crash Reporting - Tags</h3>
