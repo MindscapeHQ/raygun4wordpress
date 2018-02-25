@@ -84,7 +84,7 @@
         </tr>
 
         <tr>
-          <th scope="row"><label for="rg4wp_async"><?php _e("Serverside async sending") ?></label></th>
+          <th scope="row"><label for="rg4wp_async"><?php _e("Serverside sending method") ?></label></th>
           <td>
             <fieldset>
               <legend class="screen-reader-text"><span>Serverside sending method</span></legend>
