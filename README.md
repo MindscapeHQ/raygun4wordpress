@@ -96,7 +96,7 @@ Finally, if you so desire you should be able to visit the root network site, act
 
 Changelog
 ---------
-
+- 1.9.1: Don't set user cookie when user tracking is disabled.
 - 1.9.0: Add async sending option to dashboard; Bump Raygun4JS dependency to v2.8.5; Bump Raygun4PHP dependency to v1.8.2
 - 1.8.3: Fix XSS vulnerability in settings; Replace the iframe with a link to the Raygun dashboard
 - 1.8.2: Bump Raygun4JS version to v2.6.2

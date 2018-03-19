@@ -145,7 +145,7 @@
         !rg4wp_isIgnoredDomain() && is_404() && get_option('rg4wp_apikey'))
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending());
+        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, get_option('rg4wp_usertracking'));
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
 
         if (!is_array($tags)) {
@@ -166,7 +166,7 @@
   {
 
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending());
+     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, get_option('rg4wp_usertracking'));
      $tags = explode(',', get_option('rg4wp_tags'));
 
      if (!is_array($tags)) {
