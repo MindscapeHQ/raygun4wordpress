@@ -82,18 +82,6 @@ Introduced in 1.1.3, this provider will now send asynchronously on *nix servers 
 
 As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.   
 
-## Multisite Support
-
-It is recommended to use the most recent version WordPress and PHP possible. This procedure should be first followed on a staging server that matches your production environment as closely as possible, then replicated live.
-
-1. On your root network site, install the plugin using the Admin dashboard's **plugin page** as standard, but **do not activate it**.
-2. FTP in and modify `wp-content/plugins/raygun4wp/raygun4wp.php` - change the value on `line 12` to `true`.
-3. Visit the Admin dashboard of a child site (not the root network site). Go to its Plugin page, and you should see Raygun4WP ready to be activated - do so.
-4. A new Raygun4WP submenu will be added to the left. In there click on the **Raygun4WP settings page**, paste in your API key, change the top dropdown to Enabled then click *Save Changes*. You can now click *Send Test Error* and one will appear in your dashboard.
-5. Repeat the above process for any other child sites - you can use different API keys (to send to different Raygun apps) or the same one.
-
-Finally, if you so desire you should be able to visit the root network site, activate it there and configure it. You must however activate it on at least one child site first.
-
 Changelog
 ---------
 - 1.9.1: Don't set user cookie when user tracking is disabled.
