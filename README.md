@@ -52,7 +52,7 @@ This feature automatically tracks JavaScript errors that occur in your user's br
 
 This setting can be activated via the Settings page.
 
-## Unique user tracking
+## Customer Experience Monitoring
 
 This feature can be enabled via the Settings page.
 
