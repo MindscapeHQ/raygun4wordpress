@@ -68,7 +68,7 @@ If this feature is not enabled, a random ID will be assigned to each user.
 
 Since 1.8 both client-side and server-side errors can be tagged. Tags are custom test allowing you to easily identify errors.
 
-JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.   
+JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.
 
 For example: `Error, JavaScript` would add two tags. The first being `Error` second one being `JavaScript`
 
@@ -80,10 +80,11 @@ You can enter a comma-delimited list in the field on the settings page to preven
 
 Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
 
-As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.   
+As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.
 
 Changelog
 ---------
+- 1.9.2: Updated the User Tracking feature name to Customer Experience Monitoring (CXM).
 - 1.9.1: Don't set user cookie when user tracking is disabled.
 - 1.9.0: Add async sending option to dashboard; Bump Raygun4JS dependency to v2.8.5; Bump Raygun4PHP dependency to v1.8.2
 - 1.8.3: Fix XSS vulnerability in settings; Replace the iframe with a link to the Raygun dashboard
