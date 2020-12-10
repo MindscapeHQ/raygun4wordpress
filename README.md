@@ -42,7 +42,7 @@ As of 1.8 of Raygun4WP plugin you can enable [real user monitoring](https://rayg
 
 This feature can be enabled via the Settings page under **Pulse - Real User Monitoring**.
 
-User information will be sent along if you have the unique user tracking feature enabled.
+User information will be sent along if you have the Customer Experience Monitoring feature enabled.
 
 ## Client-side error tracking
 
