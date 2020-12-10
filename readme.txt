@@ -28,9 +28,9 @@ Using this plugin you can enable real user monitoring to track individual user s
 
 Signup for a [free trial](https://app.raygun.com/signup) of Raygun today.
 
-**Customer Experience Monitoring (CXM)**
+**Customer Experience Monitoring**
 
-Customers are why we create software. See them all, what they do, and how they're impacted by errors, crashes, and performance issues when using your software applications. Raygun CXM gives you complete clarity on who is using your application, alongside any problems they encountered that negatively impacted their end-user experience. Understand what actions led to an issue occurring and whether the overall experience was good or bad for individual users. CXM tracking is included in all Raygun plans and can be set up quickly with just a few lines of code.
+Customers are why we create software. See them all, what they do, and how they're impacted by errors, crashes, and performance issues when using your software applications. Raygun Customer Experience Monitoring gives you complete clarity on who is using your application, alongside any problems they encountered that negatively impacted their end-user experience. Understand what actions led to an issue occurring and whether the overall experience was good or bad for individual users. Customer Experience Monitoring is included in all Raygun plans and can be set up quickly with just a few lines of code.
 
 
 == Installation  ==
@@ -86,7 +86,7 @@ If you enable this feature in your Raygun4WP Plugin settings, the currently logg
 == Changelog  ==
 
 = 1.9.2 =
-* Updated the User Tracking feature name to Customer Experience Monitoring (CXM)
+* Updated the User Tracking feature name to Customer Experience Monitoring
 
 = 1.9.1 =
 * Don't set user cookie when Customer Experience Monitoring is disabled
