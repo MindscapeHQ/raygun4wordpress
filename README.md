@@ -3,7 +3,7 @@ Raygun4WP
 
 [Raygun](http://raygun.com) provider plugin for Wordpress
 
-Wordpress plugin providing the easy integration of Raygun to Wordpress websites. [Crash reporting](https://raygun.com/products/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically while pulse provides you with [real user monitoring](https://raygun.com/products/real-user-monitoring).
+Wordpress plugin providing the easy integration of Raygun to Wordpress websites. [Crash reporting](https://raygun.com/products/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically while [real user monitoring](https://raygun.com/products/real-user-monitoring) allows you to identify issues, measure trends in application performance, and improve your customers’ experience.
 
 This provider uses the lower-level [Raygun4PHP](https://github.com/MindscapeHQ/raygun4php) provider for server-side crash reporting and [Raygun4JS](https://github.com/MindscapeHQ/raygun4js) for both client-side crash reporting and real user monitoring.
 
@@ -36,11 +36,11 @@ Add it from the official repository using your admin panel - the plugin is avail
 5. Save your changes
 6. Done!
 
-## Pulse - Real User Monitoring
+## Real User Monitoring
 
 As of 1.8 of Raygun4WP plugin you can enable [real user monitoring](https://raygun.com/products/real-user-monitoring).
 
-This feature can be enabled via the Settings page under **Pulse - Real User Monitoring**.
+This feature can be enabled via the Settings page under **Real User Monitoring**.
 
 User information will be sent along if you have the unique user tracking feature enabled.
 
@@ -56,7 +56,7 @@ This setting can be activated via the Settings page.
 
 This feature can be enabled via the Settings page.
 
-Enabling this feature will send through the currently logged in user's email address, first name and last name with each message to Raygun. This applies to both Crash Reporting and Pulse payloads.
+Enabling this feature will send through the currently logged in user's email address, first name and last name with each message to Raygun. This applies to both Crash Reporting and RUM payloads.
 
 If a user is not logged in, no user data will be sent and a random ID will be assigned to the user.
 
@@ -68,7 +68,7 @@ If this feature is not enabled, a random ID will be assigned to each user.
 
 Since 1.8 both client-side and server-side errors can be tagged. Tags are custom test allowing you to easily identify errors.
 
-JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.   
+JavaScript and PHP errors can be tagged independently through a comma-delimited list in the field on the settings page.
 
 For example: `Error, JavaScript` would add two tags. The first being `Error` second one being `JavaScript`
 
@@ -80,7 +80,7 @@ You can enter a comma-delimited list in the field on the settings page to preven
 
 Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
 
-As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.   
+As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.
 
 Changelog
 ---------
