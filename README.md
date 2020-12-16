@@ -3,7 +3,7 @@ Raygun4WP
 
 [Raygun](http://raygun.com) provider plugin for Wordpress
 
-Wordpress plugin providing the easy integration of Raygun to Wordpress websites. [Crash reporting](https://raygun.com/products/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically while [real user monitoring](https://raygun.com/products/real-user-monitoring) allows you to identify issues, measure trends in application performance, and improve your customers’ experience.
+Wordpress plugin providing the easy integration of Raygun to Wordpress websites. [Crash Reporting](https://raygun.com/products/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically while [Real User Monitoring](https://raygun.com/products/real-user-monitoring) allows you to identify issues, measure trends in application performance, and improve your customers’ experience.
 
 This provider uses the lower-level [Raygun4PHP](https://github.com/MindscapeHQ/raygun4php) provider for server-side crash reporting and [Raygun4JS](https://github.com/MindscapeHQ/raygun4js) for both client-side crash reporting and real user monitoring.
 
