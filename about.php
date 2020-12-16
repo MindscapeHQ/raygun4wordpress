@@ -1,6 +1,6 @@
 <div class="rg4wp-container">
 
-  <a href="http://raygun.com" class="rg4wp-logo">Raygun.com</a>
+  <a href="https://raygun.com" class="rg4wp-logo">Raygun.com</a>
 
   <div class="rg4wp-module-container">
 
@@ -36,12 +36,12 @@
 
     <ol>
       <li><a href="https://app.raygun.com/signup?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-setup" target="_blank">Create a Raygun account</a></li>
-      <li>Go to the <a href="http://app.raygun.com/dashboard" target="_blank">Raygun dashboard</a> and create a new application. <span class="rg4wp-helptip">This represents your website</span></li>
-      <li>Activate Crash Reporting and Pulse</li>
+      <li>Go to the <a href="https://app.raygun.com" target="_blank">Raygun dashboard</a> and create a new application. <span class="rg4wp-helptip">This represents your website</span></li>
+      <li>Activate Crash Reporting and RUM</li>
       <li>Copy the API Key <span class="rg4wp-helptip">Include the '==' at the end</span></li>
       <li>Go to the <a href="<?php menu_page_url('rg4wp-settings', true); ?>">Raygun4WP Settings page</a></li>
       <li>Paste your API key into the API Key field</li>
-      <li>Enable Crash Reporting and Pulse</li>
+      <li>Enable Crash Reporting and RUM</li>
       <li>Click Save Changes</li>
       <li>Done!</li>
     </ol>

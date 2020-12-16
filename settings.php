@@ -133,7 +133,7 @@
         <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
       </p>
 
-      <h2 class="title">Pulse - Real User Monitoring</h2>
+      <h2 class="title">Real User Monitoring</h2>
 
       <table class="form-table">
 
