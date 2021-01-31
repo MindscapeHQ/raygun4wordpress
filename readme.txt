@@ -42,7 +42,7 @@ Done!
 
 As of 1.8, you can enable [real user monitoring](https://raygun.com/products/real-user-monitoring) by navigating to the Raygun4WP settings page and checking the **Enable Real User Monitoring** checkbox.
 
-User information will be sent along if you have the Customer Experience Monitoring feature enabled.
+User information will be sent along if you have the Customers feature enabled.
 
 = Client-side JavaScript error tracking =
 
@@ -74,14 +74,14 @@ It is recommended to use the most recent version WordPress and PHP possible. Thi
 
 Finally, if you so desire you should be able to visit the root network site, activate it there and configure it. You must however activate it on at least one child site first.
 
-= How do I use Customer Experience Monitoring? =
+= How do I use Customers? =
 
 If you enable this feature the currently logged in user's email address, first name and last name will be transmitted along with each message. This will be visible in the Raygun dashboard. If they have associated a Gravatar with that address, you will see their picture. If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
 
 == Changelog  ==
 
 = 1.9.1 =
-* Don't set user cookie when Customer Experience Monitoring is disabled
+* Don't set user cookie when Customers is disabled
 
 = 1.9.0 =
 
@@ -107,7 +107,7 @@ If you enable this feature the currently logged in user's email address, first n
 * Bump Raygun4JS dependency to v2.4.0
 * Bump Raygun4PHP dependency to v1.7.0
 * Pulse support added
-* Raygun4JS also includes Customer Experience Monitoring
+* Raygun4JS also includes 'Customers'
 * Restructured the settings screen
 * JavaScript error tagging option added
 * Fixed an issue where the Send Test Error page wouldn't display results
@@ -115,7 +115,7 @@ If you enable this feature the currently logged in user's email address, first n
 * Raygun Dashboard uses more space to provide a better user experience
 * Updated notifications
 * Raygun4JS tracks the version Wordpress being used
-* Customer Experience Monitoring also tracks the users first & last names
+* Customers also tracks the users first & last names
 
 = 1.7.3 =
 
@@ -174,7 +174,7 @@ If you enable this feature the currently logged in user's email address, first n
 
 = 1.1.0.0 =
 
-* Added Customer Experience Monitoring support to Settings page
+* Added 'Customers' support to Settings page
 * Updated internal Raygun4PHP to use latest v1.1
 
 = 1.0.3.0 =
