@@ -42,7 +42,7 @@ As of 1.8 of Raygun4WP plugin you can enable [real user monitoring](https://rayg
 
 This feature can be enabled via the Settings page under **Real User Monitoring**.
 
-User information will be sent along if you have the unique user tracking feature enabled.
+User information will be sent along if you have the Customers feature enabled.
 
 ## Client-side error tracking
 
@@ -52,7 +52,7 @@ This feature automatically tracks JavaScript errors that occur in your user's br
 
 This setting can be activated via the Settings page.
 
-## Unique user tracking
+## Customers
 
 This feature can be enabled via the Settings page.
 
@@ -84,6 +84,7 @@ As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings
 
 Changelog
 ---------
+- 1.9.3: Updated User Tracking to Customers.
 - 1.9.2: Update Pulse to Real User Monitoring (RUM)
 - 1.9.1: Don't set user cookie when user tracking is disabled.
 - 1.9.0: Add async sending option to dashboard; Bump Raygun4JS dependency to v2.8.5; Bump Raygun4PHP dependency to v1.8.2

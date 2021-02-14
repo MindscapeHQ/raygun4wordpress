@@ -25,7 +25,7 @@ if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_api
   require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
   $client = new Raygun4php\RaygunClient($_GET['rg4wp_apikey'], false, true);
 
-  if ($_GET['rg4wp_usertracking']) {
+  if ($_GET['rg4wp_customers']) {
     $client->SetUser($_GET['user']);
   }
 
