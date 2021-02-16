@@ -27,11 +27,11 @@
 
         <tr>
           <th>
-            <label for="rg4wp_usertracking"><?php _e("User Tracking"); ?></label>
+            <label for="rg4wp_usertracking"><?php _e("Customers"); ?></label>
           </th>
           <td>
             <fieldset>
-              <legend class="screen-reader-text"><span>User tracking</span></legend>
+              <legend class="screen-reader-text"><span><?php _e("Customers"); ?></span></legend>
               <label for="rg4wp_usertracking">
                 <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
                 <?php _e("Track user information"); ?>
