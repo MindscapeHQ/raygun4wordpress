@@ -27,13 +27,13 @@
 
         <tr>
           <th>
-            <label for="rg4wp_customers"><?php _e("Customers"); ?></label>
+            <label for="rg4wp_usertracking"><?php _e("Customers"); ?></label>
           </th>
           <td>
             <fieldset>
               <legend class="screen-reader-text"><span><?php _e("Customers"); ?></span></legend>
-              <label for="rg4wp_customers">
-                <input type="checkbox" name="rg4wp_customers" id="rg4wp_customers"<?php echo get_option('rg4wp_customers') ? ' checked="checked"': '';?> value="1" />
+              <label for="rg4wp_usertracking">
+                <input type="checkbox" name="rg4wp_usertracking" id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"': '';?> value="1" />
                 <?php _e("Track user information"); ?>
               </label>
             </fieldset>
@@ -128,7 +128,7 @@
       <p class="submit">
         <?php
           $current_user = wp_get_current_user();
-          $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_customers=' . urlencode(get_option('rg4wp_customers')) . '&user=' . urlencode($current_user->user_email);
+          $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
         ?>
         <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank" href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
       </p>
@@ -149,7 +149,7 @@
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_customers,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags" />
 
       <p class="submit">
         <?php
