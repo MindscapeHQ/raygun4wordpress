@@ -47,7 +47,7 @@
       $script .= 'rg4js("enablePulse", true);'."\n";
     }
 
-    if( get_option('rg4wp_customers') == 1 && is_user_logged_in() ) {
+    if( get_option('rg4wp_usertracking') == 1 && is_user_logged_in() ) {
       $user = wp_get_current_user();
       $script .= sprintf('rg4js("setUser", {isAnonymous: false, identifier: "%s", email: "%s", firstName: "%s", fullName: "%s" });',
       $user->user_email, $user->user_email, $user->user_firstname, $user->user_firstname . ' ' . $user->user_lastname )."\n";
@@ -91,7 +91,7 @@
     add_option('rg4wp_apikey', '', '', 'yes');
     add_option('rg4wp_tags', '', '', 'yes');
     add_option('rg4wp_status', '0', '', 'yes');
-    add_option('rg4wp_customers', '0', '', 'yes');
+    add_option('rg4wp_usertracking', '0', '', 'yes');
     add_option('rg4wp_404s', '1', '', 'yes');
     add_option('rg4wp_js', '1', '', 'yes');
     add_option('rg4wp_ignoredomains', '', '', 'yes');
@@ -107,7 +107,7 @@
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
     delete_option('rg4wp_js');
-    delete_option('rg4wp_customers');
+    delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
     delete_option('rg4wp_pulse');
     delete_option('rg4wp_js_tags');
@@ -116,7 +116,7 @@
 
   function rg4wp_checkUser($client)
   {
-    if (get_option('rg4wp_customers') && is_user_logged_in())
+    if (get_option('rg4wp_usertracking') && is_user_logged_in())
     {
       $current_user = wp_get_current_user();
       $client->SetUser($current_user->user_email, $current_user->user_firstname, $current_user->user_firstname . ' ' . $current_user->user_lastname, $current_user->user_email, false);
@@ -145,7 +145,7 @@
         !rg4wp_isIgnoredDomain() && is_404() && get_option('rg4wp_apikey'))
       {
         require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_customers'));
+        $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_usertracking'));
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
 
         if (!is_array($tags)) {
@@ -166,7 +166,7 @@
   {
 
      require_once dirname(__FILE__).'/external/raygun4php/src/Raygun4php/RaygunClient.php';
-     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_customers'));
+     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_usertracking'));
      $tags = explode(',', get_option('rg4wp_tags'));
 
      if (!is_array($tags)) {
@@ -230,7 +230,7 @@
     register_setting( 'rg4wp', 'rg4wp_status');
     register_setting( 'rg4wp', 'rg4wp_404s');
     register_setting( 'rg4wp', 'rg4wp_js');
-    register_setting( 'rg4wp', 'rg4wp_customers');
+    register_setting( 'rg4wp', 'rg4wp_usertracking');
     register_setting( 'rg4wp', 'rg4wp_ignoredomains');
     register_setting( 'rg4wp', 'rg4wp_pulse');
     register_setting( 'rg4wp', 'rg4wp_js_tags');
