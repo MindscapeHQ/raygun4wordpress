@@ -30,7 +30,7 @@ Signup for a [free trial](https://app.raygun.com/signup) of Raygun today.
 
 **Customers**
 
-Customers are why we create software. See them all, what they do, and how they're impacted by errors, crashes, and performance issues when using your software applications. Raygun Customers gives you complete clarity on who is using your application, alongside any problems they encountered that negatively impacted their end-user experience. Understand what actions led to an issue occurring and whether the overall experience was good or bad for individual users. Customers is included in all Raygun plans and can be set up quickly with just a few lines of code.
+Customers are why we create software. See them all, what they do, and how they're impacted by errors, crashes, and performance issues when using your software applications. Raygun Customers gives you complete clarity on who is using your application, alongside any problems they encountered that negatively impacted their end-user experience. Understand what actions led to an issue occurring and whether the overall experience was good or bad for individual users. Customers is included in all Raygun plans and can be set up quickly by simply enabling it in your plugin settings.
 
 == Installation  ==
 
