@@ -7,7 +7,14 @@
       "email": "theo.benoit16@gmail.com"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "Androlax2\\Raygun4Wordpress\\": "src/"
+    }
+  },
   "require": {
-    "mindscape/raygun4php": "^2.0"
+    "php": ">=7.4",
+    "mindscape/raygun4php": "^2.0",
+    "monolog/monolog": "^2.3"
   }
 }

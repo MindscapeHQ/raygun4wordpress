@@ -1,5 +1,7 @@
 <?php
 
+use Androlax2\Raygun4Wordpress\RaygunClient;
+
 register_activation_hook(__FILE__, 'rg4wp_install');
 register_deactivation_hook(__FILE__, 'rg4wp_uninstall');
 
@@ -20,15 +22,18 @@ if (
 }
 function rg4wp_js()
 {
-    $script = '<script type="text/javascript">
-      !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
-      (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
-      f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
-      h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
-      e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
-    </script>';
-    $script .= '<script type="text/javascript">rg4js("apiKey", "%s");';
-    $script .= 'rg4js("setVersion", "%s");';
+    $script = '
+        <script type="text/javascript">
+          !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+          (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+          f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+          h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+          e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+        </script>
+        <script type="text/javascript">
+        rg4js("apiKey", "%s");
+		rg4js("setVersion", "%s");
+    ';
 
     if (1 == get_option('rg4wp_js')) {
         $script .= 'rg4js("enableCrashReporting", true);' . "\n";
@@ -123,7 +128,7 @@ function rg4wp_uninstall()
     delete_option('rg4wp_async');
 }
 
-function rg4wp_checkUser($client)
+function rg4wp_checkUser(RaygunClient $client): RaygunClient
 {
     if (get_option('rg4wp_usertracking') && is_user_logged_in()) {
         $current_user = wp_get_current_user();
@@ -139,14 +144,14 @@ function rg4wp_checkUser($client)
     return $client;
 }
 
-function rg4wp_isIgnoredDomain()
+function rg4wp_isIgnoredDomain(): bool
 {
     $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
 
     return in_array($_SERVER['SERVER_NAME'], $domains);
 }
 
-function rg4wp_useAsyncSending()
+function rg4wp_useAsyncSending(): bool
 {
     $async = get_option('rg4wp_async');
     if ('1' === $async) {
@@ -165,18 +170,13 @@ function rg4wp_404_handler()
         && get_option('rg4wp_apikey')
         && !is_admin()
     ) {
-        require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
-
-        $client = new Raygun4php\RaygunClient(
-            get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_usertracking')
-        );
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
 
         if (!is_array($tags)) {
             $tags = [];
         }
 
-        $client = rg4wp_checkUser($client);
+        $client = rg4wp_checkUser(RaygunClient::getInstance());
         $client->SetVersion(get_bloginfo('version'));
 
         $uri = $_SERVER['REQUEST_URI'];
@@ -188,13 +188,18 @@ function rg4wp_404_handler()
 if (
     get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey')
+    && !is_admin()
 ) {
-    require_once __DIR__ . '/vendor/autoload.php';
-    $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_usertracking'));
     $tags = explode(',', get_option('rg4wp_tags'));
 
     if (!is_array($tags)) {
         $tags = [];
+    }
+
+    $client = RaygunClient::getInstance();
+
+    if ($client->isAsync()) {
+        $tags[] = ['synchronous-transport'];
     }
 
     $client->SetVersion(get_bloginfo('version'));
@@ -205,6 +210,9 @@ if (
     {
         if (get_option('rg4wp_status')) {
             global $client;
+            /**
+             * @var RaygunClient $client
+             */
             $client = rg4wp_checkUser($client);
         }
     }
@@ -212,6 +220,9 @@ if (
     function error_handler($errno, $errstr, $errfile, $errline)
     {
         if (get_option('rg4wp_status')) {
+            /**
+             * @var RaygunClient $client
+             */
             global $client, $tags;
             $client->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
@@ -220,13 +231,52 @@ if (
     function exception_handler($exception)
     {
         if (get_option('rg4wp_status')) {
+            /**
+             * @var RaygunClient $client
+             */
             global $client, $tags;
             $client->SendException($exception, $tags);
         }
     }
 
+    function shutdown_handler_async()
+    {
+        /**
+         * @var RaygunClient $client
+         */
+        global $client, $tags;
+        $lastError = error_get_last();
+
+        if (!is_null($lastError)) {
+            [$type, $message, $file, $line] = $lastError;
+            $client->SendError($type, $message, $file, $line, $tags);
+        }
+    }
+
+    function shutdown_handler_sync()
+    {
+        /**
+         * @var RaygunClient $client
+         */
+        global $client, $tags;
+        $lastError = error_get_last();
+
+        if (!is_null($lastError)) {
+            [$type, $message, $file, $line] = $lastError;
+            $tags = array_merge($tags, ['fatal-error']);
+            $client->SendError($type, $message, $file, $line, $tags);
+        }
+    }
+
     set_exception_handler('exception_handler');
     set_error_handler('error_handler');
+
+    if ($client->isAsync()) {
+        register_shutdown_function('shutdown_handler_async');
+        register_shutdown_function([$client->getTransport(), 'wait']);
+    } else {
+        register_shutdown_function('shutdown_handler_sync');
+    }
 }
 
 if (!get_option('rg4wp_apikey')) {
