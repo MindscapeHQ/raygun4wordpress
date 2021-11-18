@@ -20,15 +20,15 @@ if (
 }
 function rg4wp_js()
 {
-    $script = '<script>' . "\n"
-        . '!function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){' . "\n"
-        . '(a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],' . "\n"
-        . 'f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){' . "\n"
-        . 'h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({' . "\n"
-        . 'e:g})}}(window,document,"script","%sexternal/raygun4js/dist/raygun.min.js","rg4js");' . "\n"
-        . '</script>' . "\n"
-        . '<script type="text/javascript">rg4js("apiKey", "%s");' . "\n"
-        . 'rg4js("setVersion", "%s");' . "\n";
+    $script = '<script type="text/javascript">
+      !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+      (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+      f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+      h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+      e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+    </script>';
+    $script .= '<script type="text/javascript">rg4js("apiKey", "%s");';
+    $script .= 'rg4js("setVersion", "%s");';
 
     if (get_option('rg4wp_js') == 1) {
         $script .= 'rg4js("enableCrashReporting", true);' . "\n";
