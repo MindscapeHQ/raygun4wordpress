@@ -13,6 +13,7 @@ if (
     (get_option('rg4wp_js') == 1 || get_option('rg4wp_pulse') == 1)
     && get_option('rg4wp_apikey')
     && !rg4wp_isIgnoredDomain()
+    && !is_admin()
 ) {
     add_action('wp_head', 'rg4wp_js', 0);
     add_action('admin_head', 'rg4wp_js', 0);
