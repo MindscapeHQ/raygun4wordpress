@@ -21,7 +21,6 @@ class RaygunClient extends BaseRaygunClient
      */
     private static RaygunClient $instance;
 
-
     /**
      * Return the transport used.
      *
@@ -45,21 +44,30 @@ class RaygunClient extends BaseRaygunClient
     /**
      * Get the instance of RaygunClient.
      *
+     * @param $rg4wp_apikey
+     * @param $rg4wp_async
+     * @param $rg4wp_usertracking
+     *
      * @return RaygunClient
+     * @throws \Exception
      */
-    public static function getInstance(): RaygunClient
+    public static function getInstance($rg4wp_apikey = null, $rg4wp_usertracking = null, $rg4wp_async = null): RaygunClient
     {
         // Check is $instance has been set
         if (!isset(self::$instance)) {
+            $apiKey = $rg4wp_apikey ?? get_option('rg4wp_apikey');
+            $userTracking = $rg4wp_usertracking ?? get_option('rg4wp_usertracking');
+            $async = $rg4wp_async ?? get_option('rg4wp_async');
+
             // Creates sets object to instance
             $httpClient = new Client([
                 'base_uri' => 'https://api.raygun.com',
                 'headers'  => [
-                    'X-ApiKey' => get_option('rg4wp_apikey'),
+                    'X-ApiKey' => $apiKey,
                 ],
             ]);
 
-            $isAsync = get_option('rg4wp_async') === "1";
+            $isAsync = $async === "1";
 
             /**
              * Asynchronous usage or synchronous usage
@@ -92,10 +100,25 @@ class RaygunClient extends BaseRaygunClient
                 $transport->setLogger($logger);
             }
 
-            self::$instance = new RaygunClient($transport, !get_option('rg4wp_usertracking'));
+            self::$instance = new RaygunClient($transport, !$userTracking);
         }
 
         // Returns the instance
         return self::$instance;
+    }
+
+    /**
+     * Create an instance with defined options.
+     *
+     * @param $rg4wp_apikey
+     * @param $rg4wp_async
+     * @param $rg4wp_usertracking
+     *
+     * @return RaygunClient
+     * @throws \Exception
+     */
+    public static function forOptions($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async = 'not_async'): RaygunClient
+    {
+        return self::getInstance($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async);
     }
 }
