@@ -36,7 +36,7 @@ function rg4wp_js()
     ';
 
     if (1 == get_option('rg4wp_js')) {
-        $script .= 'rg4js("enableCrashReporting", true);' . "\n";
+        $script .= 'rg4js("enableCrashReporting", true);'."\n";
     }
 
     if (get_option('rg4wp_js_tags')) {
@@ -46,24 +46,24 @@ function rg4wp_js()
             if (0 !== $key) {
                 $script .= ',';
             }
-            $script .= '"' . trim($tag) . '"';
+            $script .= '"'.trim($tag).'"';
         }
-        $script .= ']);' . "\n";
+        $script .= ']);'."\n";
     }
 
     if (1 == get_option('rg4wp_pulse')) {
-        $script .= 'rg4js("enablePulse", true);' . "\n";
+        $script .= 'rg4js("enablePulse", true);'."\n";
     }
 
     if (1 == get_option('rg4wp_usertracking') && is_user_logged_in()) {
         $user = wp_get_current_user();
         $script .= sprintf(
-                'rg4js("setUser", {isAnonymous: false, identifier: "%s", email: "%s", firstName: "%s", fullName: "%s" });',
-                $user->user_email,
-                $user->user_email,
-                $user->user_firstname,
-                $user->user_firstname . ' ' . $user->user_lastname
-            ) . "\n";
+            'rg4js("setUser", {isAnonymous: false, identifier: "%s", email: "%s", firstName: "%s", fullName: "%s" });',
+            $user->user_email,
+            $user->user_email,
+            $user->user_firstname,
+            $user->user_firstname.' '.$user->user_lastname
+        )."\n";
     }
 
     $script .= '</script>';
@@ -87,17 +87,17 @@ function rg4wp_admin()
 
 function rg4wp_settings()
 {
-    include dirname(__FILE__) . '/settings.php';
+    include dirname(__FILE__).'/settings.php';
 }
 
 function rg4wp_about()
 {
-    include dirname(__FILE__) . '/about.php';
+    include dirname(__FILE__).'/about.php';
 }
 
 function rg4wp_dash()
 {
-    include dirname(__FILE__) . '/dash.php';
+    include dirname(__FILE__).'/dash.php';
 }
 
 function rg4wp_install()
@@ -135,7 +135,7 @@ function rg4wp_checkUser(RaygunClient $client): RaygunClient
         $client->SetUser(
             $current_user->user_email,
             $current_user->user_firstname,
-            $current_user->user_firstname . ' ' . $current_user->user_lastname,
+            $current_user->user_firstname.' '.$current_user->user_lastname,
             $current_user->user_email,
             false
         );
@@ -181,7 +181,7 @@ function rg4wp_404_handler()
 
         $uri = $_SERVER['REQUEST_URI'];
 
-        $client->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags);
+        $client->SendError(404, '404 Not Found: '.$uri, home_url().$uri, '0', $tags);
     }
 }
 
@@ -198,7 +198,7 @@ if (
 
     $client = RaygunClient::getInstance();
 
-    if ($client->isAsync()) {
+    if (!$client->isAsync()) {
         $tags[] = ['synchronous-transport'];
     }
 
@@ -220,9 +220,7 @@ if (
     function error_handler($errno, $errstr, $errfile, $errline)
     {
         if (get_option('rg4wp_status')) {
-            /**
-             * @var RaygunClient $client
-             */
+            // @var RaygunClient $client
             global $client, $tags;
             $client->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
@@ -231,9 +229,7 @@ if (
     function exception_handler($exception)
     {
         if (get_option('rg4wp_status')) {
-            /**
-             * @var RaygunClient $client
-             */
+            // @var RaygunClient $client
             global $client, $tags;
             $client->SendException($exception, $tags);
         }
@@ -241,9 +237,7 @@ if (
 
     function shutdown_handler_async()
     {
-        /**
-         * @var RaygunClient $client
-         */
+        // @var RaygunClient $client
         global $client, $tags;
         $lastError = error_get_last();
 
@@ -255,9 +249,7 @@ if (
 
     function shutdown_handler_sync()
     {
-        /**
-         * @var RaygunClient $client
-         */
+        // @var RaygunClient $client
         global $client, $tags;
         $lastError = error_get_last();
 
@@ -282,10 +274,10 @@ if (
 if (!get_option('rg4wp_apikey')) {
     function rg4wp_warn_key()
     {
-        echo '<div class=\'updated fade\'><p>Raygun is almost ready to go. Enter your API key on the <a href="' . menu_page_url(
-                'rg4wp-settings',
-                false
-            ) . '">settings page</a>.</p></div>';
+        echo '<div class=\'updated fade\'><p>Raygun is almost ready to go. Enter your API key on the <a href="'.menu_page_url(
+            'rg4wp-settings',
+            false
+        ).'">settings page</a>.</p></div>';
     }
 
     add_action('admin_notices', 'rg4wp_warn_key');
