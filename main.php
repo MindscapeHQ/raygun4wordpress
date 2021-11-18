@@ -179,8 +179,8 @@ function rg4wp_404_handler()
 if (
     get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey')
+    && !is_admin()
 ) {
-
     require_once dirname(__FILE__) . '/external/raygun4php/src/Raygun4php/RaygunClient.php';
     $client = new Raygun4php\RaygunClient(get_option('rg4wp_apikey'), rg4wp_useAsyncSending(), false, !get_option('rg4wp_usertracking'));
     $tags = explode(',', get_option('rg4wp_tags'));
