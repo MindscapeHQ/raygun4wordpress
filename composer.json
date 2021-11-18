@@ -1,0 +1,11 @@
+{
+    "name": "androlax2/raygun4wordpress",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "theobenoit",
+            "email": "theo.benoit16@gmail.com"
+        }
+    ],
+    "require": {}
+}
