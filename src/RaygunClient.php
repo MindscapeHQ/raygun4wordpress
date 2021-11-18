@@ -84,8 +84,6 @@ class RaygunClient extends BaseRaygunClient
                 $logPath = WP_DEBUG_LOG;
             } else if (defined('WP_CONTENT_DIR') && WP_CONTENT_DIR) {
                 $logPath = WP_CONTENT_DIR;
-            } else {
-                error_log("Could not define a log path for Raygun.", E_WARNING);
             }
 
             if (isset($logPath) && $logPath) {
