@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '48d317cf69bd72cf46d1c815f712ecf55aca4c99',
+        'reference' => '9e2a59de7c8934a8c519300ffa505b5180bf071a',
         'name' => 'androlax2/raygun4wordpress',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '48d317cf69bd72cf46d1c815f712ecf55aca4c99',
+            'reference' => '9e2a59de7c8934a8c519300ffa505b5180bf071a',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
