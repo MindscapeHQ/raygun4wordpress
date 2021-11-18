@@ -67,7 +67,7 @@ function rg4wp_js()
     }
 
     $script .= '</script>';
-    printf($script, plugin_dir_url(__FILE__), get_option('rg4wp_apikey'), get_bloginfo('version'));
+    printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
 }
 
 function load_jquery()
