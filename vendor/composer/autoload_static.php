@@ -28,16 +28,13 @@ class ComposerStaticInitd5c368f650bada7a222105f1624c0e3f
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Mindscape\\Raygun4Wordpress\\' => 27,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
-        ),
-        'A' => 
-        array (
-            'Androlax2\\Raygun4Wordpress\\' => 27,
         ),
     );
 
@@ -67,6 +64,10 @@ class ComposerStaticInitd5c368f650bada7a222105f1624c0e3f
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Mindscape\\Raygun4Wordpress\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -78,10 +79,6 @@ class ComposerStaticInitd5c368f650bada7a222105f1624c0e3f
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'Androlax2\\Raygun4Wordpress\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

@@ -290,6 +290,11 @@ $raygunClient->setFilterParams([
 // Example output: ['Email' => 'test@...']
 ```
 
+If you want to ensure all form submission data is filtered out irrespective of field names for situations where there are a lot of forms that might request private information, you can do that too. The field names will still be transmitted, but the values will be filtered out.
+```php
+$raygunClient->setFilterAllFormValues(true);
+```
+
 Note that when any filters are defined, the Raygun error will no longer contain the raw HTTP data, since there's no effective way to filter it.
 
 ### Updating Cookie options
@@ -337,6 +342,8 @@ function ($errno, $errstr, $errfile, $errline) use ($raygunClient) {
 See the [Error Control Operators section on PHP.net](http://php.net/manual/en/language.operators.errorcontrol.php) for more information.
 
 ## Changelog
+- 2.1.1: Fix namespace in Uuid library to prevent composer errors with mixed case package names
+- 2.1.0: Allow client IP address to be filtered out, add configuration to filter out all POSTed form data
 - 2.0.2: Remove PHP 7.2 and replace with PHP 8.0 in Travis builds, fix JSON match assertion issue in unit tests
 - 2.0.1: Fixes for CLI use, PHP 7.4 deprecation warning in RaygunMessage JSON encoding
 - 2.0.0: New major version

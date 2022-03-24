@@ -138,6 +138,49 @@ class RaygunClientTest extends TestCase
         );
     }
 
+    public function testFilterAllFormValues()
+    {
+        $this->client->setFilterParams(array());
+        $this->client->setFilterAllFormValues(true);
+        $message = $this->getEmptyMessage();
+        $message->Details->Request->Form = array(
+            'MyParam' => 'some val',
+            'MyRegexParam' => 'secret',
+        );
+
+        $filteredMessage = $this->client->filterParamsFromMessage($message);
+        $this->assertEquals(
+            $filteredMessage->Details->Request->Form,
+            array(
+                'MyParam' => '[filtered]',
+                'MyRegexParam' => '[filtered]',
+            )
+        );
+    }
+
+    public function testFilterFormValuesDoesntFilterOtherValues()
+    {
+        $this->client->setFilterParams(array());
+        $this->client->setFilterAllFormValues(true);
+        $message = $this->getEmptyMessage();
+        $message->Details->Request->Headers = array(
+            'MyParam' => 'secret',
+        );
+        $message->Details->Request->Data = array(
+            'MyParam' => 'secret',
+        );
+
+        $filteredMessage = $this->client->filterParamsFromMessage($message);
+        $this->assertEquals(
+            $filteredMessage->Details->Request->Headers,
+            array('MyParam' => 'secret',)
+        );
+        $this->assertEquals(
+            $filteredMessage->Details->Request->Data,
+            array('MyParam' => 'secret',)
+        );
+    }
+
     protected function getEmptyMessage()
     {
         $requestMessage = new RaygunRequestMessage();
@@ -154,6 +197,31 @@ class RaygunClientTest extends TestCase
         $message->Details->Request = $requestMessage;
 
         return $message;
+    }
+
+    public function testFilterIpAddress()
+    {
+        // Ensure IP is not filtered by default.
+        $this->client->setFilterParams(array('SomethingElse' => true,));
+        $message = $this->getEmptyMessage();
+        $message->Details->Request->IpAddress = '0.0.0.0';
+
+        $filteredMessage = $this->client->filterParamsFromMessage($message);
+        $this->assertEquals(
+            $filteredMessage->Details->Request->IpAddress,
+            '0.0.0.0'
+        );
+
+        // Ensure IP can be filtered.
+        $this->client->setFilterParams(array('IpAddress' => true,));
+        $message = $this->getEmptyMessage();
+        $message->Details->Request->IpAddress = '0.0.0.0';
+
+        $filteredMessage = $this->client->filterParamsFromMessage($message);
+        $this->assertEquals(
+            $filteredMessage->Details->Request->IpAddress,
+            '[filtered]'
+        );
     }
 
     public function testFilterParamsFromMessage()
