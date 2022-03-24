@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Androlax2\Raygun4Wordpress;
+namespace Mindscape\Raygun4Wordpress;
 
 use GuzzleHttp\Client;
 use Monolog\Handler\FirePHPHandler;

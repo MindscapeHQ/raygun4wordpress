@@ -1,5 +1,5 @@
 {
-  "name": "androlax2/raygun4wordpress",
+  "name": "mindscape/raygun4wordpress",
   "type": "wordpress-plugin",
   "authors": [
     {
@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Androlax2\\Raygun4Wordpress\\": "src/"
+      "Mindscape\\Raygun4Wordpress\\": "src/"
     }
   },
   "require": {
