@@ -1,5 +1,7 @@
 <?php
 
+use Mindscape\Raygun4Wordpress\RaygunClient;
+
 require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 
 ?>
@@ -36,13 +38,17 @@ require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
                     $client->SetUser($_GET['user']);
                 }
 
-                $result = $client->SendError(404, 'Congratulations, Raygun4WP is working correctly!', '0', '0');
+                $result = trim($client->SendError(404, 'Congratulations, Raygun4WP is working correctly!', '0', '0'));
 
-                if ($result) {
+                if ($result == 'HTTP/1.1 403 Forbidden') {
+                    echo 'The Raygun service did not accept your API key. Please check to see you have a entered a valid API key for an application and then save your changes.';
+                } else if ($result == 'HTTP/1.1 202 Accepted') {
                     echo 'Raygun has accepted the test issue. Check your <a href="http://app.raygun.com" target="_blank">dashboard</a> to see the issue details!';
                 } else {
-                    echo 'Something is missing! Please check that you have enabled Serverside error tracking, the API key is pasted in and you have saved the settings.';
+                    echo 'Woops, the errors status was not reported. Check your <a href="http://app.raygun.com" target="_blank">dashboard</a> to see if your error has been reported. If the error doesn\'t appear make sure you have entered a valid API key for an application you have created and then try again.';
                 }
+            } else {
+                echo 'Something is missing! Please check that you have enabled Serverside error tracking, the API key is pasted in and you have saved the settings.';
             }
 
             ?>
