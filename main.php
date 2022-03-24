@@ -1,6 +1,6 @@
 <?php
 
-use Androlax2\Raygun4Wordpress\RaygunClient;
+use Mindscape\Raygun4Wordpress\RaygunClient;
 
 register_activation_hook(__FILE__, 'rg4wp_install');
 register_deactivation_hook(__FILE__, 'rg4wp_uninstall');

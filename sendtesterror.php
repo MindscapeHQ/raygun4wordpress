@@ -30,7 +30,7 @@ require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 
             if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_apikey']) {
 
-                $client = \Androlax2\Raygun4Wordpress\RaygunClient::forOptions($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking']);
+                $client = RaygunClient::forOptions($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking']);
 
                 if ($_GET['rg4wp_usertracking']) {
                     $client->SetUser($_GET['user']);
