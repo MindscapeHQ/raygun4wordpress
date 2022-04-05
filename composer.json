@@ -14,7 +14,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "mindscape/raygun4php": "^2.0",
+    "mindscape/raygun4php": "^1.0",
     "monolog/monolog": "^1.0"
   }
 }
