@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dc3693c98998c94f4b7a62b91f23a895144d669b',
+        'reference' => 'bf3f45d1953ff0030dfc79bdc17ac2c88f8309eb',
         'name' => 'mindscape/raygun4wordpress',
         'dev' => false,
     ),
@@ -25,7 +25,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dc3693c98998c94f4b7a62b91f23a895144d669b',
+            'reference' => 'bf3f45d1953ff0030dfc79bdc17ac2c88f8309eb',
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
