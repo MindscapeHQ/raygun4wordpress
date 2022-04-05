@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the Rhumsaa\Uuid library
  *
@@ -10,7 +9,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-namespace Raygun4php\Rhumsaa\Uuid\Exception;
+namespace Raygun4Php\Rhumsaa\Uuid\Exception;
 
 /**
  * Thrown to indicate that the requested operation is not supported.

@@ -1,18 +1,19 @@
 <?php
-
-namespace Raygun4php;
-
-class RaygunEnvironmentMessage
+namespace Raygun4php
 {
-    public $UtcOffset = 0;
-
-    public function __construct()
+    class RaygunEnvironmentMessage
     {
-        if (ini_get('date.timezone')) {
-            $this->UtcOffset = @date('Z') / 3600;
-        }
+        public $UtcOffset = 0;
 
-        $this->UtcOffset = max($this->UtcOffset, -24);
-        $this->UtcOffset = min($this->UtcOffset, 24);
+        public function __construct()
+        {
+            if (ini_get('date.timezone'))
+            {
+                $this->UtcOffset = @date('Z') / 3600;
+            }
+
+            $this->UtcOffset = max($this->UtcOffset, -24);
+            $this->UtcOffset = min($this->UtcOffset, 24);
+        }
     }
 }

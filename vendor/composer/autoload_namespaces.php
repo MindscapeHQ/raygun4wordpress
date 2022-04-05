@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Raygun4php' => array($vendorDir . '/mindscape/raygun4php/src'),
 );
