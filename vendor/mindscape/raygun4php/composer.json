@@ -1,48 +1,27 @@
 {
     "name": "mindscape/raygun4php",
     "type": "library",
-    "description": "Raygun.com client for sending errors and exceptions automatically.",
-    "keywords": [
-        "raygun",
-        "errors",
-        "exceptions",
-        "logging"
-    ],
-    "homepage": "http://raygun.com",
+    "description": "Raygun.io client for PHP 5.3, to send errors and exceptions automatically.",
+    "authors": [{
+        "name": "Mindscape",
+        "email": "contact@mindscape.co.nz",
+        "homepage": "http://www.mindscapehq.com"
+        }],
+    "homepage": "http://raygun.io",
+    "keywords": ["raygun", "errors", "exceptions", "logging"],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Mindscape",
-            "email": "contact@mindscape.co.nz",
-            "homepage": "http://www.mindscapehq.com"
-        }
-    ],
     "require": {
-        "php": "^7.2|^8.0",
-        "ext-json": "*",
-        "guzzlehttp/guzzle": "~7.0",
-        "psr/log": "^1.1"
+        "php": ">=5.3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0",
-        "squizlabs/php_codesniffer": "^3.0",
-        "justinrainbow/json-schema": "^5.2"
+        "phpunit/phpunit": "^4.8.16"
     },
     "suggest": {
         "ext-curl": "*"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev"
-        }
-    },
     "autoload": {
-        "psr-4": {
-            "Raygun4php\\": "src/Raygun4php/",
-            "Raygun4php\\Tests\\": "tests/"
+        "psr-0": {
+            "Raygun4php": "src/"
         }
-    },
-    "config": {
-        "preferred-install": "dist"
     }
 }

@@ -1,19 +1,19 @@
 <?php
-
-namespace Raygun4php;
-
-class RaygunExceptionTraceLineMessage
+namespace Raygun4php
 {
-    public $LineNumber;
-    public $ClassName;
-    public $FileName;
-    public $MethodName;
-
-    public function __construct()
+    class RaygunExceptionTraceLineMessage
     {
-        $this->FileName = "";
-        $this->ClassName = "";
-        $this->LineNumber = "0";
-        $this->MethodName = "";
+        public $LineNumber;
+        public $ClassName;
+        public $FileName;
+        public $MethodName;
+
+        public function __construct()
+        {
+            $this->FileName = "";
+            $this->ClassName = "";
+            $this->LineNumber = "0";
+            $this->MethodName = "";
+        }
     }
 }

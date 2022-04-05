@@ -1,19 +1,9 @@
 language: php
 
-dist: xenial
+php: [5.4, 5.5, 7.0]
 
-php:
-  - '7.3'
-  - '7.4'
-  - '8.0'
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --no-progress
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-install:
-  - composer install
-
-script:
-  - vendor/bin/phpunit
-  - vendor/bin/phpcs src/ tests/
+script: 'vendor/bin/phpunit tests'

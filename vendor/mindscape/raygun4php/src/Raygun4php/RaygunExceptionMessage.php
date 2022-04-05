@@ -1,108 +1,155 @@
 <?php
-
-namespace Raygun4php;
-
-class RaygunExceptionMessage
+namespace Raygun4php
 {
-    public $Message;
-    public $ClassName;
-    public $StackTrace = array();
-    public $FileName;
-    public $Data;
-    public $InnerError;
+    require_once realpath(__DIR__.'/RaygunExceptionTraceLineMessage.php');
 
-    /**
-     * @param \Throwable $exception
-     */
-    public function __construct($exception)
+    class RaygunExceptionMessage
     {
-        $exceptionClass = get_class($exception);
+        public $Message;
+        public $ClassName;
+        public $StackTrace = array();
+        public $FileName;
+        public $Data;
 
-        if ($exceptionClass !== 'ErrorException') {
-            $this->Message = $exceptionClass . ': ' . $exception->getMessage();
-            $this->BuildStackTrace($exception);
-            $this->ClassName = $exceptionClass;
-        } else {
-            $this->Message = 'Error: ' . $exception->getMessage();
-            $this->BuildErrorTrace($exception);
+        public function __construct($exception)
+        {
+            $exceptionClass = get_class($exception);
+
+            if ($exceptionClass != 'ErrorException')
+            {
+                $this->Message = $exceptionClass.': '.$exception->getMessage();
+                $this->BuildStackTrace($exception);
+                $this->ClassName = $exceptionClass;
+            }
+            else
+            {
+                $this->Message = 'Error: '.$exception->getMessage();
+                $this->BuildErrorTrace($exception);
+            }
+
+            $this->FileName = baseName($exception->getFile());
         }
 
-        $this->FileName = baseName($exception->getFile());
+        private function BuildErrorTrace($error)
+        {
+          $traces = $error->getTrace();
+          $lines = array();
 
-        if ($prev = $exception->getPrevious()) {
-            $this->InnerError = new self($prev);
-        }
-    }
-
-    private function BuildErrorTrace($error)
-    {
-        $traces = $error->getTrace();
-        $lines = array();
-
-        foreach ($traces as $trace) {
+          foreach ($traces as $trace) {
             $line = new RaygunExceptionTraceLineMessage();
 
             $fromManualSendError = false;
-            if (
-                array_key_exists('function', $trace)
-                && array_key_exists('class', $trace)
-            ) {
-                if ($trace['function'] === 'SendError' && $trace['class'] === RaygunClient::class) {
-                    $fromManualSendError = true;
-                }
+            if (array_key_exists('function', $trace) &&
+                array_key_exists('class', $trace))
+            {
+              if ($trace['function'] == 'SendError' && $trace['class'] == 'Raygun4php\RaygunClient')
+              {
+                $fromManualSendError = true;
+              }
             }
 
             if (array_key_exists('args', $trace) && $fromManualSendError == true) {
-                $errorData = $trace['args'];
+              $errorData = $trace['args'];
 
-                if (count($errorData) >= 2) {
-                    $line->ClassName = $errorData[1];
-                }
-                if (count($errorData) >= 3) {
-                    $line->FileName = $errorData[2];
-                }
-                if (count($errorData) >= 4) {
-                    $line->LineNumber = $errorData[3];
-                }
-            } else {
-                $line = $this->BuildLine($trace);
+              if (count($errorData) >= 2) {
+                $line->ClassName= $errorData[1];
+              }
+              if (count($errorData) >= 3) {
+                $line->FileName= $errorData[2];
+              }
+              if (count($errorData) >= 4) {
+                $line->LineNumber= $errorData[3];
+              }
+            }
+            else
+            {
+              $line = $this->BuildLine($trace);
             }
 
             $lines[] = $line;
+          }
+
+          $this->StackTrace = $lines;
         }
 
-        $this->StackTrace = $lines;
-    }
+        private function BuildStackTrace($exception)
+        {
+            $traces = $exception->getTrace();
+            $lines = array();
 
-    private function BuildStackTrace($exception)
-    {
-        $traces = $exception->getTrace();
-        $lines = array();
+            foreach ($traces as $trace)
+            {
+                $lines[] = $this->BuildLine($trace);
+             }
 
-        foreach ($traces as $trace) {
-            $lines[] = $this->BuildLine($trace);
+            $this->StackTrace = $lines;
         }
 
-        $this->StackTrace = $lines;
-    }
+        private function BuildLine($trace)
+        {
+            $line = new RaygunExceptionTraceLineMessage();
 
-    private function BuildLine($trace)
-    {
-        $line = new RaygunExceptionTraceLineMessage();
+            if (array_key_exists('file', $trace))
+            {
+              $line->FileName = $trace['file'];
+            }
+            if (array_key_exists('class', $trace))
+            {
+              $line->ClassName = $trace['class'];
+            }
+            if (array_key_exists('function', $trace))
+            {
+              $line->MethodName = $trace['function'];
+            }
+            if (array_key_exists('line', $trace))
+            {
+              $line->LineNumber = $trace['line'];
+            }
 
-        if (array_key_exists('file', $trace)) {
-            $line->FileName = $trace['file'];
-        }
-        if (array_key_exists('class', $trace)) {
-            $line->ClassName = $trace['class'];
-        }
-        if (array_key_exists('function', $trace)) {
-            $line->MethodName = $trace['function'];
-        }
-        if (array_key_exists('line', $trace)) {
-            $line->LineNumber = $trace['line'];
+            return $line;
         }
 
-        return $line;
+        private function GetClassName()
+        {
+            $fp = fopen($this->fileName, 'r');
+            $class = $namespace = $buffer = '';
+            $i = 0;
+            while (!$class) {
+                if (feof($fp)) break;
+
+                $buffer .= fread($fp, 512);
+                $tokens = token_get_all($buffer);
+
+                if (strpos($buffer, '{') === false) continue;
+
+                for (;$i<count($tokens);$i++) {
+                    if ($tokens[$i][0] === T_NAMESPACE) {
+                        for ($j=$i+1;$j<count($tokens); $j++) {
+                            if ($tokens[$j][0] === T_STRING) {
+                                $namespace .= '\\'.$tokens[$j][1];
+                            } else if ($tokens[$j] === '{' || $tokens[$j] === ';') {
+                                break;
+                            }
+                        }
+                    }
+
+                    if ($tokens[$i][0] === T_CLASS) {
+                        for ($j=$i+1;$j<count($tokens);$j++) {
+                            if ($tokens[$j] === '{') {
+                                $class = $tokens[$i+2][1];
+                            }
+                        }
+                    }
+                }
+            }
+            if ($class != '')
+            {
+                return $class;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
