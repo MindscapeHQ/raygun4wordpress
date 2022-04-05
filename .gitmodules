@@ -1,3 +1,0 @@
-[submodule "vendor/mindscape/raygun4php"]
-	path = vendor/mindscape/raygun4php
-	url = https://github.com/mindscapeHQ/raygun4php
