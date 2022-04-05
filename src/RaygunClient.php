@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mindscape\Raygun4Wordpress;
 
 use GuzzleHttp\Client;
@@ -79,12 +78,7 @@ class RaygunClient extends BaseRaygunClient
             /**
              * Start logging logic.
              */
-
-            if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
-                $logPath = WP_DEBUG_LOG;
-            } else if (defined('WP_CONTENT_DIR') && WP_CONTENT_DIR) {
-                $logPath = WP_CONTENT_DIR;
-            }
+            $logPath = self::getLogsPath();
 
             if (isset($logPath) && $logPath) {
                 // Create logger
@@ -118,5 +112,19 @@ class RaygunClient extends BaseRaygunClient
     public static function forOptions($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async = 'not_async'): RaygunClient
     {
         return self::getInstance($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async);
+    }
+
+    /**
+     * Get the logs path.
+     *
+     * @return string
+     */
+    protected static function getLogsPath(): string
+    {
+        if (defined('WP_CONTENT_DIR') && WP_CONTENT_DIR && is_string(WP_CONTENT_DIR)) {
+            return WP_CONTENT_DIR . '/debug.log';
+        }
+
+        return 'php://memory';
     }
 }
