@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ca4d57ba7565fb65fe4edcfabfc5d51ccba04fc7',
+        'reference' => 'bf8b13e792e6033765dfe00ea25a134bde2fccf1',
         'name' => 'mindscape/raygun4wordpress',
         'dev' => false,
     ),
@@ -52,16 +52,16 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ca4d57ba7565fb65fe4edcfabfc5d51ccba04fc7',
+            'reference' => 'bf8b13e792e6033765dfe00ea25a134bde2fccf1',
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '1.27.0',
-            'version' => '1.27.0.0',
+            'pretty_version' => '2.4.0',
+            'version' => '2.4.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
-            'reference' => '52ebd235c1f7e0d5e1b16464b695a28335f8e44a',
+            'reference' => 'd7fd7450628561ba697b7097d86db72662f54aef',
             'dev_requirement' => false,
         ),
         'psr/http-client' => array(
@@ -121,7 +121,7 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'ralouphie/getallheaders' => array(
