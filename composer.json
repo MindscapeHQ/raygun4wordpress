@@ -1,0 +1,20 @@
+{
+  "name": "mindscape/raygun4wordpress",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "theobenoit",
+      "email": "theo.benoit16@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Mindscape\\Raygun4Wordpress\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "mindscape/raygun4php": "^2.1",
+    "monolog/monolog": "^2.4"
+  }
+}

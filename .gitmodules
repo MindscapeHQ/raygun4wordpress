@@ -1,6 +1,0 @@
-[submodule "external/raygun4php"]
-	path = external/raygun4php
-	url = https://github.com/MindscapeHQ/raygun4php.git
-[submodule "external/raygun4js"]
-	path = external/raygun4js
-	url = https://github.com/MindscapeHQ/raygun4js.git
