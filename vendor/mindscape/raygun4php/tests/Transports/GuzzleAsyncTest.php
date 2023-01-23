@@ -9,7 +9,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
+use Psr\Log\Test\TestLogger;
 use Raygun4php\RaygunMessage;
 use Raygun4php\Transports\GuzzleAsync;
 
@@ -28,12 +28,13 @@ class GuzzleAsyncTest extends TestCase
         $transport = new GuzzleAsync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())->method('error');
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
         $transport->wait();
+
+        $this->assertTrue($logger->hasErrorRecords());
     }
 
     public function testTransmitLogsWarningIfResponseCodeIs200()
@@ -48,12 +49,13 @@ class GuzzleAsyncTest extends TestCase
         $transport = new GuzzleAsync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())->method('warning');
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
         $transport->wait();
+
+        $this->assertTrue($logger->hasWarningRecords());
     }
 
     public function testTransmitLogsErrorIfHttpClientThrowsException()
@@ -69,11 +71,12 @@ class GuzzleAsyncTest extends TestCase
 
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())->method('error');
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
         $transport->wait();
+
+        $this->assertTrue($logger->hasErrorRecords());
     }
 }

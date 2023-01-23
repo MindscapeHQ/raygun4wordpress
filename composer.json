@@ -3,7 +3,8 @@
   "type": "wordpress-plugin",
   "authors": [
     {
-      "name": "Raygun"
+      "name": "theobenoit",
+      "email": "theo.benoit16@gmail.com"
     }
   ],
   "autoload": {
@@ -13,7 +14,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "mindscape/raygun4php": "^2.3",
+    "mindscape/raygun4php": "^2.1",
     "monolog/monolog": "^2.4"
   }
 }

@@ -5,11 +5,11 @@ namespace Raygun4php\Tests\Transports;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Psr\Log\Test\TestLogger;
 use Raygun4php\RaygunMessage;
 use Raygun4php\Transports\GuzzleSync;
 
@@ -72,11 +72,12 @@ class GuzzleSyncTest extends TestCase
         $transport = new GuzzleSync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())->method('error');
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
+
+        $this->assertTrue($logger->hasErrorRecords());
     }
 
     public function testTransmitLogsRelevant400Message()
@@ -91,13 +92,12 @@ class GuzzleSyncTest extends TestCase
         $transport = new GuzzleSync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())
-               ->method('error')
-               ->with($this->stringContains('400'));
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
+
+        $this->assertTrue($logger->hasErrorThatContains('400'));
     }
 
     public function testTransmitLogsRelevant400MessageNoException()
@@ -115,13 +115,12 @@ class GuzzleSyncTest extends TestCase
         $transport = new GuzzleSync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())
-               ->method('error')
-               ->with($this->stringContains('400'));
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
+
+        $this->assertTrue($logger->hasErrorThatContains('400'));
     }
 
     public function testTransmitLogsRelevant403Message()
@@ -136,13 +135,12 @@ class GuzzleSyncTest extends TestCase
         $transport = new GuzzleSync($client);
         $message = new RaygunMessage();
 
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->atLeastOnce())
-               ->method('error')
-               ->with($this->stringContains('403'));
+        $logger = new TestLogger();
         $transport->setLogger($logger);
 
         $transport->transmit($message);
+
+        $this->assertTrue($logger->hasErrorThatContains('403'));
     }
 
     public function testTransmitReturnsFalseOnHttpStatus400NoException()

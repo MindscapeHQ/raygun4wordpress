@@ -96,11 +96,13 @@ class Stream implements StreamInterface
             throw new \RuntimeException('Stream is detached');
         }
 
-        if (!$this->readable) {
-            throw new \RuntimeException('Cannot read from non-readable stream');
+        $contents = stream_get_contents($this->stream);
+
+        if ($contents === false) {
+            throw new \RuntimeException('Unable to read stream contents');
         }
 
-        return Utils::tryGetContents($this->stream);
+        return $contents;
     }
 
     public function close(): void
@@ -227,12 +229,7 @@ class Stream implements StreamInterface
             return '';
         }
 
-        try {
-            $string = fread($this->stream, $length);
-        } catch (\Exception $e) {
-            throw new \RuntimeException('Unable to read from stream', 0, $e);
-        }
-
+        $string = fread($this->stream, $length);
         if (false === $string) {
             throw new \RuntimeException('Unable to read from stream');
         }
