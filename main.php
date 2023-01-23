@@ -15,7 +15,7 @@ if (
     (1 == get_option('rg4wp_js') || 1 == get_option('rg4wp_pulse'))
     && get_option('rg4wp_apikey')
     && !rg4wp_isIgnoredDomain()
-    && !is_admin()
+    //&& !is_admin()
 ) {
     add_action('wp_head', 'rg4wp_js', 0);
     add_action('admin_head', 'rg4wp_js', 0);
@@ -168,7 +168,7 @@ function rg4wp_404_handler()
         && !rg4wp_isIgnoredDomain()
         && is_404()
         && get_option('rg4wp_apikey')
-        && !is_admin()
+        //&& !is_admin()
     ) {
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
 
@@ -188,7 +188,7 @@ function rg4wp_404_handler()
 if (
     get_option('rg4wp_status') && !rg4wp_isIgnoredDomain()
     && get_option('rg4wp_apikey')
-    && !is_admin()
+    //&& !is_admin()
 ) {
     $tags = explode(',', get_option('rg4wp_tags'));
 
