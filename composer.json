@@ -3,8 +3,7 @@
   "type": "wordpress-plugin",
   "authors": [
     {
-      "name": "theobenoit",
-      "email": "theo.benoit16@gmail.com"
+      "name": "Raygun"
     }
   ],
   "autoload": {
