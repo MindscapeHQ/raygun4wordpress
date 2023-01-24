@@ -59,14 +59,15 @@
                 <?php _e("Server-side errors"); ?> (PHP)
               </label>
               <br />
-              <label for="rg4wp_noadmintracking">
-			    <input style="margin-left: 20px;" type="checkbox" name="rg4wp_noadmintracking" id="rg4wp_noadmintracking"<?php echo get_option('rg4wp_noadmintracking') ? ' checked="checked"': ''; ?> value="1" />
-                <?php _e("Do not track admin pages"); ?>
-              </label>
-              <br />
               <label for="rg4wp_js">
                 <input type="checkbox" name="rg4wp_js" id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"': '';?> value="1" />
                 <?php _e("Client-side errors"); ?> (JavaScript)
+              </label>
+              <br />
+              <br />
+              <label for="rg4wp_noadmintracking">
+                <input type="checkbox" name="rg4wp_noadmintracking" id="rg4wp_noadmintracking"<?php echo get_option('rg4wp_noadmintracking') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Do not track admin pages"); ?>
               </label>
 
             </fieldset>
