@@ -59,9 +59,9 @@
                 <?php _e("Server-side errors"); ?> (PHP)
               </label>
               <br />
-              <label for="rg4wp_admintracking">
-			    <input style="margin-left: 20px;" type="checkbox" name="rg4wp_admintracking" id="rg4wp_admintracking"<?php echo get_option('rg4wp_admintracking') ? ' checked="checked"': ''; ?> value="1" />
-                <?php _e("Report from admin pages"); ?>
+              <label for="rg4wp_noadmintracking">
+			    <input style="margin-left: 20px;" type="checkbox" name="rg4wp_noadmintracking" id="rg4wp_noadmintracking"<?php echo get_option('rg4wp_noadmintracking') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Do not track admin pages"); ?>
               </label>
               <br />
               <label for="rg4wp_js">
@@ -154,7 +154,7 @@
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_admintracking" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_noadmintracking" />
 
       <p class="submit">
         <?php
