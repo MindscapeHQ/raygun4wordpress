@@ -14,7 +14,12 @@
   },
   "require": {
     "php": ">=7.4",
-    "mindscape/raygun4php": "^2.1",
+    "mindscape/raygun4php": "^2.3",
     "monolog/monolog": "^2.4"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
   }
 }
