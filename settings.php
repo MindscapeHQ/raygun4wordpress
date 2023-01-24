@@ -60,8 +60,8 @@
               </label>
               <br />
               <label for="rg4wp_admintracking">
-                <input type="checkbox" name="rg4wp_admintracking" id="rg4wp_admintracking"<?php echo get_option('rg4wp_admintracking') ? ' checked="checked"': ''; ?> value="1" />
-                <?php _e("Report from admin pages"); ?> (PHP)
+			    <input style="margin-left: 20px;" type="checkbox" name="rg4wp_admintracking" id="rg4wp_admintracking"<?php echo get_option('rg4wp_admintracking') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Report from admin pages"); ?>
               </label>
               <br />
               <label for="rg4wp_js">
