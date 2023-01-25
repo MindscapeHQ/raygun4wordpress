@@ -3,11 +3,11 @@
         'name' => 'mindscape/raygun4wordpress',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'f0387e6a397ca226b4fe7049e3c34063c0eb05a0',
+        'reference' => '6f1306252f67707123d4873b507b0d02865e77a3',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'guzzlehttp/guzzle' => array(
@@ -49,7 +49,7 @@
         'mindscape/raygun4wordpress' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'f0387e6a397ca226b4fe7049e3c34063c0eb05a0',
+            'reference' => '6f1306252f67707123d4873b507b0d02865e77a3',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
