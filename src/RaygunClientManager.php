@@ -1,6 +1,6 @@
 <?php
 
-namespace Raygun\Raygun4WP;
+namespace Mindscape\Raygun4Wordpress;
 
 use Raygun4php\Transports\GuzzleAsync;
 use Raygun4php\Transports\GuzzleSync;

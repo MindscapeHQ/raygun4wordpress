@@ -1,6 +1,6 @@
 <?php
 
-namespace Raygun\Raygun4WP;
+namespace Mindscape\Raygun4Wordpress;
 
 use Raygun4php\RaygunClient as BaseRaygunClient;
 use Raygun4php\Interfaces\TransportInterface;

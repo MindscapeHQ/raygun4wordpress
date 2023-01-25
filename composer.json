@@ -1,5 +1,5 @@
 {
-  "name": "raygun/raygun4wp",
+  "name": "mindscape/raygun4wordpress",
   "type": "wordpress-plugin",
   "authors": [
     {
@@ -8,7 +8,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Raygun\\Raygun4WP\\": "src/"
+      "Mindscape\\Raygun4Wordpress\\": "src/"
     }
   },
   "require": {

@@ -1,6 +1,6 @@
 <?php
 
-use Raygun\Raygun4WP\RaygunClientManager;
+use Mindscape\Raygun4Wordpress\RaygunClientManager;
 
 require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 

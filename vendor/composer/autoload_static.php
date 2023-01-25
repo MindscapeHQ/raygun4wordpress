@@ -16,7 +16,6 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
     public static $prefixLengthsPsr4 = array (
         'R' => 
         array (
-            'Raygun\\Raygun4WP\\' => 17,
             'Raygun4php\\Tests\\' => 17,
             'Raygun4php\\' => 11,
         ),
@@ -29,6 +28,7 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Mindscape\\Raygun4Wordpress\\' => 27,
         ),
         'G' => 
         array (
@@ -39,10 +39,6 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
     );
 
     public static $prefixDirsPsr4 = array (
-        'Raygun\\Raygun4WP\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Raygun4php\\Tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/mindscape/raygun4php/tests',
@@ -67,6 +63,10 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Mindscape\\Raygun4Wordpress\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
