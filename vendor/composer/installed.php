@@ -1,13 +1,13 @@
 <?php return array(
     'root' => array(
-        'name' => 'mindscape/raygun4wordpress',
+        'name' => 'raygun/raygun4wp',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '573fa0c074d7524a9515946e502dd99baaba7c5c',
+        'reference' => 'bf8ac9d2c6ed739e1d343d539f70773c740b0cce',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => false,
+        'dev' => true,
     ),
     'versions' => array(
         'guzzlehttp/guzzle' => array(
@@ -43,15 +43,6 @@
             'reference' => 'a479ce6be7f31f224893055884afc7b8153191fd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mindscape/raygun4php',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'mindscape/raygun4wordpress' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '573fa0c074d7524a9515946e502dd99baaba7c5c',
-            'type' => 'wordpress-plugin',
-            'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -130,6 +121,15 @@
             'reference' => '120b605dfeb996808c31b6477290a714d356e822',
             'type' => 'library',
             'install_path' => __DIR__ . '/../ralouphie/getallheaders',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'raygun/raygun4wp' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'bf8ac9d2c6ed739e1d343d539f70773c740b0cce',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

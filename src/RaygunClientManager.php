@@ -21,20 +21,20 @@ class RaygunClientManager
     /**
      * Get the instance of RaygunClient.
      *
-     * @param $apiKey
-     * @param $userTracking
-     * @param $async
+     * @param $customApiKey
+     * @param $customUserTracking
+     * @param $customAsync
      *
      * @return RaygunClient
      */
-    public static function getInstance($apiKey = null, $userTracking = null, $async = null): RaygunClient
+    public static function getInstance($customApiKey = null, $customUserTracking = null, $customAsync = null): RaygunClient
     {
-        $apiKey = $apiKey ?? get_option('rg4wp_apikey');
-        $userTracking = $userTracking ?? get_option('rg4wp_usertracking');
-        $async = $async ?? get_option('rg4wp_async');
+        $apiKey = $customApiKey ?? get_option('rg4wp_apikey');
+        $userTracking = $customUserTracking ?? get_option('rg4wp_usertracking');
+        $async = $customAsync ?? get_option('rg4wp_async');
         // Check is $instance has been set
-        if (!isset(self::$instance) || self::$currentParams != $async . $userTracking . $apiKey) {
-            self::$currentParams = $async . $userTracking . $apiKey;
+        if (!isset(self::$instance) || self::$currentParams != strval($async) . strval($userTracking) . $apiKey) {
+            self::$currentParams = strval($async) . strval($userTracking) . $apiKey;
             // Creates sets object to instance
             $httpClient = new Client([
                 'base_uri' => 'https://api.raygun.com',
