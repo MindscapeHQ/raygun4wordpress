@@ -2,7 +2,6 @@
 
 namespace Raygun\Raygun4WP;
 
-use Raygun4php\RaygunClient;
 use Raygun4php\Transports\GuzzleAsync;
 use Raygun4php\Transports\GuzzleSync;
 use GuzzleHttp\Client;
@@ -10,24 +9,14 @@ use Monolog\Logger;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
 
-class SingletonRaygunClient
+class RaygunClientManager
 {
     /**
      * The instance of Raygun Client.
      */
-    private static RaygunClientWrapper $instance;
+    private static RaygunClient $instance;
 
-    private static string $currentParams;
-
-    /**
-     * Is the client asynchronous ?
-     *
-     * @return bool
-     */
-    public function isAsync(): bool
-    {
-        return method_exists(self::$instance->getTransport(), 'wait');
-    }
+    private static string $currentParams = 'none';
 
     /**
      * Get the instance of RaygunClient.
@@ -37,7 +26,6 @@ class SingletonRaygunClient
      * @param $async
      *
      * @return RaygunClient
-     * @throws \Exception
      */
     public static function getInstance($apiKey = null, $userTracking = null, $async = null): RaygunClient
     {
@@ -80,7 +68,7 @@ class SingletonRaygunClient
                 $transport->setLogger($logger);
             }
 
-            self::$instance = new RaygunClientWrapper($transport, $userTracking);
+            self::$instance = new RaygunClient($transport, $userTracking);
         }
 
         // Returns the instance

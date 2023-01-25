@@ -1,6 +1,6 @@
 <?php
 
-use Raygun\Raygun4WP\SingletonRaygunClient;
+use Raygun\Raygun4WP\RaygunClientManager;
 
 require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 
@@ -32,7 +32,7 @@ require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 
             if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_apikey']) {
 
-                $client = SingletonRaygunClient::getInstance($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking']);
+                $client = RaygunClientManager::getInstance($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking']);
 
                 if ($_GET['rg4wp_usertracking']) {
                     $client->SetUser($_GET['user']);
