@@ -2,12 +2,12 @@
 
 namespace Mindscape\Raygun4Wordpress;
 
-use Raygun4php\Transports\GuzzleAsync;
-use Raygun4php\Transports\GuzzleSync;
 use GuzzleHttp\Client;
-use Monolog\Logger;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Raygun4php\Transports\GuzzleAsync;
+use Raygun4php\Transports\GuzzleSync;
 
 class RaygunClientManager
 {
@@ -68,7 +68,7 @@ class RaygunClientManager
                 $transport->setLogger($logger);
             }
 
-            self::$instance = new RaygunClient($transport, $userTracking);
+            self::$instance = new RaygunClient($transport, !$userTracking);
         }
 
         // Returns the instance
