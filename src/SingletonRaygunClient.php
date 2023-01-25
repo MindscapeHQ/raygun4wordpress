@@ -1,34 +1,23 @@
 <?php
 
-namespace Mindscape\Raygun4Wordpress;
+namespace Raygun\Raygun4WP;
 
-use GuzzleHttp\Client;
-use Monolog\Handler\FirePHPHandler;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Raygun4php\Interfaces\TransportInterface;
-use Raygun4php\RaygunClient as BaseRaygunClient;
+use Raygun4php\RaygunClient;
 use Raygun4php\Transports\GuzzleAsync;
 use Raygun4php\Transports\GuzzleSync;
+use GuzzleHttp\Client;
+use Monolog\Logger;
+use Monolog\Handler\FirePHPHandler;
+use Monolog\Handler\StreamHandler;
 
-class RaygunClient extends BaseRaygunClient
+class SingletonRaygunClient
 {
     /**
      * The instance of Raygun Client.
-     *
-     * @var RaygunClient
      */
-    private static RaygunClient $instance;
+    private static RaygunClientWrapper $instance;
 
-    /**
-     * Return the transport used.
-     *
-     * @return TransportInterface
-     */
-    public function getTransport(): TransportInterface
-    {
-        return $this->transport;
-    }
+    private static string $currentParams;
 
     /**
      * Is the client asynchronous ?
@@ -37,27 +26,27 @@ class RaygunClient extends BaseRaygunClient
      */
     public function isAsync(): bool
     {
-        return method_exists($this->getTransport(), 'wait');
+        return method_exists(self::$instance->getTransport(), 'wait');
     }
 
     /**
      * Get the instance of RaygunClient.
      *
-     * @param $rg4wp_apikey
-     * @param $rg4wp_async
-     * @param $rg4wp_usertracking
+     * @param $apiKey
+     * @param $userTracking
+     * @param $async
      *
      * @return RaygunClient
      * @throws \Exception
      */
-    public static function getInstance($rg4wp_apikey = null, $rg4wp_usertracking = null, $rg4wp_async = null): RaygunClient
+    public static function getInstance($apiKey = null, $userTracking = null, $async = null): RaygunClient
     {
+        $apiKey = $apiKey ?? get_option('rg4wp_apikey');
+        $userTracking = $userTracking ?? get_option('rg4wp_usertracking');
+        $async = $async ?? get_option('rg4wp_async');
         // Check is $instance has been set
-        if (!isset(self::$instance)) {
-            $apiKey = $rg4wp_apikey ?? get_option('rg4wp_apikey');
-            $userTracking = $rg4wp_usertracking ?? get_option('rg4wp_usertracking');
-            $async = $rg4wp_async ?? get_option('rg4wp_async');
-
+        if (!isset(self::$instance) || self::$currentParams != $async . $userTracking . $apiKey) {
+            self::$currentParams = $async . $userTracking . $apiKey;
             // Creates sets object to instance
             $httpClient = new Client([
                 'base_uri' => 'https://api.raygun.com',
@@ -79,8 +68,7 @@ class RaygunClient extends BaseRaygunClient
              * Start logging logic.
              */
             $logPath = self::getLogsPath();
-
-            if (isset($logPath) && $logPath) {
+            if ($logPath) {
                 // Create logger
                 $logger = new Logger('raygun');
 
@@ -92,26 +80,11 @@ class RaygunClient extends BaseRaygunClient
                 $transport->setLogger($logger);
             }
 
-            self::$instance = new RaygunClient($transport, !$userTracking);
+            self::$instance = new RaygunClientWrapper($transport, $userTracking);
         }
 
         // Returns the instance
         return self::$instance;
-    }
-
-    /**
-     * Create an instance with defined options.
-     *
-     * @param $rg4wp_apikey
-     * @param $rg4wp_async
-     * @param $rg4wp_usertracking
-     *
-     * @return RaygunClient
-     * @throws \Exception
-     */
-    public static function forOptions($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async = 'not_async'): RaygunClient
-    {
-        return self::getInstance($rg4wp_apikey, $rg4wp_usertracking, $rg4wp_async);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
-use Mindscape\Raygun4Wordpress\RaygunClient;
+use Raygun\Raygun4WP\SingletonRaygunClient;
+use Raygun4php\RaygunClient;
 
 register_activation_hook(__FILE__, 'rg4wp_install');
 register_deactivation_hook(__FILE__, 'rg4wp_uninstall');
@@ -178,7 +179,7 @@ function rg4wp_404_handler()
             $tags = [];
         }
 
-        $client = rg4wp_checkUser(RaygunClient::getInstance());
+        $client = rg4wp_checkUser(SingletonRaygunClient::getInstance());
         $client->SetVersion(get_bloginfo('version'));
 
         $uri = $_SERVER['REQUEST_URI'];
@@ -198,9 +199,9 @@ if (
         $tags = [];
     }
 
-    $client = RaygunClient::getInstance();
+    $client = SingletonRaygunClient::getInstance();
 
-    if (!$client->isAsync()) {
+    if (!SingletonRaygunClient::isAsync()) {
         $tags[] = ['synchronous-transport'];
     }
 
@@ -264,7 +265,7 @@ if (
     set_exception_handler('exception_handler');
     set_error_handler('error_handler');
 
-    if ($client->isAsync()) {
+    if (SingletonRaygunClient::isAsync()) {
         register_shutdown_function('shutdown_handler_async');
         register_shutdown_function([$client->getTransport(), 'wait']);
     } else {
