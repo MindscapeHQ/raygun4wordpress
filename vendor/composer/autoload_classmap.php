@@ -93,8 +93,6 @@ return array(
     'GuzzleHttp\\RetryMiddleware' => $vendorDir . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
     'GuzzleHttp\\TransferStats' => $vendorDir . '/guzzlehttp/guzzle/src/TransferStats.php',
     'GuzzleHttp\\Utils' => $vendorDir . '/guzzlehttp/guzzle/src/Utils.php',
-    'Mindscape\\Raygun4Wordpress\\RaygunClient' => $baseDir . '/src/RaygunClient.php',
-    'Mindscape\\Raygun4Wordpress\\RaygunClientManager' => $baseDir . '/src/RaygunClientManager.php',
     'Monolog\\Attribute\\AsMonologProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
     'Monolog\\DateTimeImmutable' => $vendorDir . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
     'Monolog\\ErrorHandler' => $vendorDir . '/monolog/monolog/src/Monolog/ErrorHandler.php',
@@ -260,4 +258,6 @@ return array(
     'Raygun4php\\Tests\\Transports\\GuzzleSyncTest' => $vendorDir . '/mindscape/raygun4php/tests/Transports/GuzzleSyncTest.php',
     'Raygun4php\\Transports\\GuzzleAsync' => $vendorDir . '/mindscape/raygun4php/src/Raygun4php/Transports/GuzzleAsync.php',
     'Raygun4php\\Transports\\GuzzleSync' => $vendorDir . '/mindscape/raygun4php/src/Raygun4php/Transports/GuzzleSync.php',
+    'Raygun\\Raygun4WP\\RaygunClient' => $baseDir . '/src/RaygunClient.php',
+    'Raygun\\Raygun4WP\\RaygunClientManager' => $baseDir . '/src/RaygunClientManager.php',
 );

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindscape\Raygun4Wordpress;
+namespace Raygun\Raygun4WP;
 
 use GuzzleHttp\Client;
 use Monolog\Handler\FirePHPHandler;
@@ -29,9 +29,9 @@ class RaygunClientManager
      */
     public static function getInstance($customApiKey = null, $customUserTracking = null, $customAsync = null): RaygunClient
     {
-        $apiKey = $customApiKey ?? get_option('rg4wp_apikey');
-        $userTracking = $customUserTracking ?? get_option('rg4wp_usertracking');
-        $async = $customAsync ?? get_option('rg4wp_async');
+        $apiKey = $customApiKey ?? \get_option('rg4wp_apikey');
+        $userTracking = $customUserTracking ?? \get_option('rg4wp_usertracking');
+        $async = $customAsync ?? \get_option('rg4wp_async');
         // Check is $instance has been set
         if (!isset(self::$instance) || self::$currentParams != strval($async) . strval($userTracking) . $apiKey) {
             self::$currentParams = strval($async) . strval($userTracking) . $apiKey;
@@ -44,6 +44,8 @@ class RaygunClientManager
             ]);
 
             $isAsync = $async === "1";
+            // DEBUGGING:
+            echo "########## isAsync = " . $isAsync . " ##########";
 
             /**
              * Asynchronous usage or synchronous usage

@@ -1,8 +1,8 @@
 <?php
 
-use Mindscape\Raygun4Wordpress\RaygunClientManager;
-
 require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
+
+use Raygun\Raygun4WP\RaygunClientManager;
 
 ?>
 
@@ -32,7 +32,7 @@ require_once sprintf("%s/vendor/autoload.php", dirname(__FILE__));
 
             if ($_GET['rg4wp_status'] && function_exists('curl_version') && $_GET['rg4wp_apikey']) {
 
-                $client = RaygunClientManager::getInstance($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking']);
+                $client = RaygunClientManager::getInstance($_GET['rg4wp_apikey'], $_GET['rg4wp_usertracking'], 0);
 
                 if ($_GET['rg4wp_usertracking']) {
                     $client->SetUser($_GET['user']);

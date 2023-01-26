@@ -1,7 +1,7 @@
 <?php
 
-use Mindscape\Raygun4Wordpress\RaygunClientManager;
-use Mindscape\Raygun4Wordpress\RaygunClient;
+use Raygun\Raygun4WP\RaygunClientManager;
+use Raygun\Raygun4WP\RaygunClient;
 
 register_activation_hook(__FILE__, 'rg4wp_install');
 register_deactivation_hook(__FILE__, 'rg4wp_uninstall');

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
+class ComposerStaticInit5eb195c854b7045559705ec7d652ca65
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -16,6 +16,7 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
     public static $prefixLengthsPsr4 = array (
         'R' => 
         array (
+            'Raygun\\Raygun4WP\\' => 17,
             'Raygun4php\\Tests\\' => 17,
             'Raygun4php\\' => 11,
         ),
@@ -28,7 +29,6 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Mindscape\\Raygun4Wordpress\\' => 27,
         ),
         'G' => 
         array (
@@ -39,6 +39,10 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
     );
 
     public static $prefixDirsPsr4 = array (
+        'Raygun\\Raygun4WP\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Raygun4php\\Tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/mindscape/raygun4php/tests',
@@ -63,10 +67,6 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'Mindscape\\Raygun4Wordpress\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -170,8 +170,6 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
         'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
         'GuzzleHttp\\Utils' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Utils.php',
-        'Mindscape\\Raygun4Wordpress\\RaygunClient' => __DIR__ . '/../..' . '/src/RaygunClient.php',
-        'Mindscape\\Raygun4Wordpress\\RaygunClientManager' => __DIR__ . '/../..' . '/src/RaygunClientManager.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
@@ -337,14 +335,16 @@ class ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e
         'Raygun4php\\Tests\\Transports\\GuzzleSyncTest' => __DIR__ . '/..' . '/mindscape/raygun4php/tests/Transports/GuzzleSyncTest.php',
         'Raygun4php\\Transports\\GuzzleAsync' => __DIR__ . '/..' . '/mindscape/raygun4php/src/Raygun4php/Transports/GuzzleAsync.php',
         'Raygun4php\\Transports\\GuzzleSync' => __DIR__ . '/..' . '/mindscape/raygun4php/src/Raygun4php/Transports/GuzzleSync.php',
+        'Raygun\\Raygun4WP\\RaygunClient' => __DIR__ . '/../..' . '/src/RaygunClient.php',
+        'Raygun\\Raygun4WP\\RaygunClientManager' => __DIR__ . '/../..' . '/src/RaygunClientManager.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd150a4bf05e04bb01718b009ad4a048e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5eb195c854b7045559705ec7d652ca65::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5eb195c854b7045559705ec7d652ca65::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5eb195c854b7045559705ec7d652ca65::$classMap;
 
         }, null, ClassLoader::class);
     }
