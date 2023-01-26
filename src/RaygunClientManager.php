@@ -44,8 +44,6 @@ class RaygunClientManager
             ]);
 
             $isAsync = $async === "1";
-            // DEBUGGING:
-            echo "########## isAsync = " . $isAsync . " ##########";
 
             /**
              * Asynchronous usage or synchronous usage
