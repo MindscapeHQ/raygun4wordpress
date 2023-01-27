@@ -1,6 +1,7 @@
 {
   "name": "raygun/raygun4wordpress",
   "type": "wordpress-plugin",
+  "license": "MIT",
   "authors": [
     {
       "name": "Raygun",

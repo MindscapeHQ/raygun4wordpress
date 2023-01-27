@@ -3,7 +3,7 @@
         'name' => 'raygun/raygun4wordpress',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'bfe438bae2f8825c6d21801b3df54a2c56f27df0',
+        'reference' => 'c23d3349ee58b5d63efdbb5efcf978139b1773bf',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -127,7 +127,7 @@
         'raygun/raygun4wordpress' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'bfe438bae2f8825c6d21801b3df54a2c56f27df0',
+            'reference' => 'c23d3349ee58b5d63efdbb5efcf978139b1773bf',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
