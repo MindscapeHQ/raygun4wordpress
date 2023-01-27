@@ -220,56 +220,34 @@ if (
         }
     }
 
-    function error_handler($errno, $errstr, $errfile, $errline)
+    set_error_handler(function($errno, $errstr, $errfile, $errline) use ($client, $tags)
     {
         if (get_option('rg4wp_status')) {
-            global $client, $tags;
             $client->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
-    }
+    });
 
-    function exception_handler($exception)
+    set_exception_handler(function($exception) use ($client, $tags)
     {
         if (get_option('rg4wp_status')) {
-            // @var RaygunClient $client
-            global $client, $tags;
             $client->SendException($exception, $tags);
         }
-    }
+    });
 
-    function shutdown_handler_async()
+    register_shutdown_function(function() use ($client, $tags)
     {
-        // @var RaygunClient $client
-        global $client, $tags;
-        $lastError = error_get_last();
+        if (get_option('rg4wp_status')) {
+            $lastError = error_get_last();
 
-        if (!is_null($lastError)) {
-            [$type, $message, $file, $line] = $lastError;
-            $client->SendError($type, $message, $file, $line, $tags);
+            if (!is_null($lastError)) {
+                [$type, $message, $file, $line] = $lastError;
+                $client->SendError($type, $message, $file, $line, $tags);
+            }
         }
-    }
-
-    function shutdown_handler_sync()
-    {
-        // @var RaygunClient $client
-        global $client, $tags;
-        $lastError = error_get_last();
-
-        if (!is_null($lastError)) {
-            [$type, $message, $file, $line] = $lastError;
-            $tags = array_merge($tags, ['fatal-error']);
-            $client->SendError($type, $message, $file, $line, $tags);
-        }
-    }
-
-    set_exception_handler('exception_handler');
-    set_error_handler('error_handler');
+    });
 
     if ($client->isAsync()) {
-        register_shutdown_function('shutdown_handler_async');
         register_shutdown_function([$client->getTransport(), 'wait']);
-    } else {
-        register_shutdown_function('shutdown_handler_sync');
     }
 }
 
