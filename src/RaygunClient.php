@@ -5,7 +5,7 @@ namespace Raygun\Raygun4WP;
 use Raygun4php\Interfaces\TransportInterface;
 use Raygun4php\RaygunClient as BaseRaygunClient;
 
-// RaygunClient wrapper for protected field access
+// RaygunClient wrapper provides protected field access
 class RaygunClient extends BaseRaygunClient {
     /**
      * Get the transport being used by the client
