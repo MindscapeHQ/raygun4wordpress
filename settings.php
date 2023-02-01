@@ -65,6 +65,14 @@
                             <?php _e("Server-side errors"); ?> (PHP)
                         </label>
                         <br/>
+                        <label for="rg4wp_sendfatalerrors">
+                            <input style="margin-left: 20px;" type="checkbox" name="rg4wp_sendfatalerrors"
+                                   id="rg4wp_sendfatalerrors"<?php echo get_option('rg4wp_sendfatalerrors') ? ' checked="checked"' : ''; ?>
+                                   value="1"/>
+                            <?php _e("Capture fatal errors on shutdown"); ?>
+                        </label>
+                        <br/>
+                        <br/>
                         <label for="rg4wp_js">
                             <input type="checkbox" name="rg4wp_js"
                                    id="rg4wp_js"<?php echo get_option('rg4wp_js') ? ' checked="checked"' : ''; ?>
@@ -78,13 +86,6 @@
                                    id="rg4wp_noadmintracking"<?php echo get_option('rg4wp_noadmintracking') ? ' checked="checked"' : ''; ?>
                                    value="1"/>
                             <?php _e("Disable tracking on admin pages"); ?>
-                        </label>
-                        <br/>
-                        <label for="rg4wp_sendfatalerrors">
-                            <input type="checkbox" name="rg4wp_sendfatalerrors"
-                                   id="rg4wp_sendfatalerrors"<?php echo get_option('rg4wp_sendfatalerrors') ? ' checked="checked"' : ''; ?>
-                                   value="1"/>
-                            <?php _e("Capture fatal errors on shutdown"); ?>
                         </label>
 
                     </fieldset>
