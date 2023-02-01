@@ -78,7 +78,7 @@ class RaygunClientManager {
             $transport->setLogger(self::$logger);
         }
 
-        self::$instance = new RaygunClient($transport, !$userTracking);
+        self::$instance = self::$instance->constructNew($transport, $userTracking);
         self::$currentAsyncState = $async;
     }
 
