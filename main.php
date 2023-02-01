@@ -12,6 +12,11 @@ add_action('admin_enqueue_scripts', 'rg4wp_admin_styles');
 add_action('template_redirect', 'rg4wp_404_handler');
 add_action('wp_enqueue_script', 'load_jquery');
 
+function rg4wp_isIgnoredDomain(): bool {
+    $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
+    return array_key_exists('SERVER_NAME', $_SERVER) && in_array($_SERVER['SERVER_NAME'], $domains);
+}
+
 if (
     (1 == get_option('rg4wp_js') || 1 == get_option('rg4wp_pulse'))
     && get_option('rg4wp_apikey')
@@ -71,10 +76,10 @@ function rg4wp_js() {
     printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
 }
 
-function rg4wp_checkUser(RaygunClient $client): RaygunClient {
+function rg4wp_checkUser() {
     if (1 == get_option('rg4wp_usertracking') && is_user_logged_in()) {
         $current_user = wp_get_current_user();
-        $client->SetUser(
+        RaygunClientManager::getInstance()->SetUser(
             $current_user->user_email,
             $current_user->user_firstname,
             $current_user->user_firstname . ' ' . $current_user->user_lastname,
@@ -82,12 +87,6 @@ function rg4wp_checkUser(RaygunClient $client): RaygunClient {
             false
         );
     }
-    return $client;
-}
-
-function rg4wp_isIgnoredDomain(): bool {
-    $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
-    return array_key_exists('SERVER_NAME', $_SERVER) && in_array($_SERVER['SERVER_NAME'], $domains);
 }
 
 if (
@@ -96,50 +95,45 @@ if (
     && get_option('rg4wp_apikey')
     && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
 ) {
-    $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-    if (!is_array($tags)) {
-        $tags = [];
-    }
+    RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
 
-    $client = RaygunClientManager::getInstance();
-    $client->SetVersion(get_bloginfo('version'));
-
+    // TODO: should this me moved up top for consistency?
     add_action('plugins_loaded', 'rg4wp_get_user_details');
-
-    function rg4wp_get_user_details()
-    {
+    function rg4wp_get_user_details() {
         if (1 == get_option('rg4wp_status')) {
-            global $client;
-            $client = rg4wp_checkUser($client);
+            rg4wp_checkUser();
         }
     }
 
-    set_error_handler(function ($errno, $errstr, $errfile, $errline) use ($client, $tags) {
+    set_error_handler(function ($errno, $errstr, $errfile, $errline) {
         if (1 == get_option('rg4wp_status')) {
-            $client->SendError($errno, $errstr, $errfile, $errline, $tags);
+            $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
+            RaygunClientManager::getInstance()->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
     });
 
-    set_exception_handler(function ($exception) use ($client, $tags) {
+    set_exception_handler(function ($exception) {
         if (1 == get_option('rg4wp_status')) {
-            $client->SendException($exception, $tags);
+            $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
+            RaygunClientManager::getInstance()->SendException($exception, $tags);
         }
     });
 
-    register_shutdown_function(function () use ($client, $tags) {
+    register_shutdown_function(function () {
         if (1 == get_option('rg4wp_sendfatalerrors') && 1 == get_option('rg4wp_status')) {
             $lastError = error_get_last();
             if (!is_null($lastError) && $lastError['type'] === E_ERROR) {
                 // A fatal error has occurred
                 [$type, $message, $file, $line] = $lastError;
+                $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
                 $tags = array_merge($tags, ['fatal-error']);
-                $client->SendError($type, $message, $file, $line, $tags);
+                RaygunClientManager::getInstance()->SendError($type, $message, $file, $line, $tags);
             }
         }
     });
 
-    if ($client->isAsync()) {
-        register_shutdown_function([$client->getTransport(), 'wait']);
+    if (RaygunClientManager::getInstance()->isAsync()) {
+        register_shutdown_function([RaygunClientManager::getInstance()->getTransport(), 'wait']);
     }
 }
 
@@ -172,14 +166,11 @@ function rg4wp_404_handler() {
         && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
     ) {
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-        if (!is_array($tags)) {
-            $tags = [];
-        }
 
-        $client = rg4wp_checkUser(RaygunClientManager::getInstance());
-        $client->SetVersion(get_bloginfo('version'));
+        rg4wp_checkUser();
+        RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
         $uri = $_SERVER['REQUEST_URI'];
-        $client->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags);
+        RaygunClientManager::getInstance()->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags);
     }
 }
 
