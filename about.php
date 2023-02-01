@@ -12,7 +12,7 @@
 
         <p class="rg4wp-text">Raygun provides deep diagnostic information about the root cause of every error or crash, meaning your team won't be losing valuable time trying to reproduce issues or digging through log files. Ensure issue management and resolution is part of your team’s everyday workflow within Raygun's error and crash reporting software.</p>
 
-        <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/products/crash-reporting?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--crash" href="https://raygun.com/platform/crash-reporting?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
 
         <p class="rg4wp-text">View searchable, specific user sessions to pinpoint where they encountered issues and discover fundamental bottlenecks that affect your typical end user experience. Ensure your website delivers a flawless user experience for each and every one of your customers.</p>
 
-        <a class="rg4wp-button rg4wp-no-select rg4wp-button--pulse" href="https://raygun.com/products/real-user-monitoring-websites?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
+        <a class="rg4wp-button rg4wp-no-select rg4wp-button--pulse" href="https://raygun.com/platform/real-user-monitoring?utm_source=link&amp;utm_medium=text&amp;utm_campaign=wp-plugin-about">Learn More</a>
       </div>
     </div>
 
