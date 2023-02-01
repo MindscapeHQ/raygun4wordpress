@@ -71,60 +71,6 @@ function rg4wp_js() {
     printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
 }
 
-function load_jquery() {
-    wp_enqueue_script('jquery');
-}
-
-function rg4wp_admin() {
-    $logourl = plugins_url('img/logo.png', __FILE__);
-    add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
-    add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
-    add_submenu_page('rg4wp', 'Settings', 'Settings', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
-    add_submenu_page('rg4wp', 'Dashboard', 'Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
-}
-
-function rg4wp_settings() {
-    include dirname(__FILE__) . '/settings.php';
-}
-
-function rg4wp_about() {
-    include dirname(__FILE__) . '/about.php';
-}
-
-function rg4wp_dash() {
-    include dirname(__FILE__) . '/dash.php';
-}
-
-function rg4wp_install() {
-    add_option('rg4wp_apikey', '', '', 'yes');
-    add_option('rg4wp_tags', '', '', 'yes');
-    add_option('rg4wp_status', '0', '', 'yes');
-    add_option('rg4wp_usertracking', '0', '', 'yes');
-    add_option('rg4wp_404s', '1', '', 'yes');
-    add_option('rg4wp_js', '1', '', 'yes');
-    add_option('rg4wp_ignoredomains', '', '', 'yes');
-    add_option('rg4wp_pulse', '', '', 'yes');
-    add_option('rg4wp_js_tags', '', '', 'yes');
-    add_option('rg4wp_async', '0', '', 'yes');
-    add_option('rg4wp_noadmintracking', '0', '', 'yes');
-    add_option('rg4wp_sendfatalerrors', '0', '', 'yes');
-}
-
-function rg4wp_uninstall() {
-    delete_option('rg4wp_apikey');
-    delete_option('rg4wp_tags');
-    delete_option('rg4wp_status');
-    delete_option('rg4wp_404s');
-    delete_option('rg4wp_js');
-    delete_option('rg4wp_usertracking');
-    delete_option('rg4wp_ignoredomains');
-    delete_option('rg4wp_pulse');
-    delete_option('rg4wp_js_tags');
-    delete_option('rg4wp_async');
-    delete_option('rg4wp_noadmintracking');
-    delete_option('rg4wp_sendfatalerrors');
-}
-
 function rg4wp_checkUser(RaygunClient $client): RaygunClient {
     if (1 == get_option('rg4wp_usertracking') && is_user_logged_in()) {
         $current_user = wp_get_current_user();
@@ -142,31 +88,6 @@ function rg4wp_checkUser(RaygunClient $client): RaygunClient {
 function rg4wp_isIgnoredDomain(): bool {
     $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
     return array_key_exists('SERVER_NAME', $_SERVER) && in_array($_SERVER['SERVER_NAME'], $domains);
-}
-
-function rg4wp_useAsyncSending(): bool {
-    return 1 == get_option('rg4wp_async');
-}
-
-function rg4wp_404_handler() {
-    if (
-        1 == get_option('rg4wp_status')
-        && 1 == get_option('rg4wp_404s')
-        && !rg4wp_isIgnoredDomain()
-        && is_404()
-        && get_option('rg4wp_apikey')
-        && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
-    ) {
-        $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-        if (!is_array($tags)) {
-            $tags = [];
-        }
-
-        $client = rg4wp_checkUser(RaygunClientManager::getInstance());
-        $client->SetVersion(get_bloginfo('version'));
-        $uri = $_SERVER['REQUEST_URI'];
-        $client->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags);
-    }
 }
 
 if (
@@ -241,6 +162,56 @@ if (!function_exists('curl_version')) {
     add_action('admin_notices', 'rg4wp_warn_curl');
 }
 
+function rg4wp_404_handler() {
+    if (
+        1 == get_option('rg4wp_status')
+        && 1 == get_option('rg4wp_404s')
+        && !rg4wp_isIgnoredDomain()
+        && is_404()
+        && get_option('rg4wp_apikey')
+        && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
+    ) {
+        $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
+        if (!is_array($tags)) {
+            $tags = [];
+        }
+
+        $client = rg4wp_checkUser(RaygunClientManager::getInstance());
+        $client->SetVersion(get_bloginfo('version'));
+        $uri = $_SERVER['REQUEST_URI'];
+        $client->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags);
+    }
+}
+
+function load_jquery() {
+    wp_enqueue_script('jquery');
+}
+
+function rg4wp_admin_styles($hook) {
+    wp_register_style('rg4wp_css', plugins_url('css/style.css', __FILE__), false, '1.0.0');
+    wp_enqueue_style('rg4wp_css');
+}
+
+function rg4wp_settings() {
+    include dirname(__FILE__) . '/settings.php';
+}
+
+function rg4wp_about() {
+    include dirname(__FILE__) . '/about.php';
+}
+
+function rg4wp_dash() {
+    include dirname(__FILE__) . '/dash.php';
+}
+
+function rg4wp_admin() {
+    $logourl = plugins_url('img/logo.png', __FILE__);
+    add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
+    add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
+    add_submenu_page('rg4wp', 'Settings', 'Settings', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
+    add_submenu_page('rg4wp', 'Dashboard', 'Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
+}
+
 function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_apikey');
     register_setting('rg4wp', 'rg4wp_tags');
@@ -256,7 +227,32 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_sendfatalerrors');
 }
 
-function rg4wp_admin_styles($hook) {
-    wp_register_style('rg4wp_css', plugins_url('css/style.css', __FILE__), false, '1.0.0');
-    wp_enqueue_style('rg4wp_css');
+function rg4wp_install() {
+    add_option('rg4wp_apikey', '', '', 'yes');
+    add_option('rg4wp_tags', '', '', 'yes');
+    add_option('rg4wp_status', '0', '', 'yes');
+    add_option('rg4wp_usertracking', '0', '', 'yes');
+    add_option('rg4wp_404s', '1', '', 'yes');
+    add_option('rg4wp_js', '1', '', 'yes');
+    add_option('rg4wp_ignoredomains', '', '', 'yes');
+    add_option('rg4wp_pulse', '', '', 'yes');
+    add_option('rg4wp_js_tags', '', '', 'yes');
+    add_option('rg4wp_async', '0', '', 'yes');
+    add_option('rg4wp_noadmintracking', '0', '', 'yes');
+    add_option('rg4wp_sendfatalerrors', '0', '', 'yes');
+}
+
+function rg4wp_uninstall() {
+    delete_option('rg4wp_apikey');
+    delete_option('rg4wp_tags');
+    delete_option('rg4wp_status');
+    delete_option('rg4wp_404s');
+    delete_option('rg4wp_js');
+    delete_option('rg4wp_usertracking');
+    delete_option('rg4wp_ignoredomains');
+    delete_option('rg4wp_pulse');
+    delete_option('rg4wp_js_tags');
+    delete_option('rg4wp_async');
+    delete_option('rg4wp_noadmintracking');
+    delete_option('rg4wp_sendfatalerrors');
 }
