@@ -107,6 +107,7 @@ function rg4wp_install() {
     add_option('rg4wp_js_tags', '', '', 'yes');
     add_option('rg4wp_async', '0', '', 'yes');
     add_option('rg4wp_noadmintracking', '0', '', 'yes');
+    add_option('rg4wp_sendfatalerrors', '0', '', 'yes');
 }
 
 function rg4wp_uninstall() {
@@ -121,6 +122,7 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_js_tags');
     delete_option('rg4wp_async');
     delete_option('rg4wp_noadmintracking');
+    delete_option('rg4wp_sendfatalerrors');
 }
 
 function rg4wp_checkUser(RaygunClient $client): RaygunClient {
@@ -211,7 +213,7 @@ if (
     });
 
     register_shutdown_function(function () use ($client, $tags) {
-        if (1 == get_option('rg4wp_status')) {
+        if (1 == get_option('rg4wp_sendfatalerrors') && 1 == get_option('rg4wp_status')) {
             $lastError = error_get_last();
             if (!is_null($lastError) && $lastError['type'] === E_ERROR) {
                 // A fatal error has occurred
@@ -258,6 +260,7 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_js_tags');
     register_setting('rg4wp', 'rg4wp_async');
     register_setting('rg4wp', 'rg4wp_noadmintracking');
+    register_setting('rg4wp', 'rg4wp_sendfatalerrors');
 }
 
 function rg4wp_admin_styles($hook) {

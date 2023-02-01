@@ -69,6 +69,11 @@
                 <input type="checkbox" name="rg4wp_noadmintracking" id="rg4wp_noadmintracking"<?php echo get_option('rg4wp_noadmintracking') ? ' checked="checked"': ''; ?> value="1" />
                 <?php _e("Do not track admin pages"); ?>
               </label>
+              <br />
+              <label for="rg4wp_sendfatalerrors">
+                <input type="checkbox" name="rg4wp_sendfatalerrors" id="rg4wp_sendfatalerrors"<?php echo get_option('rg4wp_sendfatalerrors') ? ' checked="checked"': ''; ?> value="1" />
+                <?php _e("Capture fatal errors on shutdown"); ?>
+              </label>
 
             </fieldset>
           </td>
@@ -155,7 +160,7 @@
       </table>
 
       <input type="hidden" name="action" value="update" />
-      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_noadmintracking" />
+      <input type="hidden" name="page_options" value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_noadmintracking,rg4wp_sendfatalerrors" />
 
       <p class="submit">
         <?php
