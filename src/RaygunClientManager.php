@@ -6,13 +6,13 @@ use GuzzleHttp\Client;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Raygun4php\Interfaces\TransportInterface;
 use Raygun4php\Transports\GuzzleAsync;
 use Raygun4php\Transports\GuzzleSync;
 
 class RaygunClientManager {
     // Singleton-esque RaygunClient instance
     private static RaygunClient $instance;
-    // Store RaygunClient modifiers for reuse
     private static Client $httpClient;
     private static Logger $logger;
     // Remember the current async state to detect changes
@@ -33,7 +33,7 @@ class RaygunClientManager {
         $async = $customAsyncState ?? 1 == get_option('rg4wp_async');
 
         if (!isset(self::$instance)) {
-            // An instance has not yet been created
+            // An instance has not yet been created...
             $apiKey = $customApiKey ?? get_option('rg4wp_apikey');
             // Initialize httpClient:
             self::$httpClient = new Client([
@@ -52,13 +52,15 @@ class RaygunClientManager {
                     ->pushHandler(new FirePHPHandler());
             }
 
-            self::createNewInstance($async, $userTracking);
+            self::$instance = new RaygunClient(self::getTransport($async), !$userTracking);
+            self::$currentAsyncState = $async;
         } else {
-            // An instance already exists
+            // An instance already exists...
             if ($async != self::$currentAsyncState) {
                 // Ensure async state changes take effect
-                self::createNewInstance($async, $userTracking); // Also updates user tracking state
-            } else {
+                self::$instance = self::$instance->constructNew(self::getTransport($async), $userTracking);
+                self::$currentAsyncState = $async;
+            } else if ($userTracking == self::$instance->getDisableUserTracking()) {
                 // Ensure user tracking state changes take effect
                 self::$instance->setDisableUserTracking(!$userTracking);
             }
@@ -66,20 +68,17 @@ class RaygunClientManager {
         return self::$instance;
     }
 
-    private static function createNewInstance($async, $userTracking): void {
+    private static function getTransport(bool $async): TransportInterface {
         /**
          * Create the appropriate asynchronous or synchronous transport
          * @see https://raygun.com/documentation/language-guides/php/crash-reporting/installation/#synchronous-usage
          */
         $transport = $async ? new GuzzleAsync(self::$httpClient) : new GuzzleSync(self::$httpClient);
-
         if (isset(self::$logger)) {
             // Attach the logger to the transport
             $transport->setLogger(self::$logger);
         }
-
-        self::$instance = self::$instance->constructNew($transport, $userTracking);
-        self::$currentAsyncState = $async;
+        return $transport;
     }
 
     protected static function getLogsPath(): string {
