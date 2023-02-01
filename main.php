@@ -1,6 +1,5 @@
 <?php
 
-use Raygun\Raygun4WP\RaygunClient;
 use Raygun\Raygun4WP\RaygunClientManager;
 
 register_activation_hook(__FILE__, 'rg4wp_install');
@@ -11,6 +10,7 @@ add_action('admin_menu', 'rg4wp_admin');
 add_action('admin_enqueue_scripts', 'rg4wp_admin_styles');
 add_action('template_redirect', 'rg4wp_404_handler');
 add_action('wp_enqueue_script', 'load_jquery');
+add_action('plugins_loaded', 'rg4wp_checkUser');
 
 function rg4wp_isIgnoredDomain(): bool {
     $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
@@ -76,19 +76,6 @@ function rg4wp_js() {
     printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
 }
 
-function rg4wp_checkUser() {
-    if (1 == get_option('rg4wp_usertracking') && is_user_logged_in()) {
-        $current_user = wp_get_current_user();
-        RaygunClientManager::getInstance()->SetUser(
-            $current_user->user_email,
-            $current_user->user_firstname,
-            $current_user->user_firstname . ' ' . $current_user->user_lastname,
-            $current_user->user_email,
-            false
-        );
-    }
-}
-
 if (
     1 == get_option('rg4wp_status')
     && !rg4wp_isIgnoredDomain()
@@ -96,14 +83,6 @@ if (
     && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
 ) {
     RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
-
-    // TODO: should this me moved up top for consistency?
-    add_action('plugins_loaded', 'rg4wp_get_user_details');
-    function rg4wp_get_user_details() {
-        if (1 == get_option('rg4wp_status')) {
-            rg4wp_checkUser();
-        }
-    }
 
     set_error_handler(function ($errno, $errstr, $errfile, $errline) {
         if (1 == get_option('rg4wp_status')) {
@@ -154,6 +133,23 @@ if (!function_exists('curl_version')) {
     }
 
     add_action('admin_notices', 'rg4wp_warn_curl');
+}
+
+function rg4wp_checkUser() {
+    if (
+        1 == get_option('rg4wp_status')
+        && 1 == get_option('rg4wp_usertracking')
+        && is_user_logged_in()
+    ) {
+        $current_user = wp_get_current_user();
+        RaygunClientManager::getInstance()->SetUser(
+            $current_user->user_email,
+            $current_user->user_firstname,
+            $current_user->user_firstname . ' ' . $current_user->user_lastname,
+            $current_user->user_email,
+            false
+        );
+    }
 }
 
 function rg4wp_404_handler() {
