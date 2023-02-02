@@ -105,7 +105,7 @@
                                        value="1"/>
                                 <?php _e("Send 404 errors"); ?>
                             </label>
-                            <p class="description"><?php _e("Requires server-side error tracking"); ?></p>
+                            <p class="description"><?php _e("Requires server-side error tracking."); ?></p>
                         </fieldset>
                     </td>
                 </tr>
@@ -122,22 +122,32 @@
                                        value="1"/>
                                 <?php _e("Send errors asynchronously"); ?>
                             </label>
-                            <p class="description"><?php _e("Use asynchronous when sending server-side errors."); ?><em>(Only
-                                    available on *Unix operating systems)</em></p>
+                            <p class="description"><?php _e("Use asynchronous when sending server-side errors."); ?></p>
                         </fieldset>
                     </td>
                 </tr>
 
             </table>
 
-            <h3 class="title">Crash Reporting - Tags</h3>
-            <p><?php _e("Tags are custom text that you can send with each error, for identification, testing and more. Separate with commas e.g 'tag1, tag2'"); ?></p>
+            <p class="submit" style="padding-bottom: 0">
+                <?php
+                $current_user = wp_get_current_user();
+                $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
+                ?>
+                <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank"
+                   href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
+            </p>
+            <p class="description"><?php _e("Confirm that Raygun is working on your server."); ?></p>
+
+            <br/>
+            <h3 class="title">Crash Reporting Tags</h3>
+            <p><?php _e("Tags are custom text that you can send with each error for identification, testing, and more. Separate with commas."); ?></p>
 
             <table class="form-table">
 
                 <tr>
                     <th scope="row">
-                        <label for="rg4wp_tags">PHP</label>
+                        <label for="rg4wp_tags">Server-side (PHP) tags</label>
                     </th>
                     <td>
                         <input type="text" class="regular-text ltr" id="rg4wp_tags" name="rg4wp_tags"
@@ -147,7 +157,7 @@
 
                 <tr>
                     <th scope="row">
-                        <label for="rg4wp_js_tags">JavaScript</label>
+                        <label for="rg4wp_js_tags">Client-side (JavaScript) tags</label>
                     </th>
                     <td>
                         <input type="text" class="regular-text ltr" id="rg4wp_js_tags" name="rg4wp_js_tags"
@@ -157,15 +167,7 @@
 
             </table>
 
-            <p class="submit">
-                <?php
-                $current_user = wp_get_current_user();
-                $testErrorUrl = plugins_url('sendtesterror.php?rg4wp_status=' . get_option('rg4wp_status') . '&rg4wp_apikey=' . urlencode(get_option('rg4wp_apikey')), __FILE__) . '&rg4wp_usertracking=' . urlencode(get_option('rg4wp_usertracking')) . '&user=' . urlencode($current_user->user_email);
-                ?>
-                <a id="js-send-test-error-link" class="button-secondary button-large" target="_blank"
-                   href="<?php echo $testErrorUrl; ?>">Send Test Error</a>
-            </p>
-
+            <br/>
             <h2 class="title">Real User Monitoring</h2>
 
             <table class="form-table">
