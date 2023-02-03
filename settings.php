@@ -185,9 +185,42 @@
 
             </table>
 
+            <br/>
+            <h2 class="title">Advanced: Debugging</h2>
+
+            <table class="form-table">
+
+                <tr>
+                    <th scope="row" class="th-full">
+                        <?php _e("Current WordPress debug logging state: ") ?>
+                        <b><?php _e((WP_DEBUG && WP_DEBUG_LOG) ? "enabled" : "disabled"); ?></b>
+                        <br/>
+                        <p class="description"><?php _e("Set WP_DEBUG and WP_DEBUG_LOG in wp-config.php"); ?></p>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="th-full">
+                        <label for="rg4wp_debugloglevel"><?php _e("Minimum level to send to Raygun"); ?></label>
+                        <select name="rg4wp_debugloglevel" id="rg4wp_debugloglevel">
+                            <option value="None">None</option>
+                            <option value="DEBUG">DEBUG</option>
+                            <option value="INFO">INFO</option>
+                            <option value="NOTICE">NOTICE</option>
+                            <option value="WARNING">WARNING</option>
+                            <option value="ERROR">ERROR</option>
+                            <option value="CRITICAL">CRITICAL</option>
+                            <option value="ALERT">ALERT</option>
+                            <option value="EMERGENCY">EMERGENCY</option>
+                        </select>
+                    </th>
+                </tr>
+
+            </table>
+
             <input type="hidden" name="action" value="update"/>
             <input type="hidden" name="page_options"
-                   value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_noadmintracking,rg4wp_sendfatalerrors"/>
+                   value="rg4wp_status,rg4wp_apikey,rg4wp_tags,rg4wp_404s,rg4wp_js,rg4wp_usertracking,rg4wp_ignoredomains,rg4wp_pulse,rg4wp_js_tags,rg4wp_noadmintracking,rg4wp_sendfatalerrors,rg4wp_debugloglevel"/>
 
             <p class="submit">
                 <?php
@@ -196,6 +229,14 @@
             </p>
             <script>
                 (function ($) {
+                    var $debugLogLevel = $('#rg4wp_debugloglevel');
+
+                    if (<?php echo WP_DEBUG ?> && <?php echo WP_DEBUG_LOG ?>) {
+                        $debugLogLevel.prop('disabled', false);
+                    } else {
+                        $debugLogLevel.prop('disabled', true);
+                    }
+
                     var $sendTestErrorLink = $('#js-send-test-error-link');
                     var serverSideEnabled = $('#rg4wp_status').prop('checked');
                     var clientSideEnabled = $('#rg4wp_js').prop('checked');

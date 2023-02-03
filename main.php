@@ -120,6 +120,7 @@ if (!get_option('rg4wp_apikey')) {
     function rg4wp_warn_key() {
         echo '<div class=\'updated fade\'><p>Raygun is almost ready to go. Enter your API key on the <a href="' . menu_page_url('rg4wp-settings', false) . '">settings page</a>.</p></div>';
     }
+
     add_action('admin_notices', 'rg4wp_warn_key');
 }
 
@@ -127,6 +128,7 @@ if (!function_exists('curl_version')) {
     function rg4wp_warn_curl() {
         echo '<div class=\'updated fade\'><p><strong>Raygun4WP: the cURL extension is not available in your PHP server.</strong> Raygun4WP requires this library to send errors - please install and enable it (in your php.ini file).</p></div>';
     }
+
     add_action('admin_notices', 'rg4wp_warn_curl');
 }
 
@@ -207,6 +209,7 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_async');
     register_setting('rg4wp', 'rg4wp_noadmintracking');
     register_setting('rg4wp', 'rg4wp_sendfatalerrors');
+    register_setting('rg4wp', 'rg4wp_debugloglevel');
 }
 
 function rg4wp_install() {
@@ -221,7 +224,8 @@ function rg4wp_install() {
     add_option('rg4wp_js_tags', '');
     add_option('rg4wp_async', '0');
     add_option('rg4wp_noadmintracking', '0');
-    add_option('rg4wp_sendfatalerrors', '0');
+    add_option('rg4wp_sendfatalerrors', '1');
+    add_option('rg4wp_debugloglevel', 'None');
 }
 
 function rg4wp_uninstall() {
@@ -237,4 +241,5 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_async');
     delete_option('rg4wp_noadmintracking');
     delete_option('rg4wp_sendfatalerrors');
+    delete_option('rg4wp_debugloglevel');
 }
