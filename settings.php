@@ -186,37 +186,42 @@
             </table>
 
             <br/>
-            <h2 class="title">Advanced: Debugging</h2>
-
-            <table class="form-table">
-
-                <tr>
-                    <th scope="row" class="th-full">
-                        <?php _e("Current WordPress debug logging state: ") ?>
-                        <b><?php _e((WP_DEBUG && WP_DEBUG_LOG) ? "enabled" : "disabled"); ?></b>
-                        <br/>
-                        <p class="description"><?php _e("Set WP_DEBUG and WP_DEBUG_LOG in wp-config.php"); ?></p>
-                    </th>
-                </tr>
-
-                <tr>
-                    <th scope="row" class="th-full">
-                        <label for="rg4wp_debugloglevel"><?php _e("Minimum level to send to Raygun"); ?></label>
-                        <select name="rg4wp_debugloglevel" id="rg4wp_debugloglevel">
-                            <option value="None">None</option>
-                            <option value="DEBUG">DEBUG</option>
-                            <option value="INFO">INFO</option>
-                            <option value="NOTICE">NOTICE</option>
-                            <option value="WARNING">WARNING</option>
-                            <option value="ERROR">ERROR</option>
-                            <option value="CRITICAL">CRITICAL</option>
-                            <option value="ALERT">ALERT</option>
-                            <option value="EMERGENCY">EMERGENCY</option>
-                        </select>
-                    </th>
-                </tr>
-
-            </table>
+            <h2 class="title">
+                <button type="button" id="hider" style="background:none; border:none;">&#9650; Debugging</button>
+            </h2>
+            <div id="hideable" style="display: none;">
+                <div>
+                    <p><?php _e("Send WordPress debug logs to Raygun."); ?></p>
+                    <br/>
+                    <p><?php _e("Current WordPress debug logging state: ") ?></p>
+                    <b><?php _e((WP_DEBUG && WP_DEBUG_LOG) ? "enabled" : "disabled"); ?></b>
+                    <br/>
+                    <p id="howtodebugdescription"
+                       class="description"><?php _e("Set WP_DEBUG and WP_DEBUG_LOG in wp-config.php"); ?></p>
+                </div>
+                <table class="form-table">
+                    <tr>
+                        <th scope="row">
+                            <label for="rg4wp_debugloglevel"><?php _e("Minimum log level to send to Raygun"); ?> </label>
+                        </th>
+                        <td>
+                            <select name="rg4wp_debugloglevel"
+                                    id="rg4wp_debugloglevel"<?php echo ' selected="' . get_option('rg4wp_debugloglevel') . '"' ?> >
+                                <option value="None">None</option>
+                                <option value="DEBUG">DEBUG</option>
+                                <option value="INFO">INFO</option>
+                                <option value="NOTICE">NOTICE</option>
+                                <option value="WARNING">WARNING</option>
+                                <option value="ERROR">ERROR</option>
+                                <option value="CRITICAL">CRITICAL</option>
+                                <option value="ALERT">ALERT</option>
+                                <option value="EMERGENCY">EMERGENCY</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
 
             <input type="hidden" name="action" value="update"/>
             <input type="hidden" name="page_options"
@@ -227,38 +232,50 @@
                 submit_button("Save Changes", "primary", "submitForm", false, array('value' => 'submit'));
                 ?>
             </p>
+
             <script>
                 (function ($) {
-                    var $debugLogLevel = $('#rg4wp_debugloglevel');
+                    var hider = $('#hider');
+                    hider.on('click', function () {
+                        var content = $('#hideable');
+                        if (content.css('display') === 'none') {
+                            content.show('slow');
+                            hider.text("\u25B6 Debugging");
+                        } else {
+                            content.hide('slow');
+                            hider.text("\u25BC Debugging");
+                        }
+                    });
 
-                    if (<?php echo WP_DEBUG ?> && <?php echo WP_DEBUG_LOG ?>) {
-                        $debugLogLevel.prop('disabled', false);
-                    } else {
-                        $debugLogLevel.prop('disabled', true);
+                    var getDebugState = function () {
+                        return '<?php echo (WP_DEBUG && WP_DEBUG_LOG) ? 'true' : 'false' ?>' === 'true';
+                    }
+                    if (!getDebugState()) {
+                        $('#rg4wp_debugloglevel')
+                            .prop('disabled', true)
+                            .addClass('disabled');
+                        $('#howtodebugdescription').hide();
                     }
 
-                    var $sendTestErrorLink = $('#js-send-test-error-link');
+                    var sendTestErrorLink = $('#js-send-test-error-link');
                     var serverSideEnabled = $('#rg4wp_status').prop('checked');
                     var clientSideEnabled = $('#rg4wp_js').prop('checked');
                     var apiKeyValue = $('#apiKey').val();
-
                     // Test if the API key has a value, and that either the server-side or client-side checkboxes have been checked on load
-                    var isValid = function () {
+                    var getKeyIsValid = function () {
                         return apiKeyValue.length > 0 && (serverSideEnabled || clientSideEnabled);
                     };
-
                     // Disable the send test link immediately if the state is invalid
-                    if (!isValid()) {
-                        $sendTestErrorLink
+                    if (!getKeyIsValid()) {
+                        sendTestErrorLink
                             .prop('disabled', true)
                             .attr('title', 'Add your Raygun API key, select an Error Tracking option and click Save Changes to send a test error')
                             .addClass('button-disabled')
                             .css({cursor: 'help'});
                     }
-
                     // Disable link default behavior if invalid
-                    $sendTestErrorLink.on('click', function (e) {
-                        if (!isValid()) {
+                    sendTestErrorLink.on('click', function (e) {
+                        if (!getKeyIsValid()) {
                             e.preventDefault();
                         }
                     });
