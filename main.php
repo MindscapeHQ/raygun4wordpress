@@ -209,7 +209,6 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_async');
     register_setting('rg4wp', 'rg4wp_noadmintracking');
     register_setting('rg4wp', 'rg4wp_sendfatalerrors');
-    register_setting('rg4wp', 'rg4wp_debugloglevel');
 }
 
 function rg4wp_install() {
@@ -225,7 +224,6 @@ function rg4wp_install() {
     add_option('rg4wp_async', '0');
     add_option('rg4wp_noadmintracking', '0');
     add_option('rg4wp_sendfatalerrors', '1');
-    add_option('rg4wp_debugloglevel', 'None');
 }
 
 function rg4wp_uninstall() {
@@ -241,5 +239,4 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_async');
     delete_option('rg4wp_noadmintracking');
     delete_option('rg4wp_sendfatalerrors');
-    delete_option('rg4wp_debugloglevel');
 }

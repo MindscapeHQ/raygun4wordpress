@@ -75,7 +75,7 @@ class RaygunClientManager {
          */
         $transport = $async ? new GuzzleAsync(self::$httpClient) : new GuzzleSync(self::$httpClient);
         if (isset(self::$logger)) {
-            // Attach the logger to the transport
+            // Attach the logger to the transport to log failed crash reports
             $transport->setLogger(self::$logger);
         }
         return $transport;
