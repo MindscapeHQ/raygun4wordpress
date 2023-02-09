@@ -89,24 +89,23 @@ if (
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
             RaygunClientManager::getInstance()->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
-    }, E_ALL ^ (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR));
+    }, E_ALL ^ (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR)); // Fatal errors will be sent before shutdown
 
-    /*
     set_exception_handler(function ($exception) {
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
+            $tags = array_merge($tags, ['fatal']); // Uncaught exceptions are fatal
             RaygunClientManager::getInstance()->SendException($exception, $tags);
         }
     });
-    */
 
     register_shutdown_function(function () {
-        if (1 == get_option('rg4wp_sendfatalerrors') && 1 == get_option('rg4wp_status')) {
+        if (1 == get_option('rg4wp_status')) {
             $lastError = error_get_last();
-            if (!is_null($lastError)) { // TODO
-                // A fatal error has occurred
+            if (!is_null($lastError) && $lastError['type'] & (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR)) {
+                // The fatal error was not converted to an ErrorException and handled by the exception handler...
                 $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-                $tags = array_merge($tags, ['fatal-error']);
+                $tags = array_merge($tags, ['fatal']);
                 RaygunClientManager::getInstance()->SendError($lastError['type'], $lastError['message'], $lastError['file'], $lastError['line'], $tags);
             }
         }
@@ -209,7 +208,6 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_js_tags');
     register_setting('rg4wp', 'rg4wp_async');
     register_setting('rg4wp', 'rg4wp_noadmintracking');
-    register_setting('rg4wp', 'rg4wp_sendfatalerrors');
 }
 
 function rg4wp_install() {
@@ -224,7 +222,6 @@ function rg4wp_install() {
     add_option('rg4wp_js_tags', '');
     add_option('rg4wp_async', '0');
     add_option('rg4wp_noadmintracking', '0');
-    add_option('rg4wp_sendfatalerrors', '1');
 }
 
 function rg4wp_uninstall() {
@@ -239,5 +236,4 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_js_tags');
     delete_option('rg4wp_async');
     delete_option('rg4wp_noadmintracking');
-    delete_option('rg4wp_sendfatalerrors');
 }
