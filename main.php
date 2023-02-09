@@ -89,24 +89,25 @@ if (
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
             RaygunClientManager::getInstance()->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
-    });
+    }, E_ALL ^ (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR));
 
+    /*
     set_exception_handler(function ($exception) {
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
             RaygunClientManager::getInstance()->SendException($exception, $tags);
         }
     });
+    */
 
     register_shutdown_function(function () {
         if (1 == get_option('rg4wp_sendfatalerrors') && 1 == get_option('rg4wp_status')) {
             $lastError = error_get_last();
-            if (!is_null($lastError) && $lastError['type'] === E_ERROR) {
+            if (!is_null($lastError)) { // TODO
                 // A fatal error has occurred
-                [$type, $message, $file, $line] = $lastError;
                 $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
                 $tags = array_merge($tags, ['fatal-error']);
-                RaygunClientManager::getInstance()->SendError($type, $message, $file, $line, $tags);
+                RaygunClientManager::getInstance()->SendError($lastError['type'], $lastError['message'], $lastError['file'], $lastError['line'], $tags);
             }
         }
     });
