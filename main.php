@@ -84,9 +84,34 @@ if (
 ) {
     RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
 
+    function getErrorTag(int $errno): string {
+        $errConsts = [
+            E_ERROR => "E_ERROR",
+            E_WARNING => "E_WARNING",
+            E_PARSE => "E_PARSE",
+            E_NOTICE => "E_NOTICE",
+            E_CORE_ERROR => "E_CORE_ERROR",
+            E_CORE_WARNING => "E_CORE_WARNING",
+            E_COMPILE_ERROR => "E_COMPILE_ERROR",
+            E_COMPILE_WARNING => "E_COMPILE_WARNING",
+            E_USER_ERROR => "E_USER_ERROR",
+            E_USER_WARNING => "E_USER_WARNING",
+            E_USER_NOTICE => "E_USER_NOTICE",
+            E_STRICT => "E_STRICT",
+            E_RECOVERABLE_ERROR => "E_RECOVERABLE_ERROR",
+            E_DEPRECATED => "E_DEPRECATED",
+            E_USER_DEPRECATED => "E_USER_DEPRECATED",
+        ];
+        if (!array_key_exists($errno, $errConsts)) {
+            return 'unknown-error';
+        }
+        return strtolower(str_replace('_', '-', substr($errConsts[$errno], 2)));
+    }
+
     set_error_handler(function ($errno, $errstr, $errfile, $errline) {
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
+            $tags = array_merge($tags, [getErrorTag($errno)]);
             RaygunClientManager::getInstance()->SendError($errno, $errstr, $errfile, $errline, $tags);
         }
     }, E_ALL ^ (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR)); // Fatal errors will be sent before shutdown
@@ -94,7 +119,7 @@ if (
     set_exception_handler(function ($exception) {
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-            $tags = array_merge($tags, ['fatal']); // Uncaught exceptions are fatal
+            $tags = array_merge($tags, ['uncaught-exception', 'fatal']); // Uncaught exceptions are fatal
             RaygunClientManager::getInstance()->SendException($exception, $tags);
         }
     });
@@ -105,7 +130,7 @@ if (
             if (!is_null($lastError) && $lastError['type'] & (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR)) {
                 // The fatal error was not converted to an ErrorException and handled by the exception handler...
                 $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
-                $tags = array_merge($tags, ['fatal']);
+                $tags = array_merge($tags, [getErrorTag($lastError['type']), 'fatal']);
                 RaygunClientManager::getInstance()->SendError($lastError['type'], $lastError['message'], $lastError['file'], $lastError['line'], $tags);
             }
         }
