@@ -1,0 +1,26 @@
+{
+  "name": "raygun/raygun4wordpress",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Raygun",
+      "homepage": "https://raygun.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Raygun\\Raygun4WP\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "mindscape/raygun4php": "~2.3.0",
+    "monolog/monolog": "^2.4"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  }
+}
