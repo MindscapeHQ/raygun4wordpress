@@ -2,6 +2,8 @@
 
 use Raygun\Raygun4WP\RaygunClientManager;
 
+require_once dirname(__FILE__) . '/errors.php';
+
 register_activation_hook(__FILE__, 'rg4wp_install');
 register_deactivation_hook(__FILE__, 'rg4wp_uninstall');
 
@@ -85,27 +87,10 @@ if (
     RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
 
     function getErrorTag(int $errno): string {
-        $errConsts = [
-            E_ERROR => "E_ERROR",
-            E_WARNING => "E_WARNING",
-            E_PARSE => "E_PARSE",
-            E_NOTICE => "E_NOTICE",
-            E_CORE_ERROR => "E_CORE_ERROR",
-            E_CORE_WARNING => "E_CORE_WARNING",
-            E_COMPILE_ERROR => "E_COMPILE_ERROR",
-            E_COMPILE_WARNING => "E_COMPILE_WARNING",
-            E_USER_ERROR => "E_USER_ERROR",
-            E_USER_WARNING => "E_USER_WARNING",
-            E_USER_NOTICE => "E_USER_NOTICE",
-            E_STRICT => "E_STRICT",
-            E_RECOVERABLE_ERROR => "E_RECOVERABLE_ERROR",
-            E_DEPRECATED => "E_DEPRECATED",
-            E_USER_DEPRECATED => "E_USER_DEPRECATED",
-        ];
-        if (!array_key_exists($errno, $errConsts)) {
+        if (!array_key_exists($errno, ERROR_CONSTANTS)) {
             return 'unknown-error';
         }
-        return strtolower(str_replace('_', '-', substr($errConsts[$errno], 2)));
+        return strtolower(str_replace('_', '-', substr(ERROR_CONSTANTS[$errno], 2)));
     }
 
     set_error_handler(function ($errno, $errstr, $errfile, $errline) {
