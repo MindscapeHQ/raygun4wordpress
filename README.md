@@ -1,68 +1,58 @@
 Raygun4WP
 ==========
 
-[Raygun](http://raygun.com) provider plugin for Wordpress
+**[Raygun](http://raygun.com) for WordPress**
 
-Wordpress plugin providing the easy integration of Raygun to Wordpress websites. [Crash Reporting](https://raygun.com/products/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically while [Real User Monitoring](https://raygun.com/products/real-user-monitoring) allows you to identify issues, measure trends in application performance, and improve your customers’ experience.
+The WordPress plugin providing an easy integration of Raygun into WordPress websites. [Crash Reporting](https://raygun.com/platform/crash-reporting) allows developers to easily track errors, exceptions and crashes automatically, while [Real User Monitoring](https://raygun.com/platform/real-user-monitoring) allows developers to identify issues, measure trends in application performance, and improve customer experiences.
 
 This provider uses the lower-level [Raygun4PHP](https://github.com/MindscapeHQ/raygun4php) provider for server-side crash reporting and [Raygun4JS](https://github.com/MindscapeHQ/raygun4js) for both client-side crash reporting and real user monitoring.
 
-**Multisite support**: This plugin supports Multisite installations, but a specific installation procedure should be followed. Read the instructions below for more information.
+**Multisite support**: This plugin supports multisite installations, but a specific installation procedure should be followed. Read the instructions below for more information.
 
 ## Installation
 
-Ensure that your server is running
-- PHP 5.3.3 or newer
-- **curl** library enabled
-
-### Manually with Git
-
-Clone this repository into your Wordpress installation's `/plugins` folder - e.g. `/wordpress/wp-content/plugins`. Use the --recursive flag to also pull down the [Raygun4PHP](https://github.com/MindscapeHQ/raygun4php) and [Raygun4JS](https://github.com/MindscapeHQ/raygun4js) dependencies:
-
-```
-git clone --recursive https://github.com/MindscapeHQ/raygun4wordpress.git
-```
+Ensure that your server is running PHP 7.4 or newer.
 
 ### From Wordpress Plugin Directory
 
-Add it from the official repository using your admin panel - the plugin is available on [wordpress.org/plugins/raygun4wp/](http://wordpress.org/plugins/raygun4wp/).
+Add it from the official repository using your admin panel - the plugin is available from [wordpress.org/plugins/raygun4wp/](http://wordpress.org/plugins/raygun4wp/).
+
+### Manually with Git
+
+Clone this repository into your WordPress installation's `/plugins` folder - e.g. `/wordpress/wp-content/plugins`.
+
+```
+git clone https://github.com/MindscapeHQ/raygun4wordpress
+```
 
 ## Usage
 
-1. Navigate to your Wordpress admin panel, click on Plugins, and then **Activate Raygun4WP**
-2. Go to the Raygun4WP settings panel either by the sidebar or admin notification
-3. Copy your application's API key from the [Raygun dashboard](https://app.raygun.com/dashboard/) and place it in the API key field
+1. Navigate to your WordPress admin panel, click on Plugins, and then **Activate Raygun**
+2. Go to the Raygun settings panel either by the sidebar or admin notification
+3. Copy your application's API key from your [Raygun dashboard](https://app.raygun.com/dashboard/) and place it in the API key field
 4. Enable `Error Tracking` (both server-side and client-side), `Real User Monitoring` and any other options
 5. Save your changes
 6. Done!
 
 ## Real User Monitoring
 
-As of 1.8 of Raygun4WP plugin you can enable [real user monitoring](https://raygun.com/products/real-user-monitoring).
-
-This feature can be enabled via the Settings page under **Real User Monitoring**.
+As of 1.8, you can enable [real user monitoring](https://raygun.com/platform/real-user-monitoring) by navigating to the Raygun settings page and checking the **Enable Real User Monitoring** checkbox.
 
 User information will be sent along if you have the Customers feature enabled.
 
 ## Client-side error tracking
 
-Since 1.4 of the Raygun4WP plugin you can enable client-side error monitoring.
+As of 1.4, this plugin now also includes [Raygun4JS](https://raygun.com/documentation/language-guides/javascript) so you can automatically track JavaScript errors that occur in your user's browser once your site's pages are loaded.
 
-This feature automatically tracks JavaScript errors that occur in your user's browsers when they are loaded.
-
-This setting can be activated via the Settings page.
+To activate this, turn on the JavaScript error tracking option in the Raygun settings page.
 
 ## Customers
 
-This feature can be enabled via the Settings page.
+If you enable this feature in your Raygun Plugin settings, the currently logged in user's email address, first name and last name will be transmitted along with each error or session. This will be visible in the Raygun dashboard.
 
-Enabling this feature will send through the currently logged in user's email address, first name and last name with each message to Raygun. This applies to both Crash Reporting and RUM payloads.
+If they have associated a Gravatar with that address, you will see their picture.
 
-If a user is not logged in, no user data will be sent and a random ID will be assigned to the user.
-
-The user's information will then be available to you when viewing crash reports and user sessions. If the user has an associated Gravatar with that address, you will see their picture.
-
-If this feature is not enabled, a random ID will be assigned to each user.
+If this feature is not enabled, a random ID will be assigned to each user. Either way, you can view a count of the affected users for each error.
 
 ## Tagging errors
 
@@ -78,12 +68,11 @@ You can enter a comma-delimited list in the field on the settings page to preven
 
 ## Async sending
 
-Introduced in 1.1.3, this provider will now send asynchronously on *nix servers (async sockets) resulting in a massive speedup - POSTing to Raygun now takes ~56ms including SSL handshakes. This behaviour can be disabled in code if desired to fall back to blocking socket sends. Async sending is also unavailable on Windows due to a bug in PHP 5.3, and as a result it uses cURL processes. This can be disabled if your server is running a newer environment; please create an issue if you'd like help with this.
-
-As of 1.9.0, you can now toggle asynchronous sending through the Raygun settings page in the admin dashboard.
+As of 2.0.0, async sending is avaliable on both Unix and Windows servers. Enabling async sending should yeild a performance increase.
 
 Changelog
 ---------
+- 2.0.0: Switch to Composer for dependency management; Bump Raygun4PHP dependency to v2.3.0; Use new async sending guzzle (adds support for async on Windows); Switch Raygun4JS dependency to grab latest CDN distribution; Add error type tagging; Log errors that fail to send to Raygun; Add setting to disable tracking on admin pages; Rename Mindscape namespace to Raygun (src); Improve RaygunClientManager such that setting changes take effect immediately; Correct relationship between error handler and shutdown handler; Miscellaneous bug fixes, code improvements, UI and documentation updates
 - 1.9.3: Updated User Tracking to Customers.
 - 1.9.2: Update Pulse to Real User Monitoring (RUM)
 - 1.9.1: Don't set user cookie when user tracking is disabled.
