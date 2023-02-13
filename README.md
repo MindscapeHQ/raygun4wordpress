@@ -59,6 +59,10 @@ As of 1.8.0, both client-side and server-side errors can be tagged. Tags are cus
 
 As of 2.0.0, asynchronous sending is avaliable on both Unix and Windows based systems. **Enabling async sending should yeild a significant performance increase.**
 
+## Logging Unsent Errors
+
+As of 2.0.0, errors that fail to send to Raygun will be logged to the standard WordPress log file (`WP_CONTENT_DIR`**/debug.log**).
+
 ---------
 
 Changelog
