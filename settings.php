@@ -33,7 +33,7 @@
                                 <input type="checkbox" name="rg4wp_usertracking"
                                        id="rg4wp_usertracking"<?php echo get_option('rg4wp_usertracking') ? ' checked="checked"' : ''; ?>
                                        value="1"/>
-                                <?php _e("Track user information"); ?>
+                                <?php _e("Track customer information"); ?>
                             </label>
                         </fieldset>
                     </td>
