@@ -200,8 +200,8 @@ function rg4wp_dash() {
 
 function rg4wp_admin() {
     $logourl = plugins_url('img/logo.png', __FILE__);
-    add_menu_page('Raygun4WP', 'Raygun4WP', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
-    add_submenu_page('rg4wp', 'About Raygun4WP', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
+    add_menu_page('Raygun', 'Raygun', 'administrator', 'rg4wp', 'rg4wp_about', $logourl);
+    add_submenu_page('rg4wp', 'About Raygun', 'About', 'administrator', 'rg4wp', 'rg4wp_about');
     add_submenu_page('rg4wp', 'Settings', 'Settings', 'administrator', 'rg4wp-settings', 'rg4wp_settings');
     add_submenu_page('rg4wp', 'Dashboard', 'Dashboard', 'administrator', 'rg4wp-dash', 'rg4wp_dash');
 }

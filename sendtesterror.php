@@ -9,7 +9,7 @@ use Raygun\Raygun4WP\RaygunClientManager;
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raygun4WP test error</title>
+    <title>Raygun4WP Test Error</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <style>
         body {
@@ -38,7 +38,7 @@ use Raygun\Raygun4WP\RaygunClientManager;
                     $client->SetUser($_GET['user']);
                 }
 
-                $result = trim($client->SendError(404, 'Congratulations, Raygun4WP is working correctly!', '0', '0'));
+                $result = trim($client->SendError(404, 'Congratulations, Raygun is working correctly!', '0', '0'));
 
                 if ($result == 'HTTP/1.1 403 Forbidden') {
                     echo 'The Raygun service did not accept your API key. Please ensure that you have a entered a valid API key for an application and then save your changes.';
