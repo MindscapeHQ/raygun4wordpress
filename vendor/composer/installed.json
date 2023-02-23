@@ -342,17 +342,17 @@
         },
         {
             "name": "mindscape/raygun4php",
-            "version": "v2.3.0",
-            "version_normalized": "2.3.0.0",
+            "version": "v2.3.1",
+            "version_normalized": "2.3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MindscapeHQ/raygun4php.git",
-                "reference": "a479ce6be7f31f224893055884afc7b8153191fd"
+                "reference": "f2943cc244ddf7bbf6b3a291ee4ae033ab1e1bf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MindscapeHQ/raygun4php/zipball/a479ce6be7f31f224893055884afc7b8153191fd",
-                "reference": "a479ce6be7f31f224893055884afc7b8153191fd",
+                "url": "https://api.github.com/repos/MindscapeHQ/raygun4php/zipball/f2943cc244ddf7bbf6b3a291ee4ae033ab1e1bf0",
+                "reference": "f2943cc244ddf7bbf6b3a291ee4ae033ab1e1bf0",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +369,7 @@
             "suggest": {
                 "ext-curl": "*"
             },
-            "time": "2022-09-07T04:14:24+00:00",
+            "time": "2023-02-22T02:17:58+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -404,7 +404,7 @@
             ],
             "support": {
                 "issues": "https://github.com/MindscapeHQ/raygun4php/issues",
-                "source": "https://github.com/MindscapeHQ/raygun4php/tree/v2.3.0"
+                "source": "https://github.com/MindscapeHQ/raygun4php/tree/v2.3.1"
             },
             "install-path": "../mindscape/raygun4php"
         },

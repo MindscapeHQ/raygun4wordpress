@@ -3,7 +3,7 @@ Contributors: mindscapehq
 Tags: crash reporting, error monitoring, user experience monitoring, core web vitals, raygun, error reporting, error tracking, bug tracking, real user monitoring, exception, JavaScript, PHP
 Requires at least: 5.3
 Tested up to: 6.1.1
-Stable tag: 2.0.0.0
+Stable tag: 2.0.1.0
 Requires PHP: 7.4
 License: MIT
 License URI: http://opensource.org/licenses/MIT
@@ -73,6 +73,9 @@ This plugin is not guaranteed to work with multisite installations in certain en
 Finally, if you so desire, you should be able to visit the root network site, activate it there and configure it. You must, however, activate it on at least one child site first.
 
 == Changelog  ==
+
+= 2.0.1.0 =
+* Bump Raygun4PHP dependency to v2.3.1 to improve support for PHP version 8.2
 
 = 2.0.0.0 =
 * Switch to Composer for dependency management

@@ -67,6 +67,7 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 
 Changelog
 ---------
+- 2.0.1: Bump Raygun4PHP dependency to v2.3.1 to improve support for PHP version 8.2
 - 2.0.0: Switch to Composer for dependency management; Bump Raygun4PHP dependency to v2.3.0; Use new async sending guzzle (adds support for async on Windows); Switch Raygun4JS dependency to grab latest CDN distribution; Add error type tagging; Log errors that fail to send to Raygun; Add setting to disable tracking on admin pages; Rename Mindscape namespace to Raygun (src); Improve RaygunClientManager such that setting changes take effect immediately; Correct relationship between error handler and shutdown handler; Miscellaneous bug fixes, code improvements, UI and documentation updates
 - 1.9.3: Updated User Tracking to Customers.
 - 1.9.2: Update Pulse to Real User Monitoring (RUM)
