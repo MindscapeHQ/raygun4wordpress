@@ -47,6 +47,10 @@ function rg4wp_js() {
         $script .= 'rg4js("enableCrashReporting", true);' . "\n";
     }
 
+    if (1 == get_option('rg4wp_js_ignore3rdpartyerrors')) {      
+        $script .= 'rg4js("options", { ignore3rdPartyErrors: true });' . "\n";
+    }
+
     if (get_option('rg4wp_js_tags')) {
         $script .= 'rg4js("withTags",[';
         $tags = explode(',', get_option('rg4wp_js_tags'));
@@ -212,6 +216,7 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_status');
     register_setting('rg4wp', 'rg4wp_404s');
     register_setting('rg4wp', 'rg4wp_js');
+    register_setting('rg4wp', 'rg4wp_js_ignore3rdpartyerrors');
     register_setting('rg4wp', 'rg4wp_usertracking');
     register_setting('rg4wp', 'rg4wp_ignoredomains');
     register_setting('rg4wp', 'rg4wp_pulse');
@@ -227,6 +232,7 @@ function rg4wp_install() {
     add_option('rg4wp_usertracking', '0');
     add_option('rg4wp_404s', '1');
     add_option('rg4wp_js', '1');
+    add_option('rg4wp_js_ignore3rdpartyerrors', '1');
     add_option('rg4wp_ignoredomains', '');
     add_option('rg4wp_pulse', '');
     add_option('rg4wp_js_tags', '');
@@ -240,6 +246,7 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_status');
     delete_option('rg4wp_404s');
     delete_option('rg4wp_js');
+    delete_option('rg4wp_js_ignore3rdpartyerrors');
     delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
     delete_option('rg4wp_pulse');
