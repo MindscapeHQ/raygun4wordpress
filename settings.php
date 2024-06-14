@@ -63,7 +63,7 @@
                                 <?php _e("Client-side errors"); ?> (JavaScript)
                             </label>
                             <br/>
-                            <label for="rg4wp_js_ignore3rdpartyerrors" style="margin-left: 20px;">
+                            <label for="rg4wp_js_ignore3rdpartyerrors" style="padding-left: 20px;">
                                 <input type="checkbox" name="rg4wp_js_ignore3rdpartyerrors"
                                        id="rg4wp_js_ignore3rdpartyerrors"<?php echo get_option('rg4wp_js_ignore3rdpartyerrors') ? ' checked="checked"' : ''; ?>
                                        value="1"/>
