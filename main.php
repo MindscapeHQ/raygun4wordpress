@@ -237,7 +237,7 @@ function rg4wp_install() {
     add_option('rg4wp_pulse', '');
     add_option('rg4wp_js_tags', '');
     add_option('rg4wp_async', '0');
-    add_option('rg4wp_noadmintracking', '0');
+    add_option('rg4wp_noadmintracking', '1');
 }
 
 function rg4wp_uninstall() {
