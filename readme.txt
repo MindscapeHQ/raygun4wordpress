@@ -74,7 +74,7 @@ Finally, if you so desire, you should be able to visit the root network site, ac
 
 == Changelog  ==
 
-= 2.1.1 =
+= 2.1.1.0 =
 * Bump stable version
 
 = 2.1.0.0 =
