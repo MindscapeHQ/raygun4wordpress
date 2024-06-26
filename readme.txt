@@ -1,9 +1,9 @@
 === Raygun ===
 Contributors: mindscapehq
 Tags: crash reporting, error monitoring, user experience monitoring, core web vitals, raygun, error reporting, error tracking, bug tracking, real user monitoring, exception, JavaScript, PHP
-Requires at least: 5.3
+Requires at least: 6.5.4
 Tested up to: 6.1.1
-Stable tag: 2.0.1.0
+Stable tag: 2.1.0.0
 Requires PHP: 7.4
 License: MIT
 License URI: http://opensource.org/licenses/MIT
@@ -74,8 +74,11 @@ Finally, if you so desire, you should be able to visit the root network site, ac
 
 == Changelog  ==
 
+= 2.1.1 =
+* Bump stable version
+
 = 2.1.0.0 =
-* Add ignore third-party errors option
+* Add ignore third-party errors option and bump WordPress required version 
 
 = 2.0.1.0 =
 * Bump Raygun4PHP dependency to v2.3.1 to improve support for PHP version 8.2
