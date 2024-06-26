@@ -63,10 +63,16 @@ As of 2.0.0, asynchronous sending is avaliable on both Unix and Windows based sy
 
 As of 2.0.0, errors that fail to send to Raygun will be logged to the standard WordPress log file (`WP_CONTENT_DIR`**/debug.log**).
 
+## Ignore 3rd-party errors
+
+As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
+
 ---------
 
 Changelog
 ---------
+- 2.1.1: Bump stable version
+- 2.1.0: Add ignore third-party errors option and bump required WordPress version
 - 2.0.1: Bump Raygun4PHP dependency to v2.3.1 to improve support for PHP version 8.2
 - 2.0.0: Switch to Composer for dependency management; Bump Raygun4PHP dependency to v2.3.0; Use new async sending guzzle (adds support for async on Windows); Switch Raygun4JS dependency to grab latest CDN distribution; Add error type tagging; Log errors that fail to send to Raygun; Add setting to disable tracking on admin pages; Rename Mindscape namespace to Raygun (src); Improve RaygunClientManager such that setting changes take effect immediately; Correct relationship between error handler and shutdown handler; Miscellaneous bug fixes, code improvements, UI and documentation updates
 - 1.9.3: Updated User Tracking to Customers.

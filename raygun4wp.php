@@ -3,7 +3,7 @@
 Plugin Name: Raygun
 Plugin URI: http://github.com/mindscapehq/raygun4wordpress
 Description: Exceptional error, performance, user tracking and more with Raygun.com. This service integrates Raygun Crash Reporting which lets you monitor your site's health with beautiful graphs and comprehensive reports, so you are always aware of any points of failure. With Raygun's Real User Monitoring you can monitor the performance of every individual user session, so you can discover and fix fundamental bottlenecks that affect your end user experience. This plugin has a simple one-minute, no-code-required installation.
-Version: 2.1.0.0
+Version: 2.1.1.0
 Requires at least: 6.5.4
 Requires PHP: 7.4
 Author: Raygun
