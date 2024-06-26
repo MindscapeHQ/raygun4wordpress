@@ -74,6 +74,9 @@ Finally, if you so desire, you should be able to visit the root network site, ac
 
 == Changelog  ==
 
+= 2.1.0.0 =
+* Add ignore third-party errors option
+
 = 2.0.1.0 =
 * Bump Raygun4PHP dependency to v2.3.1 to improve support for PHP version 8.2
 
