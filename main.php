@@ -79,7 +79,7 @@ function rg4wp_js() {
     }
 
     $script .= '</script>';
-    printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
+    printf($script, get_option('rg4wp_apikey'), apply_filters('raygun_version', get_bloginfo('version')));
 }
 
 if (
@@ -88,7 +88,7 @@ if (
     && get_option('rg4wp_apikey')
     && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
 ) {
-    RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
+    RaygunClientManager::getInstance()->SetVersion(apply_filters('raygun_version', get_bloginfo('version')));
 
     function getErrorTag(int $errno): string {
         if (!array_key_exists($errno, ERROR_CONSTANTS)) {
@@ -173,7 +173,7 @@ function rg4wp_404_handler() {
         && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
     ) {
         rg4wp_checkUser();
-        RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
+        RaygunClientManager::getInstance()->SetVersion(apply_filters('raygun_version', get_bloginfo('version')));
         $uri = $_SERVER['REQUEST_URI'];
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
         $tags = array_merge($tags, ['404-error']);
