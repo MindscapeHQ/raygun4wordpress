@@ -14,6 +14,14 @@ add_action('template_redirect', 'rg4wp_404_handler');
 add_action('wp_enqueue_script', 'load_jquery');
 add_action('plugins_loaded', 'rg4wp_checkUser');
 
+function rg4wp_version(): string {
+    static $version = null;
+    if ($version === null) {
+        $version = defined('RAYGUN_VERSION') ? RAYGUN_VERSION : get_bloginfo('version');
+    }
+    return $version;
+}
+
 function rg4wp_isIgnoredDomain(): bool {
     $domains = array_map('trim', explode(',', get_option('rg4wp_ignoredomains', '')));
     return array_key_exists('SERVER_NAME', $_SERVER) && in_array($_SERVER['SERVER_NAME'], $domains);
@@ -79,7 +87,7 @@ function rg4wp_js() {
     }
 
     $script .= '</script>';
-    printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
+    printf($script, get_option('rg4wp_apikey'), rg4wp_version());
 }
 
 if (
@@ -88,7 +96,7 @@ if (
     && get_option('rg4wp_apikey')
     && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
 ) {
-    RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
+    RaygunClientManager::getInstance()->SetVersion(rg4wp_version());
 
     function getErrorTag(int $errno): string {
         if (!array_key_exists($errno, ERROR_CONSTANTS)) {
@@ -173,7 +181,7 @@ function rg4wp_404_handler() {
         && !(1 == get_option('rg4wp_noadmintracking', 0) && is_admin())
     ) {
         rg4wp_checkUser();
-        RaygunClientManager::getInstance()->SetVersion(get_bloginfo('version'));
+        RaygunClientManager::getInstance()->SetVersion(rg4wp_version());
         $uri = $_SERVER['REQUEST_URI'];
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
         $tags = array_merge($tags, ['404-error']);
