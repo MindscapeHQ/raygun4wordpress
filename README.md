@@ -67,6 +67,18 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 
 As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
 
+## Custom Data
+
+You can now add [custom data](https://raygun.com/documentation/product-guides/crash-reporting/custom-data-tags/) to the errors being sent to Raygun, by passing an associative array to the `raygun_custom_data` filter for PHP, and the `raygun_js_custom_data` filter for JS.
+
+For example:
+
+```php
+add_filter( 'raygun_custom_data', function( $error ) {
+  return [ "foo" => "bar" ];
+});
+```
+
 ---------
 
 Changelog
