@@ -65,7 +65,7 @@ function rg4wp_js() {
 
     $jsCustomData = apply_filters('raygun_js_custom_data', []);
     if (!empty($jsCustomData)) {
-        $script .= 'rg4js("withCustomData", ' . json_encode($jsCustomData) . ');' . "\n";
+        $script .= 'rg4js("withCustomData", ' . wp_json_encode($jsCustomData) . ');' . "\n";
     }
 
     if (1 == get_option('rg4wp_pulse')) {
