@@ -19,6 +19,12 @@ function rg4wp_isIgnoredDomain(): bool {
     return array_key_exists('SERVER_NAME', $_SERVER) && in_array($_SERVER['SERVER_NAME'], $domains);
 }
 
+/* Applies custom data filter, and guarantees array */
+function rg4wp_getCustomData(string $filter): array {
+    $data = apply_filters($filter, []);
+    return is_array($data) ? $data : [];
+}
+
 if (
     (1 == get_option('rg4wp_js') || 1 == get_option('rg4wp_pulse'))
     && get_option('rg4wp_apikey')
@@ -63,7 +69,7 @@ function rg4wp_js() {
         $script .= ']);' . "\n";
     }
 
-    $jsCustomData = apply_filters('raygun_js_custom_data', []);
+    $jsCustomData = rg4wp_getCustomData('raygun_js_custom_data');
     if (!empty($jsCustomData)) {
         $script .= 'rg4js("withCustomData", ' . wp_json_encode($jsCustomData) . ');' . "\n";
     }
@@ -106,7 +112,7 @@ if (
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
             $tags = array_merge($tags, [getErrorTag($errno)]);
-            $customData = apply_filters('raygun_custom_data', []);
+            $customData = rg4wp_getCustomData('raygun_custom_data');
             RaygunClientManager::getInstance()->SendError($errno, $errstr, $errfile, $errline, $tags, $customData);
         }
     }, E_ALL ^ (E_ERROR | E_CORE_ERROR | E_COMPILE_ERROR)); // Fatal errors will be sent before shutdown
@@ -115,7 +121,7 @@ if (
         if (1 == get_option('rg4wp_status')) {
             $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
             $tags = array_merge($tags, ['uncaught-exception', 'fatal']); // Uncaught exceptions are fatal
-            $customData = apply_filters('raygun_custom_data', []);
+            $customData = rg4wp_getCustomData('raygun_custom_data');
             RaygunClientManager::getInstance()->SendException($exception, $tags, $customData);
         }
     });
@@ -127,7 +133,7 @@ if (
                 // The fatal error was not converted to an ErrorException and handled by the exception handler...
                 $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
                 $tags = array_merge($tags, [getErrorTag($lastError['type']), 'fatal']);
-                $customData = apply_filters('raygun_custom_data', []);
+                $customData = rg4wp_getCustomData('raygun_custom_data');
                 RaygunClientManager::getInstance()->SendError($lastError['type'], $lastError['message'], $lastError['file'], $lastError['line'], $tags, $customData);
             }
         }
@@ -185,7 +191,7 @@ function rg4wp_404_handler() {
         $uri = $_SERVER['REQUEST_URI'];
         $tags = array_map('trim', explode(',', get_option('rg4wp_tags')));
         $tags = array_merge($tags, ['404-error']);
-        $customData = apply_filters('raygun_custom_data', []);
+        $customData = rg4wp_getCustomData('raygun_custom_data');
         RaygunClientManager::getInstance()->SendError(404, '404 Not Found: ' . $uri, home_url() . $uri, '0', $tags, $customData);
     }
 }
