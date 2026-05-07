@@ -67,6 +67,18 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 
 As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
 
+## Custom Version
+
+By default, Raygun will send the current WordPress core version as the version for your app. If you wish to send something different as your app version (for example, your deployment ID), set the `RAYGUN_VERSION` global constant.
+
+Set this constant as early as possible (e.g. in `wp-config.php`, and not in a plugin or theme), to ensure all PHP and JS errors throughout the lifecycle of a request report the same version number.
+
+For example:
+
+```php
+define('RAYGUN_VERSION', '1.0.0.0');
+```
+
 ---------
 
 Changelog
