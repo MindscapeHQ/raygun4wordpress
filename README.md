@@ -13,8 +13,6 @@ This provider uses the lower-level [Raygun4PHP](https://github.com/MindscapeHQ/r
 
 Ensure that your server is running at least WordPress 5.3 and PHP 7.4.
 
-*Raygun4WP version 1.9.3 is recommended for use with older PHP versions >= 5.3.3.*
-
 ### From Wordpress Plugin Directory
 
 Add it from the official *wordpress.org* repository using your admin panel - the plugin is available from [wordpress.org/plugins/raygun4wp](http://wordpress.org/plugins/raygun4wp).
@@ -66,6 +64,20 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 ## Ignore 3rd-party errors
 
 As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
+
+## Packaging the plugin
+
+Composer dependencies are committed in `vendor/`. Keep the dependency tree intact when running `composer install` or `composer update`.
+
+To create an installable plugin ZIP from the committed files, run:
+
+```sh
+git archive --format=zip --prefix=raygun4wp/ --output=../raygun4wp.zip HEAD
+```
+
+Raygun4PHP's existing `vendor/mindscape/raygun4php/.gitattributes` export rule excludes its standalone `sample-apps/` directory from Git archives without deleting it from the checkout. The plugin runtime and its runtime dependencies remain in the ZIP; dependencies' other export rules also apply. Commit dependency changes before packaging; this command archives `HEAD`, not uncommitted files.
+
+Git clones retain the samples. Packaging by another method, including copying files to WordPress.org SVN, must also exclude `vendor/mindscape/raygun4php/sample-apps/`; the Git export rule does not filter arbitrary copies.
 
 ---------
 

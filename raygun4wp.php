@@ -17,7 +17,7 @@ $multisite_support_enabled = false;
 
 if (version_compare(PHP_VERSION, '7.4', '<')) {
     function rg4wp_warn_php() {
-        echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> Your server\'s PHP version is below 7.4. Raygun4WP requires at least this version to run; please update PHP to at least 7.4, or contact your administrator. Raygun4WP version 1.9.3 is recommended for use with older PHP versions (>=5.3.3).</p></div>';
+        echo '<div class=\'updated fade\'><p><strong>Raygun4WP:</strong> This version of Raygun4WP requires PHP 7.4 or later and cannot run on your current PHP version.</p></div>';
     }
     add_action('admin_notices', 'rg4wp_warn_php');
     return;
