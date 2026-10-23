@@ -22,9 +22,5 @@
     "platform": {
       "php": "7.4"
     }
-  },
-  "scripts": {
-    "post-install-cmd": "@php scripts/remove-sdk-samples.php",
-    "post-update-cmd": "@php scripts/remove-sdk-samples.php"
   }
 }
