@@ -1,6 +1,0 @@
-{
-    "require": {
-        "mindscape/raygun4php": "^2.0",
-        "monolog/monolog": "2.0.2"
-    }
-}

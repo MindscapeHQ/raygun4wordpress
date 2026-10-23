@@ -13,8 +13,6 @@ This provider uses the lower-level [Raygun4PHP](https://github.com/MindscapeHQ/r
 
 Ensure that your server is running at least WordPress 5.3 and PHP 7.4.
 
-*Raygun4WP version 1.9.3 is recommended for use with older PHP versions >= 5.3.3.*
-
 ### From Wordpress Plugin Directory
 
 Add it from the official *wordpress.org* repository using your admin panel - the plugin is available from [wordpress.org/plugins/raygun4wp](http://wordpress.org/plugins/raygun4wp).
@@ -66,6 +64,12 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 ## Ignore 3rd-party errors
 
 As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
+
+## Dependency maintenance
+
+Composer dependencies are committed in `vendor/` and shipped with the plugin. After `composer install` or `composer update`, a Composer script removes Raygun4PHP's standalone `sample-apps/` directory, which the WordPress plugin does not use.
+
+Keep Composer scripts enabled when preparing the plugin for distribution. If dependencies were installed with `--no-scripts`, run `php scripts/remove-sdk-samples.php` before packaging. Commit the resulting dependency changes without the SDK sample apps.
 
 ---------
 
