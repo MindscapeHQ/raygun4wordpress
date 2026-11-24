@@ -38,6 +38,23 @@
                         </fieldset>
                     </td>
                 </tr>
+                <tr>
+                    <th>
+                        <label for="rg4wp_js_loginpage"><?php _e("Login Page"); ?></label>
+                    </th>
+                    <td>
+                        <fieldset>
+                            <legend class="screen-reader-text"><span><?php _e("Login Page"); ?></span></legend>
+                            <label for="rg4wp_js_loginpage">
+                                <input type="checkbox" name="rg4wp_js_loginpage"
+                                       id="rg4wp_js_loginpage"<?php echo get_option('rg4wp_js_loginpage') ? ' checked="checked"' : ''; ?>
+                                       value="1"/>
+                                <?php _e("Also track the login page"); ?> (wp-login.php)
+                            </label>
+                            <p class="description"><?php _e("Applies to client-side errors and Real User Monitoring."); ?></p>
+                        </fieldset>
+                    </td>
+                </tr>
             </table>
 
             <h2 class="title">Crash Reporting</h2>

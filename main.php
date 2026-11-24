@@ -27,10 +27,14 @@ if (
 ) {
     add_action('wp_head', 'rg4wp_js', 0);
     add_action('admin_head', 'rg4wp_js', 0);
+
+    if (1 == get_option('rg4wp_js_loginpage', 0)) {
+        add_action('login_head', 'rg4wp_js', 0);
+    }
 }
 
 function rg4wp_js() {
-    $script = '
+    $script = sprintf('
         <script type="text/javascript">
           !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
           (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
@@ -41,7 +45,7 @@ function rg4wp_js() {
         <script type="text/javascript">
         rg4js("apiKey", "%s");
 		rg4js("setVersion", "%s");
-    ';
+    ', get_option('rg4wp_apikey'), get_bloginfo('version'));
 
     if (1 == get_option('rg4wp_js')) {
         $script .= 'rg4js("enableCrashReporting", true);' . "\n";
@@ -79,7 +83,7 @@ function rg4wp_js() {
     }
 
     $script .= '</script>';
-    printf($script, get_option('rg4wp_apikey'), get_bloginfo('version'));
+    echo $script;
 }
 
 if (
@@ -217,6 +221,7 @@ function rg4wp_register_settings() {
     register_setting('rg4wp', 'rg4wp_404s');
     register_setting('rg4wp', 'rg4wp_js');
     register_setting('rg4wp', 'rg4wp_js_ignore3rdpartyerrors');
+    register_setting('rg4wp', 'rg4wp_js_loginpage');
     register_setting('rg4wp', 'rg4wp_usertracking');
     register_setting('rg4wp', 'rg4wp_ignoredomains');
     register_setting('rg4wp', 'rg4wp_pulse');
@@ -233,6 +238,7 @@ function rg4wp_install() {
     add_option('rg4wp_404s', '1');
     add_option('rg4wp_js', '1');
     add_option('rg4wp_js_ignore3rdpartyerrors', '1');
+    add_option('rg4wp_js_loginpage', '0');
     add_option('rg4wp_ignoredomains', '');
     add_option('rg4wp_pulse', '');
     add_option('rg4wp_js_tags', '');
@@ -247,6 +253,7 @@ function rg4wp_uninstall() {
     delete_option('rg4wp_404s');
     delete_option('rg4wp_js');
     delete_option('rg4wp_js_ignore3rdpartyerrors');
+    delete_option('rg4wp_js_loginpage');
     delete_option('rg4wp_usertracking');
     delete_option('rg4wp_ignoredomains');
     delete_option('rg4wp_pulse');
