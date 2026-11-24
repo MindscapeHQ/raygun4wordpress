@@ -67,6 +67,10 @@ As of 2.0.0, errors that fail to send to Raygun will be logged to the standard W
 
 As of 2.1.0, you can now ignore 3rd-party errors from being sent to Raygun. You can enable this option via the plugin settings.
 
+## Login page tracking
+
+Client-side crash reporting and Real User Monitoring can also be enabled on the WordPress login page (`wp-login.php`, including the lost password and registration screens). This is off by default; enable it via the *Login Page* option in the plugin settings.
+
 ---------
 
 Changelog
